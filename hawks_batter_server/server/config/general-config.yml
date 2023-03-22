@@ -1,0 +1,20 @@
+API_TITLE: PROBATTER HAWKS SERVER API
+API_VERSION: v1
+
+# openapi.json version and URL prefix
+OPENAPI_VERSION: 3.0.3
+OPENAPI_URL_PREFIX: /
+
+# Enable swagger UI
+OPENAPI_SWAGGER_UI_PATH: /docs
+OPENAPI_SWAGGER_UI_URL: https://cdn.jsdelivr.net/npm/swagger-ui-dist/
+
+#VIDEO MANAGER CONFIGURATION
+DEFAULT_VIDEO: /home/nico/workspace/hawks_batter/app_data/videos/v1.mpg
+SETUP_FRAME: /home/nico/workspace/hawks_batter/app/data/setup.jpg
+
+# Peripherals configuration
+PERIPHERALS_DOORBELL_BUTTON: 21
+WIFI_CONNECTION_STATUS_POLL_PERIOD_IN_SECS: 1
+PERIPHERALS_PRESENCE_DETECTION_PIN: 23
+MQTT_ALARM_NOTIFICATION_TOPIC: alarm/notification
