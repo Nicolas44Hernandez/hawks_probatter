@@ -1,0 +1,53 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+  default:
+    format: "%(asctime)s [%(threadName)s] [%(levelname)s] %(name)s: %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: default
+
+  app:
+    class: logging.handlers.RotatingFileHandler
+    formatter: default
+    filename: logs/app.log
+    maxBytes: 52428800 # 50 Megabytes
+    backupCount: 1
+
+  video_manager:
+    class: logging.handlers.RotatingFileHandler
+    formatter: default
+    filename: logs/manager/video.log
+    maxBytes: 52428800 # 50 Megabytes
+    backupCount: 1
+
+  video_capture_interface:
+    class: logging.handlers.RotatingFileHandler
+    formatter: default
+    filename: logs/interface/video_capture.log
+    maxBytes: 52428800 # 50 Megabytes
+    backupCount: 1
+
+
+root:
+  level: WARN
+  handlers: [console]
+
+loggers:
+  server.app:
+    level: INFO
+    handlers: [console]
+    propagate: no
+
+  server.managers.video_manager:
+    level: INFO
+    handlers: [console]
+    propagate: no
+
+  server.interfaces.video_capture_interface:
+    level: INFO
+    handlers: [console]
+    propagate: no
