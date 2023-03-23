@@ -28,7 +28,7 @@ class SensorsManager:
             )
 
             self.sensor_2_interface = GpioMotionSensorInterface(
-                sensor_pin=app.config["SENSOR_START_PIN"],
+                sensor_pin=app.config["SENSOR_STOP_PIN"],
                 callback_function=self.sensor_end_callback,
             )
 
