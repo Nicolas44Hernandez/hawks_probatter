@@ -10,8 +10,8 @@ OPENAPI_SWAGGER_UI_PATH: /docs
 OPENAPI_SWAGGER_UI_URL: https://cdn.jsdelivr.net/npm/swagger-ui-dist/
 
 #VIDEO MANAGER CONFIGURATION
-DEFAULT_VIDEO: /home/nico/workspace/hawks_batter/app_data/videos/v1.mpg
-SETUP_FRAME: /home/nico/workspace/hawks_batter/app/data/setup.jpg
+DEFAULT_VIDEO: /home/pi/workspace/hawks_batter/app_data/videos/v1.mpg
+SETUP_FRAME: /home/pi/workspace/hawks_batter/app/data/setup.jpg
 
 # Peripherals configuration
 SENSOR_START_PIN: 21
