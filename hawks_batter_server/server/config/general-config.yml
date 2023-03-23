@@ -14,5 +14,5 @@ DEFAULT_VIDEO: //home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
 SETUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/setup.jpg
 
 # Peripherals configuration
-SENSOR_START_PIN: 21
-SENSOR_STOP_PIN: 22
+SENSOR_START_PIN: 23
+SENSOR_STOP_PIN: 24
