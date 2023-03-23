@@ -79,17 +79,18 @@ class VideoCaptureInterface(threading.Thread):
                     self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
                     cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
             
-            if cv2.waitKey(interframe_wait_ms):
-                if 0x7F == ord('q'):
-                    logger.info("Exit requested.")
-                    break
-            
-            if cv2.waitKey(interframe_wait_ms):
-                if 0x7F == ord('c'):
+            pressed_key =  cv2.waitKey(interframe_wait_ms)
+            if pressed_key:
+                if pressed_key == ord('c'):
                     if not self.setting_up:
                         self.set_up_image_video(True)
                     else:
                         self.set_up_image_video(False)
+                elif pressed_key == ord('q'):
+                    logger.info("Exit requested.")
+                    break
+            
+                
 
                     
 
