@@ -31,14 +31,14 @@ class VideoCaptureInterface(threading.Thread):
 
         # Load setup frame
         captured_setup_frame = self.load_image(setup_frame)
-        if not captured_setup_frame: 
+        if captured_setup_frame is None: 
             logger.error("Impossible to open setup frame")
             return 
         self.setup_frame = captured_setup_frame
 
         # Load startup frame
         captured_startup_frame = self.load_image(startup_frame)
-        if not captured_setup_frame: 
+        if captured_startup_frame is None: 
             logger.error("Impossible to open startup frame")
             return 
         self.startup_frame = captured_startup_frame        
@@ -147,7 +147,7 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(path_to_frame)
         ret, frame = cap.read()
         if not ret:
-            frame = False
+            frame = None
             logger.error("Impossible to open setup frame")
         cap.release()
         return frame
