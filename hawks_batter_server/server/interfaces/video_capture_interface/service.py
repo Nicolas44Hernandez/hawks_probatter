@@ -101,9 +101,9 @@ class VideoCaptureInterface(threading.Thread):
                         self.set_up_image_video(False)
                 elif pressed_key == ord('r'):
                     if not self.running:
-                        self.set_up_image_video(True)
+                        self.start_game()
                     else:
-                        self.set_up_image_video(False)
+                        self.end_game()
                 elif pressed_key == ord('q'):
                     logger.info("Exit requested.")
                     break       
