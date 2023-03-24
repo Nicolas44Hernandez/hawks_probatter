@@ -72,8 +72,7 @@ class VideoCaptureInterface(threading.Thread):
         while True:   
             if self.setting_up:
                 self.running = False
-                self.waiting_for_start = True
-                self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                self.waiting_for_start = True                
                 cv2.imshow(WINDOW_NAME, self.setup_frame) 
                 continue   
             if not self.running:
