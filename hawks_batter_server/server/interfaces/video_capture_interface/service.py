@@ -141,6 +141,7 @@ class VideoCaptureInterface(threading.Thread):
     def set_up_image_video(self, setup: bool=True):
         """Show setup image"""
         #TODO: stop machine
+        logger(f"Setting up {setup}")
         self.setting_up = setup
         self.running = False
     
