@@ -95,16 +95,19 @@ class VideoCaptureInterface(threading.Thread):
             pressed_key =  cv2.waitKey(interframe_wait_ms)
             if pressed_key:
                 if pressed_key == ord('c'):
+                    logger.info("Key c pressed")
                     if not self.setting_up:
                         self.set_up_image_video(True)
                     else:
                         self.set_up_image_video(False)
                 elif pressed_key == ord('r'):
+                    logger.info("Key r pressed")
                     if not self.running:
                         self.start_game()
                     else:
                         self.end_game()
                 elif pressed_key == ord('q'):
+                    logger.info("Key q pressed")
                     logger.info("Exit requested.")
                     break       
 
