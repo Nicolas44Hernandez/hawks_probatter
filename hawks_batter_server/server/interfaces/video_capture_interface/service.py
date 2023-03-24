@@ -74,23 +74,24 @@ class VideoCaptureInterface(threading.Thread):
                 self.running = False
                 self.waiting_for_start = True  
                 logger.info("antes de la imagen")              
-                cv2.imshow(WINDOW_NAME, self.setup_frame) 
-                logger.info("despues de la imagen")        
-            if not self.running:
-                cv2.imshow(WINDOW_NAME, self.startup_frame)  
-                self.waiting_for_start = True
-            else:
-                if not self.waiting_for_start:                  
-                    ret, frame = self.capture.read()
-                    if not ret:
-                        logger.info("Reached end of video")
+                cv2.imshow(WINDOW_NAME, self.setup_frame)             
+                logger.info("despues de la imagen")     
+            else:   
+                if not self.running:
+                    cv2.imshow(WINDOW_NAME, self.startup_frame)  
+                    self.waiting_for_start = True
+                else:
+                    if not self.waiting_for_start:                  
+                        ret, frame = self.capture.read()
+                        if not ret:
+                            logger.info("Reached end of video")
+                            self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                            self.waiting_for_start = True
+                            continue  
+                        cv2.imshow(WINDOW_NAME, frame)
+                    else:                    
                         self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
-                        self.waiting_for_start = True
-                        continue  
-                    cv2.imshow(WINDOW_NAME, frame)
-                else:                    
-                    self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
-                    cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
+                        cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
             
             pressed_key =  cv2.waitKey(interframe_wait_ms)
             if pressed_key:
