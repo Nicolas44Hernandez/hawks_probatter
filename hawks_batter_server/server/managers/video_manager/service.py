@@ -39,7 +39,7 @@ class VideoManager:
     
     def run_video(self):
         """Launch video"""
-        if self.reimaning_pitches == 0:
+        if self.reimaning_pitches > 0:
             self.video_capture_interface.run_video(self.reimaning_pitches)
             self.reimaning_pitches = self.reimaning_pitches - 1
         else: 
