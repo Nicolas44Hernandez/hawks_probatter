@@ -60,8 +60,8 @@ class VideoCaptureInterface(threading.Thread):
 
     def run(self):
         """Run thread"""      
-        cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
-        cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        #cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
+        #cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
         while self.running:      
             if not self.waiting_for_start:                  
@@ -69,7 +69,8 @@ class VideoCaptureInterface(threading.Thread):
                 if not ret:
                     logger.info("Reached end of video")
                     self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
-                    self.waiting_for_start = True  
+                    self.waiting_for_start = True
+                    continue  
                 cv2.imshow(WINDOW_NAME, frame)
             else:
                 if self.setting_up:
