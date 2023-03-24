@@ -120,6 +120,7 @@ class VideoCaptureInterface(threading.Thread):
         """Start game"""
         logger.info("starting game")
         self.running = True
+        self.setting_up=False
         self.waiting_for_start = True
     
     def end_game(self):
