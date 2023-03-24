@@ -72,8 +72,10 @@ class VideoCaptureInterface(threading.Thread):
         while True:   
             if self.setting_up:
                 self.running = False
-                self.waiting_for_start = True                
+                self.waiting_for_start = True  
+                logger.info("antes de la imagen")              
                 cv2.imshow(WINDOW_NAME, self.setup_frame) 
+                logger.info("despues de la imagen")     
                 continue   
             if not self.running:
                 cv2.imshow(WINDOW_NAME, self.startup_frame)  
