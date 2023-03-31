@@ -39,16 +39,17 @@ class KeyboardInputInterface(threading.Thread):
         """Callback for key pressed"""        
         key = str(key)
         logger.info(f"key pressed {key}")
-        if key =='c':  
+        logger.info(f"key pressed {key}")
+        if key == ord('c') :  
             self.setup_callback()
             return
-        if key =='r':  
+        if key == ord('r'):  
             self.run_callback()
             return
-        if key =='q':  
+        if key == ord('q'):  
             self.exit_callback()
             return
-        if key =='n':  
+        if key == ord('n'):  
             self.new_video_callback()
             return
 
