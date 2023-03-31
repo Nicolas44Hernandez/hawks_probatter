@@ -2,6 +2,7 @@
 Video manager service
 """
 import logging
+import keyboard
 from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
 from server.interfaces.keyboard_input_interface import KeyboardInputInterface
@@ -34,12 +35,17 @@ class VideoManager:
 
             logger.info(f"Default number of pitches: {self.total_pitches}")
 
-            self.keboard_input_interface = KeyboardInputInterface(
-                setup_callback=self.setup_image, 
-                run_callback=self.new_game, 
-                exit_callback=self.exit_game, 
-                new_video_callback=self.set_new_video
-            )
+            keyboard.on_press_key("c", lambda _:self.setup_image())
+            keyboard.on_press_key("r", lambda _:self.new_game())
+            keyboard.on_press_key("q", lambda _:self.exit_game())
+            keyboard.on_press_key("n", lambda _:self.set_new_video())
+
+            # self.keboard_input_interface = KeyboardInputInterface(
+            #     setup_callback=self.setup_image, 
+            #     run_callback=self.new_game, 
+            #     exit_callback=self.exit_game, 
+            #     new_video_callback=self.set_new_video
+            # )
 
             self.video_capture_interface = VideoCaptureInterface(
                 video=app.config["DEFAULT_VIDEO"], 
@@ -48,7 +54,7 @@ class VideoManager:
             )
 
             self.video_capture_interface.start()
-            self.keboard_input_interface.start()
+            #self.keboard_input_interface.start()
     
     def run_video(self):
         """Launch video"""
