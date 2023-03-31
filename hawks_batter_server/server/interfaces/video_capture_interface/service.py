@@ -89,27 +89,27 @@ class VideoCaptureInterface(threading.Thread):
                         self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
             
-            pressed_key =  cv2.waitKey(interframe_wait_ms)
-            if pressed_key:
-                if pressed_key == ord('c'):
-                    logger.info("Key c pressed")
-                    if not self.setting_up:
-                        self.set_up_image(True)
-                    else:
-                        self.set_up_image(False)
-                elif pressed_key == ord('r'):
-                    logger.info("Key r pressed")
-                    if not self.running:
-                        self.start_game()
-                    else:
-                        self.end_game()
-                elif pressed_key == ord('q'):
-                    logger.info("Key q pressed")
-                    logger.info("Exit requested.")
-                    break
-                elif pressed_key == ord('n'):
-                    logger.info("Key n pressed")
-                    self.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
+            # pressed_key =  cv2.waitKey(interframe_wait_ms)
+            # if pressed_key:
+            #     if pressed_key == ord('c'):
+            #         logger.info("Key c pressed")
+            #         if not self.setting_up:
+            #             self.set_up_image(True)
+            #         else:
+            #             self.set_up_image(False)
+            #     elif pressed_key == ord('r'):
+            #         logger.info("Key r pressed")
+            #         if not self.running:
+            #             self.start_game()
+            #         else:
+            #             self.end_game()
+            #     elif pressed_key == ord('q'):
+            #         logger.info("Key q pressed")
+            #         logger.info("Exit requested.")
+            #         break
+            #     elif pressed_key == ord('n'):
+            #         logger.info("Key n pressed")
+            #         self.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
 
         logger.info("End of VideoCapture Thread")
         self.capture.release()
