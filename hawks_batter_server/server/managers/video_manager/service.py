@@ -102,17 +102,20 @@ class VideoManager:
         video_path = videos_list_manager_service.get_video_path(video)  
         if not video_path:
             logger.error("Video not found in config list")
-            #TODO: launch exception ?
-            return      
+            return False   
         self.video_capture_interface.set_video_to_play(video) 
         self.video = video
         self.reimaning_pitches = self.total_pitches
+        return True
     
     def set_configuration(self, video: str, pitches: int):
         """Set configuration"""
         self.video_capture_interface.end_game()
+        if not self.set_new_video(video):
+            logger.error("Error in video setup")
+            return None
         self.total_pitches = pitches
-        self.set_new_video(video)
+        
         return self.get_current_configuration()
     
     def get_current_configuration(self):
