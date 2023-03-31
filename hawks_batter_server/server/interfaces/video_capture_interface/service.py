@@ -59,7 +59,7 @@ class VideoCaptureInterface(threading.Thread):
         else: 
             logger.error("Impossible to open video")
             return        
-        
+        logger.info("Playing video {video} fps:{self.fps}")
 
         # Call Super constructor
         super(VideoCaptureInterface, self).__init__(name="VideoCaptureInterfaceThread")
@@ -152,11 +152,12 @@ class VideoCaptureInterface(threading.Thread):
         ret, frame = self.capture.read()
         if ret:
             self.waiting_for_pitch_frame = frame
-            self.fps = self.capture.get(cv2.CAP_PROP_FPS)
+            self.fps = self.capture.get(cv2.CAP_PROP_FPS)            
         else: 
             logger.error("Impossible to open video")
             return False  
         self.running = True
+        logger.info("Playing video {video} fps:{self.fps}")
         return True    
 
     def stop_video(self):
