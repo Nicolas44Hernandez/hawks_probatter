@@ -9,6 +9,9 @@ from flask import Flask
 from .managers.video_manager import video_manager_service
 from .managers.sensors_manager import sensors_manager_service
 from .extension import api
+from .common import HawksProbatterException, handle_server_box_exception
+from .rest_api.configuration_controler import bp as configuration_controler_bp
+
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +39,8 @@ def create_app(
 
     # Register extensions
     register_extensions(app)
+    # Register blueprints for REST API
+    register_blueprints(app)
     logger.info("App ready!!")
     return app
 
@@ -68,3 +73,11 @@ def register_extensions(app: Flask):
     video_manager_service.init_app(app=app)
     # Sensors manager extension
     sensors_manager_service.init_app(app=app)
+
+
+def register_blueprints(app: Flask):
+    """Store App APIs blueprints."""
+    # Register error handler
+    app.register_error_handler(HawksProbatterException, handle_server_box_exception)
+    # Register REST blueprints
+    api.register_blueprint(configuration_controler_bp)
