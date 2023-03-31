@@ -48,7 +48,6 @@ class VideoManager:
             )
 
             self.video_capture_interface.start()
-            #self.keboard_input_interface.start()
         
 
     def run_video(self):
@@ -77,9 +76,11 @@ class VideoManager:
         else:
             logger.info("Setting up image done")
             self.video_capture_interface.set_up_image(False)
+            self.reimaning_pitches = self.total_pitches
 
     def new_game(self):
         """New game"""
+        self.reimaning_pitches = self.total_pitches
         if not self.video_capture_interface.running:
             logger.info("New game")
             self.video_capture_interface.start_game()
@@ -95,6 +96,7 @@ class VideoManager:
     def set_new_video(self):
         """Set new video """ 
         logger.info("Set new video")
+        self.reimaning_pitches = self.total_pitches
         self.video_capture_interface.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
     
     # def set_number_of_pitches(self, number_of_pitches: int):
