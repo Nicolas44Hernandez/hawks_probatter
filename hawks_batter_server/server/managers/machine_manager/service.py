@@ -26,10 +26,12 @@ class MachineManager:
 
     def start_machine(self):
         """Start machine"""
+        logger.info("Start machine")
         self.machine_manager.start_machine()
 
     def stop_machine(self):
         """Stop machine"""
+        logger.info("Stop machine")
         self.machine_manager.stop_machine()        
 
 
