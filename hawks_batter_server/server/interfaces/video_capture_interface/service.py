@@ -141,7 +141,7 @@ class VideoCaptureInterface(threading.Thread):
             logger.error(f"Video {video} doesnt exist")
             return False
         self.stop_video()
-        self.running = True
+        self.running = False
         self.capture.release()
         time.sleep(2)
         self.capture = cv2.VideoCapture(video)
