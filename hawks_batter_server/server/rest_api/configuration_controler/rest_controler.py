@@ -5,6 +5,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint
 from server.managers.configuration_manager import configuration_service
 from server.managers.videos_list_manager import videos_list_manager_service
+from server.managers.video_manager import video_manager_service
 from .rest_model import ConigurationSchema, VideoSchema
 from server.common import HawksProbatterException, ErrorCode
 
@@ -46,7 +47,7 @@ class ConfigurationApi(MethodView):
         
 
 @bp.route("/videos_list")
-class ConfigurationApi(MethodView):
+class VideosListApi(MethodView):
     """API to retrieve videos_list"""
 
     @bp.doc(
@@ -60,5 +61,22 @@ class ConfigurationApi(MethodView):
 
         # Call video list manager service to get videos list
         return videos_list_manager_service.get_videos_list()
+    
+
+@bp.route("/image_setup")
+class ImageSetupApi(MethodView):
+    """API to launch/end image setup"""
+
+    @bp.doc(
+        responses={400: "BAD_REQUEST", 404: "NOT_FOUND"},
+    )
+    @bp.response(status_code=200)
+    def get(self):
+        """Launch / stop image setup"""
+
+        logger.info(f"GET configuration/image_setup")
+
+        # Call video manager to launch image setup
+        return video_manager_service.setup_image()
 
 
