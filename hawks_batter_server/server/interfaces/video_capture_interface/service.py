@@ -88,7 +88,7 @@ class VideoCaptureInterface(threading.Thread):
                     else:                    
                         self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
-            cv2.waitKey(30)
+            #cv2.waitKey(30)
             # pressed_key =  cv2.waitKey(interframe_wait_ms)
             # if pressed_key:
             #     if pressed_key == ord('c'):

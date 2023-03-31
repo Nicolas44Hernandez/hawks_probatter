@@ -38,16 +38,16 @@ class KeyboardInputInterface(threading.Thread):
     def on_press(self, key):
         """Callback for key pressed"""
         logger.info(f"key pressed {key}")
-        if key('c'):  
+        if key =='c':  
             self.setup_callback()
             return
-        if key('r'):  
+        if key =='r':  
             self.run_callback()
             return
-        if key('q'):  
+        if key =='q':  
             self.exit_callback()
             return
-        if key('n'):  
+        if key =='n':  
             self.new_video_callback()
             return
 
