@@ -86,15 +86,14 @@ class VideoManager:
             logger.info("New game")
             machine_manager_service.start_machine()
             self.video_capture_interface.start_game()
-        else:
-            self.video_capture_interface.end_game()
-            machine_manager_service.stop_machine()
-            logger.info("Game over")
 
     def exit_game(self):
-        """Exit game """ 
-        #TODO: is necesssary ?
-        logger.info("Exit game")
+        """Exit game """         
+        if self.video_capture_interface.running:
+            logger.info("Game over")
+            self.video_capture_interface.end_game()
+            machine_manager_service.stop_machine()
+            
     
     def set_new_video(self, video: str):
         """Set new video """ 

@@ -39,7 +39,10 @@ class MachineManagementApi(MethodView):
         logger.info(f"POST running/")
         logger.info(f"New status {args}")
 
-        video_manager_service.new_game()
+        if args["running"]:
+            video_manager_service.new_game()
+        else:
+            video_manager_service.exit_game()
         return video_manager_service.get_current_machine_status()
         
 
