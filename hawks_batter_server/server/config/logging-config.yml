@@ -51,3 +51,8 @@ loggers:
     level: INFO
     handlers: [console]
     propagate: no
+  
+  server.interfaces.keyboard_input_interface:
+    level: INFO
+    handlers: [console]
+    propagate: no
