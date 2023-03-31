@@ -98,8 +98,9 @@ class VideoManager:
     
     def set_new_video(self, video: str):
         """Set new video """ 
-        logger.info("Set new video")
+        logger.info(f"Setting new video: {video}")
         video_path = videos_list_manager_service.get_video_path(video)  
+        logger.info(f"video_path: {video_path}")
         if not video_path:
             logger.error("Video not found in config list")
             return False   
