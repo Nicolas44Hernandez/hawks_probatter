@@ -45,28 +45,28 @@ class KeyboardInputInterface(threading.Thread):
             
         
         while True:      
-            input = select.select([sys.stdin], [], [], 1)[0]
-            if input:
-                pressed_key = sys.stdin.readline().rstrip()
-                logger.info(f"pressed key {pressed_key}")
+            # input = select.select([sys.stdin], [], [], 1)[0]
+            # if input:
+            #     pressed_key = sys.stdin.readline().rstrip()
+            #     logger.info(f"pressed key {pressed_key}")
         
-                # if (pressed_key == "q"):
-                #     print "Exiting"
-                #     sys.exit(0)
-                # else:
-                #     print "You entered: %s" % value
-            else:
-                logger.info("noting pressed")
-                time.sleep(0.2)
+            #     # if (pressed_key == "q"):
+            #     #     print "Exiting"
+            #     #     sys.exit(0)
+            #     # else:
+            #     #     print "You entered: %s" % value
+            # else:
+            #     logger.info("noting pressed")
+            #     time.sleep(0.2)
 
-            # pressed_key =  cv2.waitKey(interframe_wait_ms)
-            # if pressed_key:
-            #     if pressed_key == ord('c'):
-            #         self.setup_callback()
-            #     elif pressed_key == ord('r'):
-            #         self.run_callback()
-            #     elif pressed_key == ord('q'):
-            #         self.exit_callback()
-            #     elif pressed_key == ord('n'):
-            #         self.new_video_callback()
+            pressed_key =  cv2.waitKey(interframe_wait_ms)
+            if pressed_key:
+                if pressed_key == ord('c'):
+                    self.setup_callback()
+                elif pressed_key == ord('r'):
+                    self.run_callback()
+                elif pressed_key == ord('q'):
+                    self.exit_callback()
+                elif pressed_key == ord('n'):
+                    self.new_video_callback()
         
