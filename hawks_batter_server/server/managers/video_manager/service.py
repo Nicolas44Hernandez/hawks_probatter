@@ -95,15 +95,21 @@ class VideoManager:
     
     def set_new_video(self, video: str):
         """Set new video """ 
-        logger.info("Set new video")
-        self.reimaning_pitches = self.total_pitches
+        logger.info("Set new video")        
         self.video_capture_interface.set_video_to_play(video) 
+        self.video = video
+        self.reimaning_pitches = self.total_pitches
     
     def set_configuration(self, video: str, pitches: int):
         """Set configuration"""
         self.video_capture_interface.end_game()
         self.total_pitches = pitches
         self.set_new_video(video)
+        return self.get_current_configuration()
+    
+    def get_current_configuration(self):
+        """Get current video manager config"""
+        return {"pitches": self.total_pitches, "video": self.video}
 
 
 video_manager_service: VideoManager = VideoManager()

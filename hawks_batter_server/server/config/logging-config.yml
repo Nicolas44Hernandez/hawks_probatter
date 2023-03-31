@@ -46,6 +46,11 @@ loggers:
     level: INFO
     handlers: [console]
     propagate: no
+  
+  server.managers.configuration_manager:
+    level: INFO
+    handlers: [console]
+    propagate: no
 
   server.interfaces.video_capture_interface:
     level: INFO
@@ -53,6 +58,11 @@ loggers:
     propagate: no
   
   server.interfaces.keyboard_input_interface:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  
+  server.rest_api.configuration_controler:
     level: INFO
     handlers: [console]
     propagate: no
