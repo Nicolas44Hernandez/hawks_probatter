@@ -93,16 +93,17 @@ class VideoManager:
         #TODO: is necesssary ?
         logger.info("Exit game")
     
-    def set_new_video(self):
+    def set_new_video(self, video: str):
         """Set new video """ 
         logger.info("Set new video")
         self.reimaning_pitches = self.total_pitches
-        self.video_capture_interface.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
+        self.video_capture_interface.set_video_to_play(video) 
     
-    # def set_number_of_pitches(self, number_of_pitches: int):
-    #     """Set machine number of pitches"""
-    #     if self.video_capture_interface.:
-    #         self.total_pitches = number_of_pitches
+    def set_configuration(self, video: str, pitches: int):
+        """Set configuration"""
+        self.video_capture_interface.end_game()
+        self.total_pitches = pitches
+        self.set_new_video(video)
 
 
 video_manager_service: VideoManager = VideoManager()
