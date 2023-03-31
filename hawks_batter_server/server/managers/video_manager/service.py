@@ -43,17 +43,20 @@ class VideoManager:
         """Launch video"""
         if self.reimaning_pitches == self.total_pitches:
             self.video_capture_interface.start_game()
-        if self.reimaning_pitches > 0 and self.video_capture_interface.running:
-            self.video_capture_interface.run_video(self.reimaning_pitches)
-            self.reimaning_pitches = self.reimaning_pitches - 1
-        else: 
-            logger.info("Game is over. Restar from website or manually")
-            self.video_capture_interface.end_game()
-            self.reimaning_pitches = self.total_pitches
+        self.video_capture_interface.run_video(self.reimaning_pitches)        
         
     def stop_video(self):
         """Stop video"""
+        # Stop video
         self.video_capture_interface.stop_video()
+        self.reimaning_pitches = self.reimaning_pitches - 1
+        
+        # Evaluate if game is over
+        if self.reimaning_pitches <= 0:
+            logger.info("Game is over. Restar from website or manually")
+            self.video_capture_interface.end_game()
+            self.reimaning_pitches = self.total_pitches
+                    
 
     
     # def set_number_of_pitches(self, number_of_pitches: int):
