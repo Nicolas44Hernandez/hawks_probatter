@@ -4,6 +4,7 @@ KeyboardInputInterface interface service
 import logging
 import threading
 import cv2
+import keyboard 
 
 waiting_ms = 100
 
@@ -39,14 +40,32 @@ class KeyboardInputInterface(threading.Thread):
     def run(self):
         """Run thread"""   
         while True:      
-            pressed_key =  cv2.waitKey(waiting_ms)
-            if pressed_key:
-                if pressed_key == ord('c'):
+            try:  
+                if keyboard.is_pressed('c'):  
                     self.setup_callback()
-                elif pressed_key == ord('r'):
+                    continue 
+                if keyboard.is_pressed('r'):  
                     self.run_callback()
-                elif pressed_key == ord('q'):
+                    continue 
+                if keyboard.is_pressed('q'):  
                     self.exit_callback()
-                elif pressed_key == ord('n'):
+                    continue 
+                if keyboard.is_pressed('n'):  
                     self.new_video_callback()
+                    continue 
+            except:
+                continue  
+            # pressed_key =  cv2.waitKey(waiting_ms)
+            # if pressed_key:
+            #     if pressed_key == ord('c'):
+            #         self.setup_callback()
+            #     elif pressed_key == ord('r'):
+            #         self.run_callback()
+            #     elif pressed_key == ord('q'):
+            #         self.exit_callback()
+            #     elif pressed_key == ord('n'):
+            #         self.new_video_callback()
         
+
+    
+    
