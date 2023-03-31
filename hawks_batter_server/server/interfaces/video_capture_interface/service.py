@@ -5,7 +5,8 @@ import logging
 import threading
 import cv2
 import numpy
-
+import os
+import time
 
 WINDOW_NAME = "HAWKS BASEBALL"
 interframe_wait_ms = 30
@@ -55,10 +56,7 @@ class VideoCaptureInterface(threading.Thread):
             self.waiting_for_pitch_frame = frame
         else: 
             logger.error("Impossible to open video")
-            return
-
-        # Running flag
-        
+            return        
 
         # Call Super constructor
         super(VideoCaptureInterface, self).__init__(name="VideoCaptureInterfaceThread")
@@ -66,8 +64,8 @@ class VideoCaptureInterface(threading.Thread):
 
     def run(self):
         """Run thread"""      
-        cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
-        cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        #cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
+        #cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
         while True:   
             if self.setting_up:
@@ -96,9 +94,9 @@ class VideoCaptureInterface(threading.Thread):
                 if pressed_key == ord('c'):
                     logger.info("Key c pressed")
                     if not self.setting_up:
-                        self.set_up_image_video(True)
+                        self.set_up_image(True)
                     else:
-                        self.set_up_image_video(False)
+                        self.set_up_image(False)
                 elif pressed_key == ord('r'):
                     logger.info("Key r pressed")
                     if not self.running:
@@ -108,7 +106,10 @@ class VideoCaptureInterface(threading.Thread):
                 elif pressed_key == ord('q'):
                     logger.info("Key q pressed")
                     logger.info("Exit requested.")
-                    break       
+                    break
+                elif pressed_key == ord('n'):
+                    logger.info("Key n pressed")
+                    self.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
 
         logger.info("End of VideoCapture Thread")
         self.capture.release()
@@ -133,12 +134,33 @@ class VideoCaptureInterface(threading.Thread):
         logger.info(f"Running video, remaining pitches {remaining_pitches}")
         # TODO: modify watting frame to show remaining pitches
 
+    def set_video_to_play(self, video: str):
+        """Set a new video to play"""
+        # Check if file exists 
+        if not os.path.exists(video): 
+            logger.error(f"Video {video} doesnt exist")
+            return False
+        self.stop_video()
+        self.running = True
+        self.capture.release()
+        time.sleep(2)
+        self.capture = cv2.VideoCapture(video)
+         # Get first frame
+        ret, frame = self.capture.read()
+        if ret:
+            self.waiting_for_pitch_frame = frame
+        else: 
+            logger.error("Impossible to open video")
+            return False  
+        self.running = True
+        return True    
+
     def stop_video(self):
         """Stop video"""
         self.waiting_for_start = True
         logger.info("Stop video")
     
-    def set_up_image_video(self, setup: bool=True):
+    def set_up_image(self, setup: bool=True):
         """Show setup image"""
         #TODO: stop machine
         logger.info(f"Setting up {setup}")

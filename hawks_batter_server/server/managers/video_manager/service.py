@@ -14,6 +14,7 @@ class VideoManager:
     video_capture_interface: VideoCaptureInterface
     reimaning_pitches: int
     total_pitches: int
+    video: str
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -26,6 +27,7 @@ class VideoManager:
 
             self.total_pitches=app.config["DEFAULT_NUMBER_OF_PITCHES"]
             self.reimaning_pitches = self.total_pitches
+            self.video = app.config["DEFAULT_VIDEO"]
 
             logger.info(f"Default number of pitches: {self.total_pitches}")
 
