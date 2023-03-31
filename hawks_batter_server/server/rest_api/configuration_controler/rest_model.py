@@ -9,3 +9,9 @@ class ConigurationSchema(Schema):
 
     pitches = Integer(required=True, allow_none=False)
     video = String(required=True, allow_none=False)
+
+
+class VideoSchema(Schema):
+    """REST ressource for video name"""
+    name = String(required=True, allow_none=False)
+    path = String(required=True, allow_none=False)
