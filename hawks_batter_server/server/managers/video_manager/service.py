@@ -98,7 +98,12 @@ class VideoManager:
     
     def set_new_video(self, video: str):
         """Set new video """ 
-        logger.info("Set new video")        
+        logger.info("Set new video")
+        video_path = videos_list_manager_service.get_video_path(video)  
+        if not video_path:
+            logger.error("Video not found in config list")
+            #TODO: launch exception ?
+            return      
         self.video_capture_interface.set_video_to_play(video) 
         self.video = video
         self.reimaning_pitches = self.total_pitches
