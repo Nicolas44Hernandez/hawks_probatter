@@ -12,6 +12,7 @@ from .managers.machine_manager import machine_manager_service
 from .extension import api
 from .common import HawksProbatterException, handle_server_box_exception
 from .rest_api.configuration_controler import bp as configuration_controler_bp
+from .rest_api.machine_controler import bp as machine_controler_bp
 
 
 logger = logging.getLogger(__name__)
@@ -84,3 +85,4 @@ def register_blueprints(app: Flask):
     app.register_error_handler(HawksProbatterException, handle_server_box_exception)
     # Register REST blueprints
     api.register_blueprint(configuration_controler_bp)
+    api.register_blueprint(machine_controler_bp)
