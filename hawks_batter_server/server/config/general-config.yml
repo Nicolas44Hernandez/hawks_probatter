@@ -9,14 +9,15 @@ OPENAPI_URL_PREFIX: /
 OPENAPI_SWAGGER_UI_PATH: /docs
 OPENAPI_SWAGGER_UI_URL: https://cdn.jsdelivr.net/npm/swagger-ui-dist/
 
-#VIDEO MANAGER CONFIGURATION
+# VIDEO MANAGER CONFIGURATION
 DEFAULT_VIDEO: /home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
 SETUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/setup.jpg
 STARTUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/startup.png
 
-#MACHINE CONFIGURATION
-DEFAULT_NUMBER_OF_PITCHES: 10
 
-# Peripherals configuration
+# PERIPHERALS CONFIGURATION
 SENSOR_START_PIN: 23
 SENSOR_STOP_PIN: 24
+
+# MACHINE CONFIGURATION
+DEFAULT_NUMBER_OF_PITCHES: 10
