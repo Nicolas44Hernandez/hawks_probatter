@@ -51,6 +51,11 @@ loggers:
     level: INFO
     handlers: [console]
     propagate: no
+  
+  server.managers.machine_manager:
+    level: INFO
+    handlers: [console]
+    propagate: no
 
   server.interfaces.video_capture_interface:
     level: INFO
