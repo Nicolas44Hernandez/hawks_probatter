@@ -40,7 +40,7 @@ class VideoManager:
                 exit_callback=self.exit_game, 
                 new_video_callback=self.set_new_video
             )
-            
+
             self.video_capture_interface = VideoCaptureInterface(
                 video=app.config["DEFAULT_VIDEO"], 
                 setup_frame=app.config["SETUP_FRAME"],
@@ -48,6 +48,7 @@ class VideoManager:
             )
 
             self.video_capture_interface.start()
+            self.keboard_input_interface.start()
     
     def run_video(self):
         """Launch video"""
