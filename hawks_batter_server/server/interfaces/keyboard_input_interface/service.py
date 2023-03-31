@@ -40,6 +40,7 @@ class KeyboardInputInterface(threading.Thread):
     def run(self):
         """Run thread"""   
         while True:      
+            logger.info("Loop")
             try:  
                 if keyboard.is_pressed('c'):  
                     self.setup_callback()
@@ -54,6 +55,7 @@ class KeyboardInputInterface(threading.Thread):
                     self.new_video_callback()
                     continue 
             except:
+                logger.info("Exception")
                 continue  
             # pressed_key =  cv2.waitKey(waiting_ms)
             # if pressed_key:
