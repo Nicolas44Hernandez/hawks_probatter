@@ -9,9 +9,6 @@ import os
 import time
 
 WINDOW_NAME = "HAWKS BASEBALL"
-interframe_wait_ms = 30
-
-PICTURE_RATIO = 0.8
 
 logger = logging.getLogger(__name__)
 
@@ -170,7 +167,7 @@ class VideoCaptureInterface(threading.Thread):
         #TODO: stop machine
         logger.info(f"Setting up {setup}")
         self.setting_up = setup
-        self.running = False
+        self.running = setup
     
     def load_image(self, path_to_frame: str)-> numpy.ndarray:
         """Load a frame"""

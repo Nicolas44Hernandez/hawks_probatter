@@ -4,6 +4,8 @@ Video manager service
 import logging
 from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
+from server.interfaces.keyboard_input_interface import KeyboardInputInterface
+
 
 logger = logging.getLogger(__name__)
 
@@ -12,6 +14,7 @@ class VideoManager:
     """Service class for video manager"""
 
     video_capture_interface: VideoCaptureInterface
+    keboard_input_interface: KeyboardInputInterface
     reimaning_pitches: int
     total_pitches: int
     video: str
@@ -31,6 +34,13 @@ class VideoManager:
 
             logger.info(f"Default number of pitches: {self.total_pitches}")
 
+            self.keboard_input_interface = KeyboardInputInterface(
+                setup_callback=self.setup_image, 
+                run_callback=self.new_game, 
+                exit_callback=self.exit_game, 
+                new_video_callback=self.set_new_video
+            )
+            
             self.video_capture_interface = VideoCaptureInterface(
                 video=app.config["DEFAULT_VIDEO"], 
                 setup_frame=app.config["SETUP_FRAME"],
@@ -57,7 +67,21 @@ class VideoManager:
             self.video_capture_interface.end_game()
             self.reimaning_pitches = self.total_pitches
                     
+    def setup_image(self):
+        """Setup image"""
+        logger.info("Setup immage")
 
+    def new_game(self):
+        """New game"""
+        logger.info("New game")
+
+    def exit_game(self):
+        """Exit game """ 
+        logger.info("Exit game")
+    
+    def set_new_video(self):
+        """Set new video """ 
+        logger.info("Set new video")
     
     # def set_number_of_pitches(self, number_of_pitches: int):
     #     """Set machine number of pitches"""
