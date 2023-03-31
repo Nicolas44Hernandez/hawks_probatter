@@ -153,7 +153,6 @@ class VideoCaptureInterface(threading.Thread):
         else: 
             logger.error("Impossible to open video")
             return False  
-        self.running = True
         logger.info(f"Playing video {video} fps:{self.fps}")
         return True    
 
