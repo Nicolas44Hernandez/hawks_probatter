@@ -4,11 +4,8 @@ KeyboardInputInterface interface service
 import logging
 import threading
 import cv2
-import sys
-import select
-import time
 
-interframe_wait_ms = 30
+waiting_ms = 100
 
 logger = logging.getLogger(__name__)
 
@@ -40,26 +37,9 @@ class KeyboardInputInterface(threading.Thread):
         self.setDaemon(True)
 
     def run(self):
-        """Run thread"""  
-        
-            
-        
+        """Run thread"""   
         while True:      
-            # input = select.select([sys.stdin], [], [], 1)[0]
-            # if input:
-            #     pressed_key = sys.stdin.readline().rstrip()
-            #     logger.info(f"pressed key {pressed_key}")
-        
-            #     # if (pressed_key == "q"):
-            #     #     print "Exiting"
-            #     #     sys.exit(0)
-            #     # else:
-            #     #     print "You entered: %s" % value
-            # else:
-            #     logger.info("noting pressed")
-            #     time.sleep(0.2)
-
-            pressed_key =  cv2.waitKey(interframe_wait_ms)
+            pressed_key =  cv2.waitKey(waiting_ms)
             if pressed_key:
                 if pressed_key == ord('c'):
                     self.setup_callback()

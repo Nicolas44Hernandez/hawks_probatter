@@ -70,19 +70,31 @@ class VideoManager:
                     
     def setup_image(self):
         """Setup image"""
-        logger.info("Setup immage")
+        if not self.video_capture_interface.setting_up:
+            logger.info("Setting up image")
+            self.video_capture_interface.set_up_image(True)
+        else:
+            logger.info("Setting up image done")
+            self.video_capture_interface.set_up_image(False)
 
     def new_game(self):
         """New game"""
-        logger.info("New game")
+        if not self.video_capture_interface.running:
+            logger.info("New game")
+            self.video_capture_interface.start_game()
+        else:
+            self.video_capture_interface.end_game()
+            logger.info("Game over")
 
     def exit_game(self):
         """Exit game """ 
+        #TODO: is necesssary ?
         logger.info("Exit game")
     
     def set_new_video(self):
         """Set new video """ 
         logger.info("Set new video")
+        self.video_capture_interface.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
     
     # def set_number_of_pitches(self, number_of_pitches: int):
     #     """Set machine number of pitches"""
