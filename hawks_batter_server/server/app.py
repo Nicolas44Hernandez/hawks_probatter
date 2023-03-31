@@ -8,6 +8,7 @@ from flask import Flask
 
 from .managers.video_manager import video_manager_service
 from .managers.sensors_manager import sensors_manager_service
+from .managers.machine_manager import machine_manager_service
 from .extension import api
 from .common import HawksProbatterException, handle_server_box_exception
 from .rest_api.configuration_controler import bp as configuration_controler_bp
@@ -73,6 +74,8 @@ def register_extensions(app: Flask):
     video_manager_service.init_app(app=app)
     # Sensors manager extension
     sensors_manager_service.init_app(app=app)
+    # Sensors manager extension
+    machine_manager_service.init_app(app=app)
 
 
 def register_blueprints(app: Flask):
