@@ -41,9 +41,7 @@ class ConfigurationApi(MethodView):
         logger.info(f"POST configuration/")
         logger.info(f"New config {args}")
 
-        config = configuration_service.set_configuration(pitches=args["pitches"],video=args["video"])
-        a = 4 
-        return config
+        return configuration_service.set_configuration(pitches=args["pitches"],video=args["video"])
         
 
 

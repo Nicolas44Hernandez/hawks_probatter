@@ -113,6 +113,10 @@ class VideoManager:
     def get_current_configuration(self):
         """Get current video manager config"""
         return {"pitches": self.total_pitches, "video": self.video}
+    
+    def get_current_machine_status(self):
+        """Get current machine status"""
+        return {"running": self.video_capture_interface.running}
 
 
 video_manager_service: VideoManager = VideoManager()

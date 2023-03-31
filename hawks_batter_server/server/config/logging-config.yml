@@ -71,3 +71,8 @@ loggers:
     level: INFO
     handlers: [console]
     propagate: no
+  
+  server.rest_api.machine_controler:
+    level: INFO
+    handlers: [console]
+    propagate: no
