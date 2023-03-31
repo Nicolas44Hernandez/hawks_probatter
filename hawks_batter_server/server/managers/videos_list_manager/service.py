@@ -52,8 +52,12 @@ class VideosListManager:
                 return video.path
             
         logger.error("video not found")
-        return False     
+        return False  
 
+    def get_videos_list(self):
+        """Returns the list of videos available"""   
+        logger.info("Retrieve videos list")
+        return self.videos_list
 
 videos_list_manager_service: VideosListManager = VideosListManager()
 """ Videos list manager service singleton"""

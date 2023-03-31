@@ -4,7 +4,8 @@ from datetime import datetime
 from flask.views import MethodView
 from flask_smorest import Blueprint
 from server.managers.configuration_manager import configuration_service
-from .rest_model import ConigurationSchema
+from server.managers.videos_list_manager import videos_list_manager_service
+from .rest_model import ConigurationSchema, VideoSchema
 from server.common import HawksProbatterException, ErrorCode
 
 
@@ -43,5 +44,21 @@ class ConfigurationApi(MethodView):
 
         return configuration_service.set_configuration(pitches=args["pitches"],video=args["video"])
         
+
+@bp.route("/videos_list")
+class ConfigurationApi(MethodView):
+    """API to retrieve videos_list"""
+
+    @bp.doc(
+        responses={400: "BAD_REQUEST", 404: "NOT_FOUND"},
+    )
+    @bp.response(status_code=200, schema=VideoSchema(many=True))
+    def get(self):
+        """Get videoslist"""
+
+        logger.info(f"GET configuration/videos_list")
+
+        # Call video list manager service to get videos list
+        return videos_list_manager_service.get_videos_list()
 
 

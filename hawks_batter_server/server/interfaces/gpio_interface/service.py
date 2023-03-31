@@ -54,12 +54,12 @@ class GpioMachineOutputInterface:
     def start_machine(self):
         """Start ptching machine"""
         self.start_output.off()
-        time.sleep(1)
+        time.sleep(0.5)
         self.start_output.on()
     
     def stop_machine(self):
         """Start ptching machine"""
         self.stop_output.off()
-        time.sleep(1)
+        time.sleep(0.5)
         self.stop_output.on()
 
