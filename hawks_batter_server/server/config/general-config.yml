@@ -9,8 +9,10 @@ OPENAPI_URL_PREFIX: /
 OPENAPI_SWAGGER_UI_PATH: /docs
 OPENAPI_SWAGGER_UI_URL: https://cdn.jsdelivr.net/npm/swagger-ui-dist/
 
+# VIDEOS LIST CONFIGURATION 
+VIDEOS_CONFIGURATION_FILE: /home/pi/workspace/hawks_probatter/hawks_batter_server/server/config/videos-config.yml
 # VIDEO MANAGER CONFIGURATION
-DEFAULT_VIDEO: /home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
+DEFAULT_VIDEO: video classic probatter
 SETUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/setup.jpg
 STARTUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/startup.png
 

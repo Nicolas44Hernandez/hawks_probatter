@@ -1,0 +1,5 @@
+VIDEOS:
+  - name: video classic probatter
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
+  - name: video hitting nico
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4

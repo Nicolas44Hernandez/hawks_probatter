@@ -6,6 +6,7 @@ from os import path
 import yaml
 from flask import Flask
 
+from .managers.videos_list_manager import videos_list_manager_service
 from .managers.video_manager import video_manager_service
 from .managers.sensors_manager import sensors_manager_service
 from .managers.machine_manager import machine_manager_service
@@ -71,8 +72,10 @@ def register_extensions(app: Flask):
         },
     )
 
+    # Video list manager extension
+    videos_list_manager_service.init_app(app=app)
     # Video manager extension
-    video_manager_service.init_app(app=app)
+    video_manager_service.init_app(app=app)    
     # Sensors manager extension
     sensors_manager_service.init_app(app=app)
     # Sensors manager extension
