@@ -5,6 +5,7 @@ import logging
 from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
 from server.interfaces.keyboard_input_interface import KeyboardInputInterface
+from server.managers.machine_manager import machine_manager_service
 
 
 logger = logging.getLogger(__name__)
@@ -83,9 +84,11 @@ class VideoManager:
         self.reimaning_pitches = self.total_pitches
         if not self.video_capture_interface.running:
             logger.info("New game")
+            machine_manager_service.start_machine()
             self.video_capture_interface.start_game()
         else:
             self.video_capture_interface.end_game()
+            machine_manager_service.stop_machine()
             logger.info("Game over")
 
     def exit_game(self):
