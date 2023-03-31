@@ -38,7 +38,7 @@ class KeyboardInputInterface(threading.Thread):
     def on_press(self, key):
         """Callback for key pressed"""
         logger.info(f"key pressed {key}")
-        key = f"key"
+        key = f"{key}"
         if key =='c':  
             self.setup_callback()
             return
