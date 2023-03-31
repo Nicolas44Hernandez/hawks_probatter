@@ -19,6 +19,7 @@ class VideoCaptureInterface(threading.Thread):
     """Service class for video manager interface management"""
 
     capture: cv2.VideoCapture
+    fps: int
     running: bool
     setting_up: bool
     waiting_for_start: bool
@@ -54,9 +55,11 @@ class VideoCaptureInterface(threading.Thread):
         ret, frame = self.capture.read()
         if ret:
             self.waiting_for_pitch_frame = frame
+            self.fps = self.capture.get(cv2.CAP_PROP_FPS)
         else: 
             logger.error("Impossible to open video")
             return        
+        
 
         # Call Super constructor
         super(VideoCaptureInterface, self).__init__(name="VideoCaptureInterfaceThread")
@@ -149,6 +152,7 @@ class VideoCaptureInterface(threading.Thread):
         ret, frame = self.capture.read()
         if ret:
             self.waiting_for_pitch_frame = frame
+            self.fps = self.capture.get(cv2.CAP_PROP_FPS)
         else: 
             logger.error("Impossible to open video")
             return False  
