@@ -103,7 +103,7 @@ class VideoManager:
         if not video_path:
             logger.error("Video not found in config list")
             return False   
-        self.video_capture_interface.set_video_to_play(video) 
+        self.video_capture_interface.set_video_to_play(video_path) 
         self.video = video
         self.reimaning_pitches = self.total_pitches
         return True
