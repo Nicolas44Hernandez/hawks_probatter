@@ -6,6 +6,7 @@ from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
 from server.interfaces.keyboard_input_interface import KeyboardInputInterface
 from server.managers.machine_manager import machine_manager_service
+from server.managers.videos_list_manager import videos_list_manager_service
 
 
 logger = logging.getLogger(__name__)
@@ -43,7 +44,7 @@ class VideoManager:
             )
 
             self.video_capture_interface = VideoCaptureInterface(
-                video=app.config["DEFAULT_VIDEO"], 
+                video=videos_list_manager_service.get_video_path(self.video), 
                 setup_frame=app.config["SETUP_FRAME"],
                 startup_frame=app.config["STARTUP_FRAME"],
             )
@@ -117,6 +118,10 @@ class VideoManager:
         """Get current machine status"""
         return {"running": self.video_capture_interface.running}
 
+
+    def get_list_of_videos(self):
+        """Get list of available videos"""
+        #TODO: code
 
 video_manager_service: VideoManager = VideoManager()
 """ VideoManager  service singleton"""
