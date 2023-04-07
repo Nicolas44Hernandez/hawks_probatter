@@ -5,6 +5,7 @@ from logging.config import dictConfig
 from os import path
 import yaml
 from flask import Flask
+from flask_cors import CORS
 
 from .managers.videos_list_manager import videos_list_manager_service
 from .managers.video_manager import video_manager_service
@@ -26,6 +27,7 @@ def create_app(
 
     # Create app Flask
     app = Flask("Server Pro Batter Hawks")
+    cors = CORS(app)
 
     # Get configuration files
     app_config = path.join(config_dir, "general-config.yml")
