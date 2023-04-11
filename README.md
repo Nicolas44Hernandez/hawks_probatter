@@ -63,6 +63,30 @@ add line
 export PATH="$PATH:/home/pi/.local/bin"
 ```
 
+## Install web server dependencies
+install nvm
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+```
+
+install node
+```bash
+nvm install node
+nvm alias default 19.9.0
+sudo apt install build-essential
+```
+
+## Install web server
+```bash
+cd web_server
+npm install
+```
+
+## RUN server (TODO: delete)
+```bash
+npm run host
+```
+
 ## TODO: set as Access point
 
 ## Create log files
