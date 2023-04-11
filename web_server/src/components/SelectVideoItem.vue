@@ -8,10 +8,9 @@
     </div>
     <div class="column-right">
       <div>  
-        <select id="video-select" v-model="selectedVideo">
+        <select id="video-select" v-model="videoSelection">
           <option v-for="video in videos" :key="video">{{ video }}</option>
         </select>  
-        <!-- <p>You selected: {{ selectedVideo }}</p> -->
       </div>
     </div>
   </div>
@@ -19,12 +18,36 @@
 
 <script>
 export default {
+  props: {
+    selectedVideo: {
+      type: String,
+      required: true,
+    },
+    videos: {
+      type: Array,
+      required: true,
+      validator: function(value) {
+        // Check if each item in the array is a string
+        return value.every(item => typeof item === 'string')
+      }
+    }
+  },
+  mounted() {
+    this.videoSelection = this.selectedVideo;
+  },
   data() {
     return {
-      selectedVideo: null,
-      videos: ['R Jules', 'R Dylan', 'L Devin', 'L Jovsan']
+      videoSelection: 'R Jules',
     }
-  }
+  },
+  watch: {
+    videoSelection(newVal) {
+      this.$emit('video-changed', newVal);
+    },
+    selectedVideo(newVal) {
+      this.videoSelection = newVal;
+    }
+  }  
 }
 </script>
 
@@ -42,10 +65,6 @@ export default {
 .item {
   margin-top: 2rem;
   display: flex;
-}
-.select {
-  font-size: 15px;
-  padding: 8px;
 }
 i {
   display: flex;

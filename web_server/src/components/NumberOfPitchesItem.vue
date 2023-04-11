@@ -11,7 +11,6 @@
         <select id="pitches" v-model="selectedQuantity" class="select">
           <option v-for="n in 21" :key="n" :value="n - 1">{{ n - 1 }}</option>
         </select>
-        <!-- <p>You selected: {{ selectedQuantity }}</p> -->
       </div>
     </div>
   </div>
@@ -19,10 +18,27 @@
 
 <script>
 export default {
+  props: {
+    pitches: {
+      type: Number,
+      required: true,
+    },
+  },
+  mounted() {
+    this.selectedQuantity = this.pitches;
+  },
   data() {
     return {
       selectedQuantity: 1
     };
+  },
+  watch: {
+    selectedQuantity(newVal) {
+      this.$emit('pitches-changed', newVal);
+    },
+    pitches(newVal) {
+      this.selectedQuantity = newVal;
+    }
   }
 };
 </script>

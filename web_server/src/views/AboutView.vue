@@ -1,15 +1,20 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+   <div>
+    <br><br><br><br>
+    <h1>{{ appName }}</h1>
+    <h2>v{{ appVersion }}</h2>
+    <p>Designed and developed by {{ developer }}</p>
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<script>
+export default {
+  data() {
+    return {
+      appName: 'Hawks Probatter',
+      appVersion: '1.0.0',
+      developer: 'Nicolas Hernandez',
+    }
+  },
 }
-</style>
+</script>
+
