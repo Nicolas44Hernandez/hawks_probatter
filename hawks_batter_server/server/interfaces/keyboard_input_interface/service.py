@@ -3,7 +3,7 @@ KeyboardInputInterface interface service
 """
 import logging
 import threading
-from pynput import keyboard 
+#from pynput import keyboard 
 
 waiting_ms = 100
 
@@ -33,8 +33,8 @@ class KeyboardInputInterface(threading.Thread):
         self.new_video_callback=new_video_callback
 
         # Start keyboard listener          
-        listener = keyboard.Listener(on_press=self.on_press)
-        listener.start()       
+        #listener = keyboard.Listener(on_press=self.on_press)
+        #listener.start()       
     def on_press(self, key):
         """Callback for key pressed""" 
         try:       
