@@ -3,3 +3,5 @@ VIDEOS:
     path: /home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
   - name: video hitting nico
     path: /home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4
+  - name: video bp1
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/bp1.mp4
