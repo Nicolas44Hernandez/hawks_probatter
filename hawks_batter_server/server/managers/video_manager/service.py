@@ -40,7 +40,6 @@ class VideoManager:
                 setup_callback=self.setup_image, 
                 run_callback=self.new_game, 
                 exit_callback=self.exit_game, 
-                new_video_callback=self.set_new_video
             )
 
             self.video_capture_interface = VideoCaptureInterface(
