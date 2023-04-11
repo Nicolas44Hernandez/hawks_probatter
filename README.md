@@ -103,5 +103,17 @@ touch logs/manager/video.log logs/interface/video_capture.log
 
 # Hardware connection TODO: image
 
-# Set app as a service TODO:
+# Set app as a service
 
+
+Copy the service file
+```bash
+sudo cp services/web_service/probatter-web.service /etc/systemd/system/
+```
+
+Register service
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable probatter-web
+sudo systemctl restart probatter-web
+```
