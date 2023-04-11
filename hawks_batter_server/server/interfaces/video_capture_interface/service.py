@@ -64,8 +64,8 @@ class VideoCaptureInterface(threading.Thread):
 
     def run(self):
         """Run thread"""      
-        #cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
-        #cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
         while True:   
             if self.setting_up:
@@ -88,32 +88,7 @@ class VideoCaptureInterface(threading.Thread):
                     else:                    
                         self.capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
-            # cv2.waitKey(30)
-            # pressed_key =  cv2.waitKey(interframe_wait_ms)
-            # if pressed_key:
-            #     if pressed_key == ord('c'):
-            #         logger.info("Key c pressed")
-            #         if not self.setting_up:
-            #             self.set_up_image(True)
-            #         else:
-            #             self.set_up_image(False)
-            #     elif pressed_key == ord('r'):
-            #         logger.info("Key r pressed")
-            #         if not self.running:
-            #             self.start_game()
-            #         else:
-            #             self.end_game()
-            #     elif pressed_key == ord('q'):
-            #         logger.info("Key q pressed")
-            #         logger.info("Exit requested.")
-            #         break
-            #     elif pressed_key == ord('n'):
-            #         logger.info("Key n pressed")
-            #         self.set_video_to_play("/home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4") 
-
-        logger.info("End of VideoCapture Thread")
-        self.capture.release()
-        cv2.destroyAllWindows()
+            cv2.waitKey(30)
 
     def start_game(self):
         """Start game"""
