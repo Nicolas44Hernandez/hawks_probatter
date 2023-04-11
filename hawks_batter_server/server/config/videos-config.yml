@@ -3,5 +3,3 @@ VIDEOS:
     path: /home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
   - name: Nico hitting
     path: /home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4
-  - name: Batting practice
-    path: /home/pi/workspace/hawks_probatter/app_data/videos/bp1.mp4
