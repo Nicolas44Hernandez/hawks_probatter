@@ -34,7 +34,7 @@ handlers:
   api:
     class: logging.handlers.RotatingFileHandler
     formatter: default
-    filename: logs/api/rest_api.log
+    filename: logs/rest_api.log
     maxBytes: 52428800 # 50 Megabytes
     backupCount: 1
 
