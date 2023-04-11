@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import Probatter from '../components/Probatter.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Probatter/>
   </main>
 </template>

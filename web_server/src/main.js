@@ -9,7 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
-import { faBaseballBall, faBaseballBatBall, faGear, faImage, faBolt, faStopCircle, faPlayCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBaseballBall, faBaseballBatBall, faGear, faImage, faBolt, faStopCircle, faPlayCircle, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 /* add icons to the library */
 library.add(faGear)
 library.add(faBaseballBall)
@@ -18,6 +18,7 @@ library.add(faImage)
 library.add(faBolt)
 library.add(faStopCircle)
 library.add(faPlayCircle)
+library.add(faPowerOff)
 
 const app = createApp(App)
 

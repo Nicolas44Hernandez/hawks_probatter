@@ -1,25 +1,41 @@
 <template>
   <div class="item">
     <div class="column">      
-        <button class="btn-get-config">
+        <button @click="onClickGetConfig" class="btn-get-config">
           Get Configuration 
           <font-awesome-icon icon="fa-solid fa-gear" />
         </button>
     </div>  
     <div class="column">      
-        <button class="btn-load-config">
+        <button @click="onClickLoadConfig" class="btn-load-config">
           Load Configuration 
           <font-awesome-icon icon="fa-solid fa-bolt" />
         </button>
     </div>            
     <div class="column">      
-        <button class="btn-image-setup">
+        <button @click="onClickImageSetup" class="btn-image-setup">
           Videoprojector setup
           <font-awesome-icon icon="fa-solid fa-image" />
         </button>
     </div> 
   </div>
 </template>
+
+<script>
+export default {  
+  methods: {
+    onClickImageSetup() {
+      this.$emit('image-setup');
+    },
+    onClickLoadConfig() {
+      this.$emit('load-config');
+    },
+    onClickGetConfig() {
+      this.$emit('get-config');
+    }
+  }
+}
+</script>
 
 <style scoped>
 .column{
