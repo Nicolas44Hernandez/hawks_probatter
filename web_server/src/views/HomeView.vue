@@ -4,6 +4,8 @@ import Probatter from '../components/Probatter.vue'
 
 <template>
   <main>
-    <Probatter/>
+    <div class="cards not">
+      <Probatter/>
+    </div>    
   </main>
 </template>
