@@ -1,0 +1,11 @@
+[Unit]
+Description=Probatter Web Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/workspace/hawks_probatter/web_server
+ExecStart=npm run host
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
