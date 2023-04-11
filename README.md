@@ -98,7 +98,7 @@ mkdir logs
 mkdir logs/manager
 mkdir logs/interface
 touch logs/app.log 
-touch logs/api/rest_api.log 
+touch logs/rest_api.log 
 touch logs/manager/video.log logs/interface/video_capture.log
 ```
 
