@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/home/pi/workspace/hawks_probatter/web_server
+User=pi
 ExecStart=npm run host
 Restart=always
 
