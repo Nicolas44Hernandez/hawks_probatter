@@ -104,16 +104,47 @@ touch logs/manager/video.log logs/interface/video_capture.log
 # Hardware connection TODO: image
 
 # Set app as a service
+## Set web app as a service
+build the web app
+```bash
+cd web_server
+npm run build
+```
+modify nginx config
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+copy the following content to the file
+```
+server {
+    listen      80;
+    server_name example.com www.example.com;
+    charset utf-8;
+    root    /home/pi/workspace/hawks_probatter/web_server/dist;
+    index   index.html;
+    #Always serve index.html for any request
+    location / {
+        root /home/pi/workspace/hawks_probatter/web_server/dist;
+        try_files $uri  /index.html;
+    }
+    error_log  /var/log/nginx/vue-app-error.log;
+    access_log /var/log/nginx/vue-app-access.log;
+}
+```
+Restart nginx service
+```bash
+sudo systemctl restart nginx
+```
 
-
+## Set flask app as a service
 Copy the service file
 ```bash
-sudo cp services/web_service/probatter-web.service /etc/systemd/system/
+sudo cp services/probatter.service /etc/systemd/system/
 ```
 
 Register service
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable probatter-web
-sudo systemctl restart probatter-web
+sudo systemctl enable probatter
+sudo systemctl restart probatter
 ```
