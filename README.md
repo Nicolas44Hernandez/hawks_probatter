@@ -88,6 +88,8 @@ npm run host
 ```
 
 ## TODO: set as Access point
+Follow the first part of this link:
+https://kolibri.readthedocs.io/fr/latest/install/tutorials/rpi.html
 
 ## Create log files
 
