@@ -66,6 +66,7 @@ class VideoManager:
         # Evaluate if game is over
         if self.reimaning_pitches <= 0:
             logger.info("Game is over. Restar from website or manually")
+            machine_manager_service.stop_machine()
             self.video_capture_interface.end_game()
             self.reimaning_pitches = self.total_pitches
                     
