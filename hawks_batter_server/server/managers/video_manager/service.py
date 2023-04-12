@@ -67,16 +67,19 @@ class VideoManager:
         if self.reimaning_pitches <= 0:
             logger.info("Game is over. Restar from website or manually")
             self.video_capture_interface.end_game()
+            machine_manager_service.stop_machine()
             self.reimaning_pitches = self.total_pitches
                     
     def setup_image(self):
         """Setup image"""
         if not self.video_capture_interface.setting_up:
             logger.info("Setting up image")
+            machine_manager_service.stop_machine()
             self.video_capture_interface.set_up_image(True)
         else:
             logger.info("Setting up image done")
             self.video_capture_interface.set_up_image(False)
+            machine_manager_service.stop_machine()
             self.reimaning_pitches = self.total_pitches
 
     def new_game(self):
