@@ -1,7 +1,17 @@
 VIDEOS:
   - name: Classic probatter
     path: /home/pi/workspace/hawks_probatter/app_data/videos/v1.mpg
-  - name: Nico hitting
-    path: /home/pi/workspace/hawks_probatter/app_data/videos/v2.mp4
-  - name: Batting practice 1
-    path: /home/pi/workspace/hawks_probatter/app_data/videos/bp1.mp4
+  - name: Jules Wind up
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/jules_windup.mp4
+  - name: Jules Slide step
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/jules_slide_step.mp4
+  - name: Gaspard No pants
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/gas_no_pants.mp4
+  - name: Gaspard Slide step
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/gas_slide_step.mp4
+  - name: Syl21 Slide step
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/syl_slide_step.mp4
+  - name: Theo Wind up
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/theo_windup.mp4
+  - name: Yanni Slide step
+    path: /home/pi/workspace/hawks_probatter/app_data/videos/yanni_slide_step.mp4
