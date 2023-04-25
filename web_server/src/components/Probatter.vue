@@ -10,7 +10,7 @@ import MachineButtonsItem from './MachineButtonsItem.vue'
     <ConfigurationButtonsItem @image-setup="handleImageSetup" @load-config="loadConfig" @get-config="getConfig"></ConfigurationButtonsItem>
     <NumberOfPitchesItem  @pitches-changed="handlePitchesQuandityChanged" :pitches=pitches></NumberOfPitchesItem>
     <SelectVideoItem @video-changed="handleVideoSelectionChanged" :videos=videos_list :selected-video=video></SelectVideoItem>
-    <MachineButtonsItem @playball="handleRunning" :running=running></MachineButtonsItem>
+    <MachineButtonsItem @playball="handleRunning" @shutdown="handleShutdown" :running=running></MachineButtonsItem>
   </div>  
 </template>
 <script>
@@ -147,6 +147,18 @@ export default {
           // TODO: Handle errors
         });
     },
+    handleShutdown(){
+      const url = `${config.SHUTDOWN_URL}`;
+      axios.get(url)
+        .then(response => {          
+          console.log(response.data);
+          this.running = response.data.running;
+        })
+        .catch(error => {
+          console.log(error);
+          // TODO: Handle errors
+        });
+    }
   }
 }
 </script>
