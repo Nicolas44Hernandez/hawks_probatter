@@ -15,6 +15,7 @@ from .extension import api
 from .common import HawksProbatterException, handle_server_box_exception
 from .rest_api.configuration_controler import bp as configuration_controler_bp
 from .rest_api.machine_controler import bp as machine_controler_bp
+from .rest_api.shutdown_controler import bp as shutdown_controler
 
 
 logger = logging.getLogger(__name__)
@@ -80,7 +81,7 @@ def register_extensions(app: Flask):
     video_manager_service.init_app(app=app)    
     # Sensors manager extension
     sensors_manager_service.init_app(app=app)
-    # Sensors manager extension
+    # Machine manager extension
     machine_manager_service.init_app(app=app)
 
 
@@ -91,3 +92,4 @@ def register_blueprints(app: Flask):
     # Register REST blueprints
     api.register_blueprint(configuration_controler_bp)
     api.register_blueprint(machine_controler_bp)
+    api.register_blueprint(shutdown_controler)
