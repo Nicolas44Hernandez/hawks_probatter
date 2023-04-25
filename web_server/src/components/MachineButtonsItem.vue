@@ -14,7 +14,7 @@
     </div>          
     <div class="column-right">    
       <button @click="onClickTurnOff" class="btn-off">
-        Turn Off 
+        Shutdown 
         <font-awesome-icon icon="fa-solid fa-power-off" class="fa-2xl" />
       </button>          
     </div> 
@@ -36,7 +36,9 @@ export default {
       this.$emit('playball',false);
     },
     onClickTurnOff() {
-      console.log("TurnOff");
+      if (window.confirm('Are you sure that you want to shutdown probatter?')) {
+        this.$emit('shutdown');
+      } 
     }
   }
 }
