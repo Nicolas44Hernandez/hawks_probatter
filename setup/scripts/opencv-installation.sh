@@ -112,4 +112,4 @@ sudo apt-get update
 
 echo "********STAGE 7: REMOVE OPENCV FOLDER ********"
 cd ~
-$ sudo rm -rf opencv
+sudo rm -rf opencv
