@@ -27,7 +27,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables
 
 
 echo "********STAGE 3: SETUP HOSTAPD********"
-sudo mv $HOSTAPD_CONFIG_FILE $HOSTAPD_CONFIG_FILE.orig
+sudo cp $HOSTAPD_CONFIG_FILE $HOSTAPD_CONFIG_FILE.orig
 echo "Old file backup in: $HOSTAPD_CONFIG_FILE.orig"
 sudo cp $RESOURCES/hostapd.conf $HOSTAPD_CONFIG_FILE
 echo "File created : $HOSTAPD_CONFIG_FILE"
