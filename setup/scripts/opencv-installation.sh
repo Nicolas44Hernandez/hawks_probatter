@@ -1,14 +1,6 @@
 #!/bin/bash
 
-DNSMASQ_CONFIG_FILE="/etc/dnsmasq.conf"
-HOSTAPD_CONFIG_FILE="/etc/hostapd/hostapd.conf"
-INTERFACES_CONFIG_FILE="/etc/network/interfaces"
-INIT_FILE="/etc/init.d/ap.sh"
-RESOURCES=../resources
-
-
-source ../variables/wlan-addr.env
-echo "SETUP FOR RPI SERVER BOX"
+echo "OPENCV SETUP"
 
 echo "********STAGE 1: UPDATE AND UPGRADE SYSTEM ********"
 sudo apt -y update
