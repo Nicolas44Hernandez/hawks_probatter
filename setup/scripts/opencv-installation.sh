@@ -17,20 +17,20 @@ sudo apt -y upgrade
 
 echo "********STAGE 2: INSTALL PACKAGES ********"
 # general tools (35.8 MB)
-sudo apt-get install build-essential cmake git pkg-config
+sudo apt-get install -y build-essential cmake git pkg-config
 # if you want to get OpenCV working in python or python3 (208 MB)
-sudo apt-get install python3-dev python3-numpy python3-pip
+sudo apt-get install -y python3-dev python3-numpy python3-pip
 # image formats (0.9 MB)
-sudo apt-get install libjpeg-dev libpng-dev
+sudo apt-get install -y libjpeg-dev libpng-dev
 # video formats (32.1 MB)
-sudo apt-get install libavcodec-dev libavformat-dev
-sudo apt-get install libswscale-dev libdc1394-22-dev
+sudo apt-get install -y libavcodec-dev libavformat-dev
+sudo apt-get install -y libswscale-dev libdc1394-22-dev
 # video back engine (0.6 MB)
-sudo apt-get install libv4l-dev v4l-utils
+sudo apt-get install-y libv4l-dev v4l-utils
 # the GTK+2 GUI (175 MB)
-sudo apt-get install libgtk2.0-dev libcanberra-gtk* libgtk-3-dev
+sudo apt-get install -y  libgtk2.0-dev libcanberra-gtk* libgtk-3-dev
 # parallel framework (2.7 MB)
-sudo apt-get install libtbb2 libtbb-dev
+sudo apt-get install -y libtbb2 libtbb-dev
 
 
 echo "********STAGE 3: DOWNLOAD OPENCV********"
