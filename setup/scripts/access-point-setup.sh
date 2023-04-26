@@ -49,7 +49,7 @@ sudo cp $RESOURCES/ap.sh $INIT_FILE
 echo "File created : $INIT_FILE"
 cd /etc/init.d
 sudo chmod 755 ./ap.sh
-update-rc.d ap.sh defaults
+sudo update-rc.d ap.sh defaults
 
 echo "********STAGE 7: REBOOT********"
 sudo reboot
