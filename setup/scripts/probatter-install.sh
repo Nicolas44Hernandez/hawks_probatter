@@ -38,7 +38,7 @@ npm install
 
 
 echo "********STAGE 5: SET FLASK APP AS A SERVICE ********"
-cd ../hawks_batter_server
+cd ../
 sudo cp services/probatter.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable probatter
