@@ -8,7 +8,7 @@ RESOURCES=../resources
 
 
 source ../variables/wlan-addr.env
-echo "SETUP FOR RPI SERVER BOX"
+echo "SETUP FOR WIFI ACCESS POINT"
 
 echo "********STAGE 1: UPDATE AND UPGRADE SYSTEM ********"
 # Update packages
