@@ -2,4 +2,4 @@
 
 service hostapd start
 ifconfig wlan0 up
-ifconfig wlan 192.168.4.1
+ifconfig wlan0 192.168.4.1
