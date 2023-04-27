@@ -4,7 +4,7 @@ After=network.target syslog.target auditd.service systemd-journald.socket basic.
 
 [Service]
 User=pi
-WorkingDirectory=/home/pi/workspace/hawks_probatter
+WorkingDirectory=/home/pi/hawks_probatter
 Environment=XAUTHORITY=/home/pi/.Xauthority
 Environment=DISPLAY=:0.0
 Environment=FLASK_CONFIG=production
