@@ -37,6 +37,7 @@ echo "********STAGE 4: INSTALL WEB SERVER ********"
 cd -
 cd web_server
 npm install
+npm run build
 
 
 echo "********STAGE 5: SET FLASK APP AS A SERVICE ********"
