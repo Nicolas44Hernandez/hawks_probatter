@@ -52,6 +52,7 @@ class VideoCaptureInterface(threading.Thread):
         self.interframe_time = None 
 
         # Load video frames
+        self.video_frames = None
         self.video_frames = self.load_video(video)
         if self.video_frames is None:
             logger.error("Impossible to open video")
@@ -124,6 +125,7 @@ class VideoCaptureInterface(threading.Thread):
         self.running = False
 
         # Load video frames
+        self.video_frames = None
         self.video_frames = self.load_video(video)
         if not self.video_frames is None:
             logger.error("Impossible to open video")
