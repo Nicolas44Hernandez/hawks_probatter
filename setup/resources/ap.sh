@@ -1,5 +1,5 @@
 #!/bin/bash
 
-service hostapd start
-ifconfig wlan0 up
-ifconfig wlan0 192.168.4.1
+sudo ifconfig wlan0 192.168.4.1
+sudo ifconfig wlan0 up
+sudo systemctl restart dnsmasq hostapd
