@@ -9,7 +9,7 @@ Environment=XAUTHORITY=/home/pi/.Xauthority
 Environment=DISPLAY=:0.0
 Environment=FLASK_CONFIG=production
 Environment=FLASK_APP="hawks_batter_server/server/app:create_app()"
-ExecStart=/home/pi/.local/bin/flask run --host '0.0.0.0'
+ExecStart=flask run --host '0.0.0.0'
 Restart=always
 
 [Install]
