@@ -1,7 +1,7 @@
 #!/bin/bash
 LINE="export PATH="$PATH:/home/pi/.local/bin""
 NGINX_CONFIG_FILE="/etc/nginx/sites-available/default"
-RESOURCES=../resources
+RESOURCES=setup/resources
 
 echo "SETUP FOR PROBATTER APP"
 
