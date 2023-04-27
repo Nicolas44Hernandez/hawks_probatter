@@ -19,6 +19,7 @@ mkdir logs/interface
 touch logs/app.log 
 touch logs/rest_api.log 
 touch logs/manager/video.log logs/interface/video_capture.log
+sudo chmod -R 777 logs
 
 echo "********STAGE 3: INSTALL WEB SERVER DEPENDENCIES ********"
 sudo apt install -y nginx
