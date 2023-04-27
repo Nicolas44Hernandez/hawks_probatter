@@ -10,11 +10,11 @@ OPENAPI_SWAGGER_UI_PATH: /docs
 OPENAPI_SWAGGER_UI_URL: https://cdn.jsdelivr.net/npm/swagger-ui-dist/
 
 # VIDEOS LIST CONFIGURATION 
-VIDEOS_CONFIGURATION_FILE: /home/pi/workspace/hawks_probatter/hawks_batter_server/server/config/videos-config.yml
+VIDEOS_CONFIGURATION_FILE: /home/pi/hawks_probatter/hawks_batter_server/server/config/videos-config.yml
 # VIDEO MANAGER CONFIGURATION
 DEFAULT_VIDEO: Jules Wind up
-SETUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/setup.jpg
-STARTUP_FRAME: /home/pi/workspace/hawks_probatter/app_data/startup.png
+SETUP_FRAME: /home/pi/hawks_probatter/app_data/setup.jpg
+STARTUP_FRAME: /home/pi/hawks_probatter/app_data/startup.png
 
 
 # PERIPHERALS CONFIGURATION
