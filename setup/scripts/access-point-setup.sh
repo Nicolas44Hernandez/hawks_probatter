@@ -2,7 +2,7 @@
 
 DNSMASQ_CONFIG_FILE="/etc/dnsmasq.conf"
 HOSTAPD_CONFIG_FILE="/etc/hostapd/hostapd.conf"
-INTERFACES_CONFIG_FILE="/etc/network/interfaces"
+DHCPCD_CONFIG_FILE="/etc/dhcpcd.conf"
 INIT_FILE="/etc/init.d/ap.sh"
 RESOURCES=../resources
 
@@ -38,11 +38,11 @@ echo "Old file backup in: $DNSMASQ_CONFIG_FILE.orig"
 sudo cp $RESOURCES/dnsmasq.conf $DNSMASQ_CONFIG_FILE
 echo "File created : $DNSMASQ_CONFIG_FILE"
 
-echo "********STAGE 5: SETUP NETWORK INTERFACES ********"
-sudo cp $INTERFACES_CONFIG_FILE $INTERFACES_CONFIG_FILE.orig
-echo "Old file backup in: $INTERFACES_CONFIG_FILE.orig"
-sudo cp $RESOURCES/interfaces $INTERFACES_CONFIG_FILE
-echo "File created : $INTERFACES_CONFIG_FILE"
+echo "********STAGE 5: SETUP DHCPCD CONF INTERFACES ********"
+sudo cp $DHCPCD_CONFIG_FILE $DHCPCD_CONFIG_FILE.orig
+echo "Old file backup in: $DHCPCD_CONFIG_FILE.orig"
+sudo cp $RESOURCES/dhcpcd.conf $DHCPCD_CONFIG_FILE
+echo "File created : $DHCPCD_CONFIG_FILE"
 
 echo "********STAGE 6: COPY SCRIPT TO ACTIVATE ACCESS POINT ********"
 sudo cp $RESOURCES/ap.sh $INIT_FILE
