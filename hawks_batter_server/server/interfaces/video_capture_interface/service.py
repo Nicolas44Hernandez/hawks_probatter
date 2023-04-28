@@ -77,9 +77,11 @@ class VideoCaptureInterface(threading.Thread):
                 self.running = False
                 self.waiting_for_start = True  
                 cv2.imshow(WINDOW_NAME, self.setup_frame) 
+                logger.info(f"setup frame")
                 current_frame_pos = 0            
             else:   
                 if not self.running:
+                    logger.info(f"startup frame")
                     cv2.imshow(WINDOW_NAME, self.startup_frame)  
                     self.waiting_for_start = True
                     current_frame_pos = 0 
@@ -90,9 +92,11 @@ class VideoCaptureInterface(threading.Thread):
                             self.waiting_for_start = True
                             continue
                         frame = self.video_frames[current_frame_pos]
+                        logger.info(f"frame {current_frame_pos}")
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
+                        logger.info(f"waiting for pitch frame")
                         current_frame_pos = 0 
             cv2.waitKey(self.interframe_time)
 
