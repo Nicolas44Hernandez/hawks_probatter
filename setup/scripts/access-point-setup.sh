@@ -50,6 +50,3 @@ echo "File created : $INIT_FILE"
 cd /etc/init.d
 sudo chmod 755 ./ap.sh
 sudo update-rc.d ap.sh defaults
-
-echo "********STAGE 7: REBOOT********"
-sudo reboot

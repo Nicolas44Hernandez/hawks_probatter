@@ -56,7 +56,3 @@ pwd
 sudo cp $RESOURCES/nginx-config $NGINX_CONFIG_FILE
 echo "File created : $NGINX_CONFIG_FILE"
 sudo systemctl restart nginx
-
-
-echo "********STAGE 7: REBOOT********"
-sudo reboot now
