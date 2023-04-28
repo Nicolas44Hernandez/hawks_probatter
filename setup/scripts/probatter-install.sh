@@ -51,6 +51,8 @@ echo "********STAGE 6: SET WEBSERVICE AS A SERVICE ********"
 cd -
 sudo cp $NGINX_CONFIG_FILE $NGINX_CONFIG_FILE.orig
 echo "Old file backup in: $NGINX_CONFIG_FILE.orig"
+echo "now we are here:"
+pwd
 sudo cp $RESOURCES/nginx-config $NGINX_CONFIG_FILE
 echo "File created : $NGINX_CONFIG_FILE"
 sudo systemctl restart nginx
