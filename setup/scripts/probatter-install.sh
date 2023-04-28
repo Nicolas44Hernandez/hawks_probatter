@@ -8,7 +8,7 @@ echo "SETUP FOR PROBATTER APP"
 
 # echo "********STAGE 1: INSTALL FLASK SERVER DEPENDENCIES ********"
 # sudo apt-get install -y python3-pip
-# cd ../../
+cd ../../
 # pip install -r hawks_batter_server/requirements.txt
 # echo 'export PATH="\$PATH:/home/pi/.local/bin"' >> ~/.bashrc
 
