@@ -48,6 +48,7 @@ npm run build
 # sudo systemctl restart probatter
 
 echo "********STAGE 6: SET WEBSERVICE AS A SERVICE ********"
+cd -
 sudo cp $NGINX_CONFIG_FILE $NGINX_CONFIG_FILE.orig
 echo "Old file backup in: $NGINX_CONFIG_FILE.orig"
 sudo cp $RESOURCES/nginx-config $NGINX_CONFIG_FILE
