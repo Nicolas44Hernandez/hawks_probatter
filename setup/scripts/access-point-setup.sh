@@ -7,7 +7,6 @@ INIT_FILE="/etc/init.d/ap.sh"
 RESOURCES=../resources
 
 
-source ../variables/wlan-addr.env
 echo "SETUP FOR WIFI ACCESS POINT"
 
 echo "********STAGE 1: UPDATE AND UPGRADE SYSTEM ********"
