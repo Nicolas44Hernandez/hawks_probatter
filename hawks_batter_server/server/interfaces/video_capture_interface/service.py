@@ -114,7 +114,9 @@ class VideoCaptureInterface(threading.Thread):
                         cv2.imshow(WINDOW_NAME, frame)
                     else:
                         raw_frame = self.waiting_for_pitch_frame 
-                        frame = raw_frame.copy()                  
+                        frame = raw_frame.copy()   
+                        text = f"P:{self.remaining_pitches}"  
+                        self.draw_text(frame, text)                                     
                         cv2.imshow(WINDOW_NAME, frame)
                         current_frame_pos = 0 
             cv2.waitKey(self.interframe_time)
