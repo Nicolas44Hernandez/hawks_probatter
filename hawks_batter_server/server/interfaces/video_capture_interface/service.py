@@ -96,13 +96,11 @@ class VideoCaptureInterface(threading.Thread):
 
                         # TEST: Print text in image
                         fontface = cv2.FONT_HERSHEY_TRIPLEX
-                        fontscale = 4
-                        fontcolor = (7, 8, 77)
+                        fontscale = 3                     
+                        fontcolor = (77, 8, 7) # Color in BGR (7, 8, 77) 
                         x = 20 #position of text
-                        y = 30 #position of text
+                        y = 100 #position of text
                         cv2.putText(frame,"P:10", (x,y),fontface, fontscale, fontcolor) #Draw the text
-
-
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
