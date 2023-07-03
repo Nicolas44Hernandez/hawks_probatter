@@ -75,7 +75,7 @@ class VideoCaptureInterface(threading.Thread):
         x, y = pos
         text_size, _ = cv2.getTextSize(text, font, font_scale, font_thickness)
         text_w, text_h = text_size
-        cv2.rectangle(frame, pos, (x + text_w, y + text_h), text_color_bg, -1)
+        cv2.rectangle(frame, pos, (x + text_w + 5, y + text_h + 5), text_color_bg, -1)
         cv2.putText(frame, text, (x, y + text_h + font_scale - 1), font, font_scale, text_color, font_thickness)
         return text_size
 
@@ -108,13 +108,6 @@ class VideoCaptureInterface(threading.Thread):
                         #logger.info(f"frame {current_frame_pos}")
                         text = f"P:{self.remaining_pitches}"
 
-                        # TEST: Print text in image
-                        # fontface = cv2.FONT_HERSHEY_DUPLEX
-                        # fontscale = 3                     
-                        # fontcolor = (77, 8, 7) # Color in BGR (7, 8, 77) 
-                        # x = 20 #position of text
-                        # y = 100 #position of text
-                        # cv2.putText(frame,text, (20,100),fontface, fontscale, fontcolor) #Draw the text
                         self.draw_text(frame, text)
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
