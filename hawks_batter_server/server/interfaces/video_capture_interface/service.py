@@ -69,7 +69,7 @@ class VideoCaptureInterface(threading.Thread):
         super(VideoCaptureInterface, self).__init__(name="VideoCaptureInterfaceThread")
         self.setDaemon(True)
 
-    def draw_text(self, frame, text, font=cv2.FONT_HERSHEY_DUPLEX, pos=(20, 100), font_scale=3, font_thickness=5, text_color=(77, 8, 7),text_color_bg=(0, 0, 0)):
+    def draw_text(self, frame, text, font=cv2.FONT_HERSHEY_DUPLEX, pos=(20, 100), font_scale=3, font_thickness=5, text_color=(77, 8, 7),text_color_bg=(255, 255, 255)):
             
         """Draw text in frame"""
         x, y = pos
@@ -106,8 +106,10 @@ class VideoCaptureInterface(threading.Thread):
                         raw_frame = self.video_frames[current_frame_pos]  
                         frame = raw_frame.copy()                      
                         #logger.info(f"frame {current_frame_pos}")
-                        text = f"P:{self.remaining_pitches}"
-
+                        if self.remaining_pitches is None:
+                            text = f"P:X"
+                        else:
+                            text = f"P:{self.remaining_pitches}"
                         self.draw_text(frame, text)
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
