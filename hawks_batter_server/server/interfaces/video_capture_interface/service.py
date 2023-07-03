@@ -95,12 +95,12 @@ class VideoCaptureInterface(threading.Thread):
                         #logger.info(f"frame {current_frame_pos}")
 
                         # TEST: Print text in image
-                        fontface = cv2.FONT_HERSHEY_SIMPLEX
-                        fontscale = 10
+                        fontface = cv2.FONT_HERSHEY_TRIPLEX
+                        fontscale = 4
                         fontcolor = (7, 8, 77)
-                        x = 10 #position of text
-                        y = 20 #position of text
-                        cv2.putText(frame,"Hello World!!!", (x,y),fontface, fontscale, fontcolor) #Draw the text
+                        x = 20 #position of text
+                        y = 30 #position of text
+                        cv2.putText(frame,"P:10", (x,y),fontface, fontscale, fontcolor) #Draw the text
 
 
                         cv2.imshow(WINDOW_NAME, frame)
