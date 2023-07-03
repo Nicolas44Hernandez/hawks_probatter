@@ -96,8 +96,8 @@ class VideoCaptureInterface(threading.Thread):
 
                         # TEST: Print text in image
                         fontface = cv2.FONT_HERSHEY_SIMPLEX
-                        fontscale = 1
-                        fontcolor = (255, 255, 255)
+                        fontscale = 10
+                        fontcolor = (7, 8, 77)
                         x = 10 #position of text
                         y = 20 #position of text
                         cv2.putText(frame,"Hello World!!!", (x,y),fontface, fontscale, fontcolor) #Draw the text
