@@ -103,7 +103,8 @@ class VideoCaptureInterface(threading.Thread):
                         if current_frame_pos > len(self.video_frames) - 1 :
                             self.waiting_for_start = True
                             continue
-                        frame = self.video_frames[current_frame_pos]
+                        raw_frame = self.video_frames[current_frame_pos]  
+                        frame = raw_frame.copy()                      
                         #logger.info(f"frame {current_frame_pos}")
                         text = f"P:{self.remaining_pitches}"
 
