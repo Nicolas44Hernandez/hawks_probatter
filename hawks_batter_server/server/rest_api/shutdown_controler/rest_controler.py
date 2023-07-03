@@ -22,4 +22,4 @@ class MachineManagementApi(MethodView):
         """Shutdown RPI"""
 
         logger.info(f"GET shutdown/")
-        return os.system("shutdown -h now")
+        return os.system("sudo shutdown -h now")
