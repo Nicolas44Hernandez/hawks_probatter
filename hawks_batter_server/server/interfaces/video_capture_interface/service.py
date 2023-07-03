@@ -25,6 +25,7 @@ class VideoCaptureInterface(threading.Thread):
     startup_frame: numpy.ndarray
     setup_frame: numpy.ndarray    
     video_frames: Iterable[numpy.ndarray]
+    remaining_pitches: int
 
     def __init__(self, video:str, setup_frame: numpy.ndarray, startup_frame: numpy.ndarray):  
         logger.info("Video manager interface started") 
@@ -52,6 +53,7 @@ class VideoCaptureInterface(threading.Thread):
         #self.waiting_for_start = True  
         self.waiting_for_start = False  
         self.interframe_time = None 
+        self.remaining_pitches = None
 
         # Load video frames
         self.video_frames = None
@@ -93,14 +95,15 @@ class VideoCaptureInterface(threading.Thread):
                             continue
                         frame = self.video_frames[current_frame_pos]
                         #logger.info(f"frame {current_frame_pos}")
+                        text = f"P:{self.remaining_pitches}"
 
                         # TEST: Print text in image
-                        fontface = cv2.FONT_HERSHEY_TRIPLEX
+                        fontface = cv2.FONT_HERSHEY_DUPLEX
                         fontscale = 3                     
                         fontcolor = (77, 8, 7) # Color in BGR (7, 8, 77) 
                         x = 20 #position of text
                         y = 100 #position of text
-                        cv2.putText(frame,"P:10", (x,y),fontface, fontscale, fontcolor) #Draw the text
+                        cv2.putText(frame,text, (x,y),fontface, fontscale, fontcolor) #Draw the text
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
@@ -123,8 +126,9 @@ class VideoCaptureInterface(threading.Thread):
     def run_video(self, remaining_pitches: int):
         """Launch video"""      
         self.waiting_for_start = False
+        self.remaining_pitches = remaining_pitches
         logger.info(f"Running video, remaining pitches {remaining_pitches}")
-        # TODO: modify watting frame to show remaining pitches
+        
 
     def set_video_to_play(self, video: str):
         """Set a new video to play"""
