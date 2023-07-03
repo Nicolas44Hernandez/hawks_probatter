@@ -102,19 +102,18 @@ class VideoCaptureInterface(threading.Thread):
                             self.waiting_for_start = True
                             continue
                         raw_frame = self.video_frames[current_frame_pos]  
-                        frame = raw_frame.copy()                      
+                        frame = raw_frame.copy()                                              
                         #logger.info(f"frame {current_frame_pos}")
-                        if self.remaining_pitches is None:
-                            text = f"P:X"
-                        else:
+                        if self.remaining_pitches is not None:                            
                             text = f"P:{self.remaining_pitches}"
-                        self.draw_text(frame, text)
+                            self.draw_text(frame, text)
                         cv2.imshow(WINDOW_NAME, frame)
                     else:
                         raw_frame = self.waiting_for_pitch_frame 
-                        frame = raw_frame.copy()   
-                        text = f"P:{self.remaining_pitches}"  
-                        self.draw_text(frame, text)                                     
+                        frame = raw_frame.copy() 
+                        if self.remaining_pitches is not None:                              
+                            text = f"P:{self.remaining_pitches}"  
+                            self.draw_text(frame, text)                                     
                         cv2.imshow(WINDOW_NAME, frame)
                         current_frame_pos = 0 
             logger.info(f"interframe_time: {self.interframe_time}")
