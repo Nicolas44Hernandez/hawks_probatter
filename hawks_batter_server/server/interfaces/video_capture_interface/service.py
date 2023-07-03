@@ -68,8 +68,8 @@ class VideoCaptureInterface(threading.Thread):
     def run(self):
         """Run thread"""      
         time.sleep(5)
-        cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
-        cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        #cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
+        #cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
         current_frame_pos = 0 
         while True:   
@@ -90,7 +90,15 @@ class VideoCaptureInterface(threading.Thread):
                             self.waiting_for_start = True
                             continue
                         frame = self.video_frames[current_frame_pos]
-                        logger.info(f"frame {current_frame_pos}")
+                        #logger.info(f"frame {current_frame_pos}")
+
+                        # TEST: Print text in image
+                        font = cv2.InitFont(cv2.CV_FONT_HERSHEY_SIMPLEX, 1, 1, 0, 3, 8) #Creates a font
+                        x = 10 #position of text
+                        y = 20 #position of text
+                        cv2.PutText(frame,"Hello World!!!", (x,y),font, 255) #Draw the text
+
+
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
