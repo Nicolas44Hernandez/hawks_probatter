@@ -19,25 +19,32 @@ sudo raspi-config
 sudo apt update
 sudo apt upgrade
 ```
-
-## Install and configure git
-
-```bash
-sudo apt install git
-git config --global user.name "Nicolas44Hernandez"
-git config --global user.email n44hernandezp@gmail.com
-```
-
-## Create and add ssh key to your github account
-
-Complete ssh key setup is explained in the following [link](https://docs.github.com/es/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
 ## Clone repository
 
 ```bash
-mkdir workspace
-git clone git@github.com:Nicolas44Hernandez/hawks_probatter.git
+git clone https://github.com/Nicolas44Hernandez/hawks_probatter.git
 ```
+
+# AUTOMATIC INSTALLATION
+
+## Set RPI as access point 
+cd hawks_probatter/setup/scripts
+sudo chmod 755 access-point-setup.sh 
+sudo ./access-point-setup.sh
+
+## OpenCV installation
+cd hawks_probatter/setup/scripts
+sudo chmod 755 opencv-installation.sh 
+sudo ./opencv-installation.sh
+
+## Probatter installation
+cd hawks_probatter/setup/scripts
+sudo chmod 755 probatter-install.sh 
+sudo ./probatter-install.sh 
+
+# MAUAL INSTALLATION
+
+
 
 ## Install pip3
 
