@@ -69,6 +69,16 @@ class VideoCaptureInterface(threading.Thread):
         super(VideoCaptureInterface, self).__init__(name="VideoCaptureInterfaceThread")
         self.setDaemon(True)
 
+    def draw_text(self, frame, text, font=cv2.FONT_HERSHEY_DUPLEX, pos=(20, 100), font_scale=3, font_thickness=5, text_color=(77, 8, 7),text_color_bg=(0, 0, 0)):
+            
+        """Draw text in frame"""
+        x, y = pos
+        text_size, _ = cv2.getTextSize(text, font, font_scale, font_thickness)
+        text_w, text_h = text_size
+        cv2.rectangle(frame, pos, (x + text_w, y + text_h), text_color_bg, -1)
+        cv2.putText(frame, text, (x, y + text_h + font_scale - 1), font, font_scale, text_color, font_thickness)
+        return text_size
+
     def run(self):
         """Run thread"""      
         time.sleep(5)
@@ -98,12 +108,13 @@ class VideoCaptureInterface(threading.Thread):
                         text = f"P:{self.remaining_pitches}"
 
                         # TEST: Print text in image
-                        fontface = cv2.FONT_HERSHEY_DUPLEX
-                        fontscale = 3                     
-                        fontcolor = (77, 8, 7) # Color in BGR (7, 8, 77) 
-                        x = 20 #position of text
-                        y = 100 #position of text
-                        cv2.putText(frame,text, (x,y),fontface, fontscale, fontcolor) #Draw the text
+                        # fontface = cv2.FONT_HERSHEY_DUPLEX
+                        # fontscale = 3                     
+                        # fontcolor = (77, 8, 7) # Color in BGR (7, 8, 77) 
+                        # x = 20 #position of text
+                        # y = 100 #position of text
+                        # cv2.putText(frame,text, (20,100),fontface, fontscale, fontcolor) #Draw the text
+                        self.draw_text(frame, text)
                         cv2.imshow(WINDOW_NAME, frame)
                     else:                    
                         cv2.imshow(WINDOW_NAME, self.waiting_for_pitch_frame)
