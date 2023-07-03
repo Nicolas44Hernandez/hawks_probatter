@@ -46,9 +46,11 @@ class VideoCaptureInterface(threading.Thread):
                 
         # Set initial values
         self.video = video
-        self.running = False
+        #self.running = False
+        self.running = True
         self.setting_up = False
-        self.waiting_for_start = True  
+        #self.waiting_for_start = True  
+        self.waiting_for_start = False  
         self.interframe_time = None 
 
         # Load video frames
