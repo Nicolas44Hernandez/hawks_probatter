@@ -11,7 +11,8 @@ import HawksHeader from './components/HawksHeader.vue'
       <HawksHeader msg="Hawks Baseball Probatter" />
 
       <nav>
-        <RouterLink to="/">Settings</RouterLink>
+        <RouterLink to="/game">Game</RouterLink>
+        <RouterLink to="/settings">Settings</RouterLink>        
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>

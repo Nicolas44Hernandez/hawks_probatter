@@ -2,7 +2,6 @@
 import NumberOfPitchesItem from './NumberOfPitchesItem.vue'
 import SelectVideoItem from './SelectVideoItem.vue'
 import ConfigurationButtonsItem from './ConfigurationButtonsItem.vue'
-import MachineButtonsItem from './MachineButtonsItem.vue'
 </script>
 
 <template>  
@@ -10,7 +9,6 @@ import MachineButtonsItem from './MachineButtonsItem.vue'
     <ConfigurationButtonsItem @image-setup="handleImageSetup" @load-config="loadConfig" @get-config="getConfig"></ConfigurationButtonsItem>
     <NumberOfPitchesItem  @pitches-changed="handlePitchesQuandityChanged" :pitches=pitches></NumberOfPitchesItem>
     <SelectVideoItem @video-changed="handleVideoSelectionChanged" :videos=videos_list :selected-video=video></SelectVideoItem>
-    <MachineButtonsItem @playball="handleRunning" @shutdown="handleShutdown" :running=running></MachineButtonsItem>
   </div>  
 </template>
 <script>
@@ -24,12 +22,10 @@ export default {
       pitches: 10,
       video: "",
       videos_list: [],
-      running : false,
     };
   },
   mounted() {
     this.getConfig();
-    setInterval(this.getRunningStatus, 1000)
   },
   methods: {
     imageSetup() {
@@ -98,17 +94,6 @@ export default {
           // TODO: Handle errors
         });
     },
-    getRunningStatus(){
-      axios.get(config.RUNNING_URL)
-        .then(response => {
-          this.running = response.data.running;
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-          // TODO: Handle errors
-        });
-    },
     handlePitchesQuandityChanged(newVal) {          
       this.pitches = newVal;
       console.log("Pitches selection has changed");  
@@ -125,34 +110,6 @@ export default {
       axios.get(config.IMAGE_SETUP_URL)
         .then(response => {
           console.log('Image Setup response OK');
-        })
-        .catch(error => {
-          console.log(error);
-          // TODO: Handle errors
-        });
-    },
-    handleRunning(newVal) { 
-      const data = {
-        running: newVal,
-      };
-      const queryString = qs.stringify(data);
-      const url = `${config.RUNNING_URL}?${queryString}`;
-      axios.post(url)
-        .then(response => {          
-          console.log(response.data);
-          this.running = response.data.running;
-        })
-        .catch(error => {
-          console.log(error);
-          // TODO: Handle errors
-        });
-    },
-    handleShutdown(){
-      const url = `${config.SHUTDOWN_URL}`;
-      axios.get(url)
-        .then(response => {          
-          console.log(response.data);
-          this.running = response.data.running;
         })
         .catch(error => {
           console.log(error);
