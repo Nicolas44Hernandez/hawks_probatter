@@ -12,7 +12,7 @@ bp = Blueprint("shutdown", __name__, url_prefix="/shutdown")
 
 @bp.route("/")
 class MachineManagementApi(MethodView):
-    """API to manage machine status"""
+    """API to shutdown system"""
 
     @bp.doc(
         responses={400: "BAD_REQUEST", 404: "NOT_FOUND"},
@@ -23,4 +23,19 @@ class MachineManagementApi(MethodView):
 
         logger.info(f"GET shutdown/")
         command="shutdown -h now"
+        return os.popen("sudo -S %s"%(command), 'w').write('pi')
+
+@bp.route("/reboot")
+class MachineManagementApi(MethodView):
+    """API to reboot system status"""
+
+    @bp.doc(
+        responses={400: "BAD_REQUEST", 404: "NOT_FOUND"},
+    )
+    @bp.response(status_code=200)
+    def get(self):
+        """Reboot RPI"""
+
+        logger.info(f"GET shutdown/reboot")
+        command="reboot now"
         return os.popen("sudo -S %s"%(command), 'w').write('pi')

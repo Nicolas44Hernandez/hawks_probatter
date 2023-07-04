@@ -1,11 +1,11 @@
 <script setup>
-import Probatter from '../components/Probatter.vue'
+import ProbatterSettings from '../components/ProbatterSettings.vue'
 </script>
 
 <template>
   <main>
     <div class="cards not">
-      <Probatter/>
+      <ProbatterSettings/>
     </div>    
   </main>
 </template>

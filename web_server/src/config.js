@@ -4,6 +4,7 @@ const config = {
     CONFIGURATION_URL: 'http://192.168.4.1:5000/configuration',
     RUNNING_URL: 'http://192.168.4.1:5000/running',
     SHUTDOWN_URL: 'http://192.168.4.1:5000/shutdown',
+    REBOOT_URL: 'http://192.168.4.1:5000/shutdown/reboot',
   };
   
   export default config;

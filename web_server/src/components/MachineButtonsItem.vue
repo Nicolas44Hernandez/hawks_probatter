@@ -5,14 +5,16 @@
         Play ball 
         <font-awesome-icon icon="fa-solid fa-circle-play" class="fa-2xl" />
       </button>
+      <button @click="onClickReboot" class="btn-reboot">
+        Reboot 
+        <font-awesome-icon icon="fa-solid fa-power-off" class="fa-2xl" />
+      </button>
     </div>   
-    <div class="column-center">  
+    <div class="column-right">  
       <button @click="onClickStopGame" :disabled="!running" class="btn-stop">
         Stop game
         <font-awesome-icon icon="fa-solid fa-circle-stop" class="fa-2xl" />
-      </button>            
-    </div>          
-    <div class="column-right">    
+      </button>   
       <button @click="onClickTurnOff" class="btn-off">
         Shutdown 
         <font-awesome-icon icon="fa-solid fa-power-off" class="fa-2xl" />
@@ -38,6 +40,11 @@ export default {
     onClickTurnOff() {
       if (window.confirm('Are you sure that you want to shutdown probatter?')) {
         this.$emit('shutdown');
+      } 
+    },
+    onClickReboot() {
+      if (window.confirm('Are you sure that you want to reboot system?')) {
+        this.$emit('reboot');
       } 
     }
   }
@@ -74,11 +81,12 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin:2%;
 }
 .btn-stop {
   display: flex;
   align-items: center;
-  font-size: 45%;
+  font-size: 50%;
   gap: 10px;
   padding: 10px 20px;
   background-color: rgb(112, 29, 29);
@@ -86,6 +94,7 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin:2%;
 }
 .btn-off {
   display: flex;
@@ -98,6 +107,22 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin:2%;
+  margin-top:5%;
+}
+.btn-reboot {
+  display: flex;
+  align-items: center;
+  font-size: 50%;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: rgb(149, 163, 21);
+  color: #eee2e2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin:2%;
+  margin-top:5%;
 }
 
 .item {
