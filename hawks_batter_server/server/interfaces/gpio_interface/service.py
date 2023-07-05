@@ -3,31 +3,30 @@ GPIO interface service
 """
 import logging
 import time
-from gpiozero import MotionSensor, LED
+from gpiozero import Button, LED
 
 logger = logging.getLogger(__name__)
 
 
-class GpioMotionSensorInterface:
+class GpioButtonInterface:
     """Service class for RPI Button GPIO"""
 
-    sensor_pin: int
-    motion_sensor: MotionSensor
+    button_pin: int
+    button: Button
     callback_function: callable
 
-    def __init__(self, sensor_pin: int, callback_function: callable):
+    def __init__(self, button_pin: int, callback_function: callable):
 
-        logger.info(f"Creating RPI GPIO MotionSensor interface:")
-        logger.info(f"button_pin: {sensor_pin}")
+        logger.info(f"Creating RPI GpioButtonInterface interface:")
+        logger.info(f"button_pin: {button_pin}")
         logger.info(f"callback_function: {callback_function}")
 
-        self.sensor_pin = sensor_pin
+        self.button_pin = button_pin
 
         # setup
-        self.motion_sensor = MotionSensor(self.sensor_pin)
-        # sensor output  is inverted
-        self.motion_sensor.when_no_motion = callback_function
-
+        self.button = Button(self.button_pin)
+        self.button.when_pressed = callback_function
+        
 class GpioMachineOutputInterface:
     """Service class for RPI Output GPIO"""
 
