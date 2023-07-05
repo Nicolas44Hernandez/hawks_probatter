@@ -43,7 +43,7 @@ export default {
       } 
     },
     onClickReboot() {
-      if (window.confirm('Are you sure that you want to restart services?')) {
+      if (window.confirm('Are you sure that you want to reboot system?')) {
         this.$emit('reboot');
       } 
     }
