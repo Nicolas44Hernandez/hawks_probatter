@@ -125,9 +125,10 @@ class VideoCaptureInterface(threading.Thread):
         self.setting_up=False
         self.waiting_for_start = True
     
-    def end_game(self):
+    def end_game(self, remaining_pitches):
         """End game"""
         logger.info("Ending game")
+        self.remaining_pitches = remaining_pitches
         self.running = False
         self.waiting_for_start = True
 
