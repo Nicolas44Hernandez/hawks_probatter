@@ -1,2 +1,2 @@
 """GPIO interface package"""
-from .service import GpioMotionSensorInterface
+from .service import GpioButtonInterface
