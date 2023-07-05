@@ -30,6 +30,8 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
+  max-height: 200px;
+  max-width: 200px;
 }
 
 nav {
@@ -64,9 +66,6 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
 
   header .wrapper {
     display: flex;

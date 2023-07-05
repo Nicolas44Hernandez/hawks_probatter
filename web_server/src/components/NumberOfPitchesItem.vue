@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div>
-      <font-awesome-icon icon="fa-solid fa-baseball" class="fa-2xl" />
+      <font-awesome-icon icon="fa-solid fa-baseball" class="fa-xl" />
     </div>    
     <div class="column-left">
       Number of pitches
@@ -45,22 +45,22 @@ export default {
 
 <style scoped>
 .column-left{
-  flex-basis: 48%;
+  flex-basis: 100%;
   margin-left: 10%; 
-  font-size: 20px;
-  padding: 8px;
+  font-size: 100%;
+  padding: 1%;
 }
 .column-right {
-  flex-basis: 48%;
-  margin-left: 10%; 
+  flex-basis: 50%;
+  margin-left: 1%; 
 }
 .item {
   margin-top: 2rem;
   display: flex;
 }
 .select {
-  font-size: 15px;
-  padding: 8px;
+  font-size: 100%;
+  padding: 2%;
 }
 i {
   display: flex;
