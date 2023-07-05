@@ -1,14 +1,14 @@
 <template>
   <div class="item">
     <div>
-      <font-awesome-icon icon="fa-solid fa-baseball-bat-ball" class="fa-2xl" />
+      <font-awesome-icon icon="fa-solid fa-baseball-bat-ball" class="fa-xl" />
     </div>     
     <div class="column-left">
       Video to play
     </div>
     <div class="column-right">
       <div>  
-        <select id="video-select" v-model="videoSelection">
+        <select id="video-select" v-model="videoSelection" class="select">
           <option v-for="video in videos" :key="video">{{ video }}</option>
         </select>  
       </div>
@@ -53,18 +53,22 @@ export default {
 
 <style scoped>
 .column-left{
-  flex-basis: 48%;
+  flex-basis: 100%;
   margin-left: 10%; 
-  font-size: 20px;
-  padding: 8px;
+  font-size: 100%;
+  padding: 1%;
 }
 .column-right {
-  flex-basis: 48%;
-  margin-left: 10%; 
+  flex-basis: 50%;
+  margin-left: 1%; 
 }
 .item {
   margin-top: 2rem;
   display: flex;
+}
+.select {
+  font-size: 100%;
+  padding: 2%;
 }
 i {
   display: flex;

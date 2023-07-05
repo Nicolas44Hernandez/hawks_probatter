@@ -1,6 +1,6 @@
 <template>
    <div>
-    <br><br><br><br>
+    <br>
     <h1>{{ appName }}</h1>
     <h2>v{{ appVersion }}</h2>
     <p>Designed and developed by {{ developer }}</p>

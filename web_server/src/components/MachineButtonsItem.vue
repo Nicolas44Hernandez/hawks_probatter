@@ -73,7 +73,7 @@ export default {
 .btn-play-ball {
   display: flex;
   align-items: center;
-  font-size: 50%;
+  font-size: 30%;
   gap: 10px;
   padding: 10px 20px;
   background-color: rgb(17, 136, 53);
@@ -82,11 +82,13 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin:2%;
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
 .btn-stop {
   display: flex;
   align-items: center;
-  font-size: 50%;
+  font-size: 29%;
   gap: 10px;
   padding: 10px 20px;
   background-color: rgb(112, 29, 29);
@@ -95,11 +97,13 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin:2%;
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
 .btn-off {
   display: flex;
   align-items: center;
-  font-size: 50%;
+  font-size: 30%;
   gap: 10px;
   padding: 10px 20px;
   background-color: rgb(8, 8, 8);
@@ -109,11 +113,13 @@ export default {
   cursor: pointer;
   margin:2%;
   margin-top:5%;
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
 .btn-reboot {
   display: flex;
   align-items: center;
-  font-size: 50%;
+  font-size: 33%;
   gap: 10px;
   padding: 10px 20px;
   background-color: rgb(149, 163, 21);
@@ -122,7 +128,8 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin:2%;
-  margin-top:5%;
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
 
 .item {
