@@ -27,77 +27,35 @@ git clone https://github.com/Nicolas44Hernandez/hawks_probatter.git
 
 # AUTOMATIC INSTALLATION
 
-## Set RPI as access point 
-cd hawks_probatter/setup/scripts
-sudo chmod 755 access-point-setup.sh 
-sudo ./access-point-setup.sh
-
-## OpenCV installation
-cd hawks_probatter/setup/scripts
-sudo chmod 755 opencv-installation.sh 
-sudo ./opencv-installation.sh
-
-## Probatter installation
-cd hawks_probatter/setup/scripts
-sudo chmod 755 probatter-install.sh 
-sudo ./probatter-install.sh 
+You can use the install script:
+```bash
+cd hawks_probatter/setup/scripts/
+sudo ./install.sh
+```
 
 # MAUAL INSTALLATION
 
-
-
-## Install pip3
-
+Ussing the dedicated scripts:
 ```bash
-sudo apt-get install python3-pip
+cd hawks_probatter/setup/scripts/
+sudo chmod 755 opencv-installation.sh 
+sudo chmod 755 probatter-install.sh 
+sudo chmod 755 access-point-setup.sh 
 ```
-
-## Install opencv
-The complete installation instruction could be found [here](https://qengineering.eu/install-opencv-lite-on-raspberry-pi.html)
-
-## Install the dependencies
+## Set RPI as access point 
 ```bash
-pip install -r hawks_batter_server/requirements.txt
+sudo ./access-point-setup.sh
 ```
 
-To add the dependencies to PATH, edit the `bashrc` file
-
+## OpenCV installation
 ```bash
-nano ~/.bashrc
-```
-add line
-```
-export PATH="$PATH:/home/pi/.local/bin"
+sudo ./opencv-installation.sh
 ```
 
-## Install web server dependencies
-install nvm
+## Probatter installation
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+sudo ./probatter-install.sh 
 ```
-
-install node
-```bash
-nvm install node
-nvm alias default 19.9.0
-sudo apt install build-essential
-```
-
-## Install web server
-```bash
-cd web_server
-npm install
-```
-
-## RUN server (TODO: delete)
-```bash
-npm run host
-```
-
-## TODO: set as Access point
-Follow the first part of this link:
-https://kolibri.readthedocs.io/fr/latest/install/tutorials/rpi.html
-
 ## Create log files
 
 Log files defined in configuration file located in *server_box/server/config/logging-config.yml* must be created before launching the application
@@ -111,50 +69,7 @@ touch logs/rest_api.log
 touch logs/manager/video.log logs/interface/video_capture.log
 ```
 
-# Hardware connection TODO: image
+# Hardware connection
+Connect machine, and the sensors to the RPI.
 
-# Set app as a service
-## Set web app as a service
-build the web app
-```bash
-cd web_server
-npm run build
-```
-modify nginx config
-```bash
-sudo nano /etc/nginx/sites-available/default
-```
-copy the following content to the file
-```
-server {
-    listen      80;
-    server_name example.com www.example.com;
-    charset utf-8;
-    root    /home/pi/workspace/hawks_probatter/web_server/dist;
-    index   index.html;
-    #Always serve index.html for any request
-    location / {
-        root /home/pi/workspace/hawks_probatter/web_server/dist;
-        try_files $uri  /index.html;
-    }
-    error_log  /var/log/nginx/vue-app-error.log;
-    access_log /var/log/nginx/vue-app-access.log;
-}
-```
-Restart nginx service
-```bash
-sudo systemctl restart nginx
-```
-
-## Set flask app as a service
-Copy the service file
-```bash
-sudo cp services/probatter.service /etc/systemd/system/
-```
-
-Register service
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable probatter
-sudo systemctl restart probatter
-```
+![RPI connection](app_data/rpi-connection.png)
