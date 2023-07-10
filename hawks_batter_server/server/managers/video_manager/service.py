@@ -2,6 +2,7 @@
 Video manager service
 """
 import logging
+import time
 from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
 from server.interfaces.keyboard_input_interface import KeyboardInputInterface
@@ -59,7 +60,8 @@ class VideoManager:
         
     def stop_video(self):
         """Stop video"""
-        # Stop video
+        # Wait the end and stop video
+        time.sleep(1.5)
         self.video_capture_interface.stop_video()
         self.reimaning_pitches = self.reimaning_pitches - 1
         
