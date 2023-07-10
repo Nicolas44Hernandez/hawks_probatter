@@ -1,17 +1,17 @@
 VIDEOS:
-  - name: Classic probatter
-    path: /home/pi/hawks_probatter/app_data/videos/v1.mpg
-  - name: Jules Wind up
+  - name: Jules
     path: /home/pi/hawks_probatter/app_data/videos/jules_windup.mp4
   - name: Jules Slide step
     path: /home/pi/hawks_probatter/app_data/videos/jules_slide_step.mp4
   # - name: Gaspard No pants
   #   path: /home/pi/hawks_probatter/app_data/videos/gas_no_pants.mp4
-  - name: Gaspard Slide step
+  - name: Gaspard
     path: /home/pi/hawks_probatter/app_data/videos/gas_slide_step.mp4
-  - name: Syl21 Slide step
+  - name: Syl21
     path: /home/pi/hawks_probatter/app_data/videos/syl_slide_step.mp4
-  - name: Theo Wind up
+  - name: Nico
+    path: /home/pi/hawks_probatter/app_data/videos/nico_windup.mp4
+  - name: Theo
     path: /home/pi/hawks_probatter/app_data/videos/theo_windup.mp4
-  - name: Yanni Slide step
+  - name: Yanni
     path: /home/pi/hawks_probatter/app_data/videos/yanni_slide_step.mp4
