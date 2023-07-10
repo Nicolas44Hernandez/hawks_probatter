@@ -117,7 +117,7 @@ class VideoCaptureInterface(threading.Thread):
                         cv2.imshow(WINDOW_NAME, frame)
                         current_frame_pos = 0 
             #cv2.waitKey(int(self.interframe_time/2))
-            cv2.waitKey(9)
+            cv2.waitKey(8)
 
     def start_game(self):
         """Start game"""
