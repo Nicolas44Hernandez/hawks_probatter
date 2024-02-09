@@ -59,6 +59,11 @@ loggers:
     handlers: [app]
     propagate: no
   
+  server.managers.sensors_manager:
+    level: INFO
+    handlers: [app]
+    propagate: no
+  
   server.managers.machine_manager:
     level: INFO
     handlers: [app]

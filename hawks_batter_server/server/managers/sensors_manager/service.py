@@ -34,12 +34,14 @@ class SensorsManager:
 
     def start_callback(self, channel):
         """Callback function for button 1 detection"""
+        logger.info(f"Button start pressed")
         # Sensor debounce
         time.sleep(0.2)
         video_manager_service.run_video()
     
     def end_callback(self, channel):
         """Callback function for button 2 detection"""
+        logger.info(f"Button stop pressed")
         # Sensor debounce
         time.sleep(0.2)
         video_manager_service.stop_video()        
