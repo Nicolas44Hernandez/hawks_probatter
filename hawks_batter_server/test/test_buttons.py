@@ -13,9 +13,9 @@ def callback_function_end():
 
 
 button_start = Button(23)
-button_end = Button(24)
+# button_end = Button(24)
 button_start.when_pressed = callback_function_start
-button_end.when_pressed = callback_function_end
+# button_end.when_pressed = callback_function_end
 
 
 while True: 
