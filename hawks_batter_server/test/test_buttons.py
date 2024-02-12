@@ -1,12 +1,15 @@
 from gpiozero import Button
+import time
 
 
 def callback_function_start():
     print("Button start pressed")
+    time.sleep(0.5)
 
 
 def callback_function_end():
     print("Button end pressed")
+    time.sleep(0.5)
 
 
 button_start = Button(23)
