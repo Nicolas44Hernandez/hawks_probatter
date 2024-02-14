@@ -14,7 +14,7 @@ def end_callback_function():
     if running:
         print(f"Button end pressed")
         print(f"Waitting for start button press")
-        running = True
+        running = False
 
 
 
