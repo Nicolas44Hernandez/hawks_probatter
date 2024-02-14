@@ -21,6 +21,7 @@ class VideoManager:
     reimaning_pitches: int
     total_pitches: int
     video: str
+    running_video: bool
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -34,6 +35,7 @@ class VideoManager:
             self.total_pitches=app.config["DEFAULT_NUMBER_OF_PITCHES"]
             self.reimaning_pitches = self.total_pitches
             self.video = app.config["DEFAULT_VIDEO"]
+            self.running_video = False
 
             logger.info(f"Default number of pitches: {self.total_pitches}")            
 
@@ -54,23 +56,30 @@ class VideoManager:
 
     def run_video(self):
         """Launch video"""
-        if self.reimaning_pitches == self.total_pitches:
-            self.video_capture_interface.start_game()
-        self.video_capture_interface.run_video(self.reimaning_pitches)        
+        if not self.running_video:
+            if self.reimaning_pitches == self.total_pitches:
+                self.video_capture_interface.start_game()
+            self.video_capture_interface.run_video(self.reimaning_pitches)       
+            print(f"Waitting for end button press")
+            self.running_video  = True 
         
     def stop_video(self):
         """Stop video"""
-        # Wait the end and stop video
-        time.sleep(1.5)
-        self.video_capture_interface.stop_video()
-        self.reimaning_pitches = self.reimaning_pitches - 1
+        if self.running_video:
+            # Wait the end and stop video
+            time.sleep(1.5)
+            self.video_capture_interface.stop_video()
+            self.reimaning_pitches = self.reimaning_pitches - 1            
         
-        # Evaluate if game is over
-        if self.reimaning_pitches <= 0:
-            logger.info("Game is over. Restar from website or manually")
-            machine_manager_service.stop_machine()
-            self.video_capture_interface.end_game(self.total_pitches)
-            self.reimaning_pitches = self.total_pitches
+            # Evaluate if game is over
+            if self.reimaning_pitches <= 0:
+                logger.info("Game is over. Restar from website or manually")
+                machine_manager_service.stop_machine()
+                self.video_capture_interface.end_game(self.total_pitches)
+                self.reimaning_pitches = self.total_pitches
+
+            print(f"Waitting for start button press")
+            self.running_video  = False 
                     
     def setup_image(self):
         """Setup image"""
