@@ -2,9 +2,9 @@ from gpiozero import Button
 import time
 
 
-def callback_function():
-    print("Button pressed")
-    time.sleep(2)
+def callback_function(button_number):
+    print(f"Button pressed: {button_number}")
+    time.sleep(1)
 
 
 
