@@ -14,7 +14,7 @@ def callback_function():
 
 
 b_active=True
-button = Button(23, pull_up=True) 
+button = Button(23) 
 button.when_pressed = callback_function
 
 
