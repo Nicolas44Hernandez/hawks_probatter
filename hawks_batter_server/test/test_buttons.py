@@ -3,12 +3,14 @@ import time
 global running
 
 def start_callback_function():
+    global running
     if not running:
         print(f"Button start pressed")
         print(f"Waitting for end button press")
         running = True
 
 def end_callback_function():
+    global running
     if running:
         print(f"Button end pressed")
         print(f"Waitting for start button press")
