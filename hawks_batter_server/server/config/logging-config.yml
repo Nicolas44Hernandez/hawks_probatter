@@ -51,32 +51,32 @@ loggers:
 
   server.managers.video_manager:
     level: INFO
-    handlers: [app]
+    handlers: [console]
     propagate: no
   
   server.managers.configuration_manager:
     level: INFO
-    handlers: [app]
+    handlers: [console]
     propagate: no
   
   server.managers.sensors_manager:
     level: INFO
-    handlers: [app]
+    handlers: [console]
     propagate: no
   
   server.managers.machine_manager:
     level: INFO
-    handlers: [app]
+    handlers: [console]
     propagate: no
 
   server.interfaces.video_capture_interface:
     level: INFO
-    handlers: [video_manager]
+    handlers: [console]
     propagate: no
   
   server.interfaces.keyboard_input_interface:
     level: INFO
-    handlers: [app]
+    handlers: [console]
     propagate: no
   
   server.rest_api.configuration_controler:
