@@ -1,5 +1,4 @@
-from gpiozero import Button, pins
-import time
+from gpiozero import Button
 global running
 
 def start_callback_function():
