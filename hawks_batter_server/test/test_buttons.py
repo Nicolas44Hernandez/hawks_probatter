@@ -1,14 +1,18 @@
 from gpiozero import Button, pins
 import time
+global running
 
+def start_callback_function():
+    if not running:
+        print(f"Button start pressed")
+        print(f"Waitting for end button press")
+        running = True
 
-def start_callback_function(button_number):
-    print(f"Button pressed: {button_number}")
-    print(f"pin: {button_number.pin}")
-    print(f"type(pin): {type(button_number.pin)}")
-    if button_number.pin == pins(23):
-        print("button_number == 23")
-    time.sleep(1)
+def end_callback_function():
+    if running:
+        print(f"Button end pressed")
+        print(f"Waitting for start button press")
+        running = True
 
 
 
@@ -16,7 +20,7 @@ button_start = Button(23)
 button_end = Button(24) 
 button_start.when_pressed = start_callback_function
 button_end.when_pressed = start_callback_function
-
+running = False
 
 while True: 
     a = 4
