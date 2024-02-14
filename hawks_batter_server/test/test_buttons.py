@@ -1,4 +1,4 @@
-from gpiozero import Button
+from gpiozero import Button, pins
 import time
 
 
@@ -6,7 +6,7 @@ def start_callback_function(button_number):
     print(f"Button pressed: {button_number}")
     print(f"pin: {button_number.pin}")
     print(f"type(pin): {type(button_number.pin)}")
-    if button_number.pin == 23:
+    if button_number.pin == pins(23):
         print("button_number == 23")
     time.sleep(1)
 
