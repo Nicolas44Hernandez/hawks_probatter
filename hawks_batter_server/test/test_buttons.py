@@ -1,21 +1,21 @@
 from gpiozero import Button
 import time
 
+global b_active
 
-def callback_function_start():
-    print("Button start pressed")
-    time.sleep(0.5)
+def callback_function():
+    global b_active
+    if b_active:
+        b_active=False
+        print("Button pressed")
+        time.sleep(1)
+        b_active=True
 
 
-def callback_function_end():
-    print("Button end pressed")
-    time.sleep(0.5)
 
-
-#button_start = Button(23)
-button_end = Button(23)
-#button_start.when_pressed = callback_function_start
-button_end.when_pressed = callback_function_end
+b_active=True
+button = Button(23)
+button.when_pressed = callback_function
 
 
 while True: 
