@@ -4,10 +4,11 @@ import time
 global b_active
 
 def callback_function():
+    print("Button pressed")
     global b_active
     if b_active:
         b_active=False
-        print("Button pressed")
+        print("Button function launched")
         time.sleep(1)
         b_active=True
 
