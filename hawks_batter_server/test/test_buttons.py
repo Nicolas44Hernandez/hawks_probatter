@@ -5,6 +5,7 @@ import time
 def callback_function(button_number):
     print(f"Button pressed: {button_number}")
     print(f"pin: {button_number.pin}")
+    print(f"type(pin): {type(button.pin)}")
     if button_number.pin == 23:
         print("button_number == 23")
     time.sleep(1)
