@@ -26,17 +26,18 @@ def video(source):
     
     # play the video
     player.play()
-    
-    time.sleep(2)
-    
-    
-    # pause video
+    time.sleep(0.5)
     player.set_pause(1)
+    time.sleep(3)
+    
+
+    # player.set_time(0) # start at 1 seconds
+    # player.play()
+    
 
 
-    player.set_time(0) # start at 1 seconds
 
-    time.sleep(2)
+    player.set_pause(0)
 
      
     # getting the duration of the video
