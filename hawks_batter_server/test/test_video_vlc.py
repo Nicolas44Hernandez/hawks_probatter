@@ -68,7 +68,7 @@ class VideoVLC():
             self.load_video()
             self.player.play()
         self.playing_video = True
-        self.player.set_time(500)
+        self.player.set_time(0)
         self.player.set_pause(0)
 
     def stop_video(self):
@@ -87,7 +87,10 @@ class VideoVLC():
 video_player = VideoVLC(VIDEO_1,STARTUP_FRAME)
 
 while True: 
-    time.sleep(3)
-    video_player.run_video()
-    time.sleep(5)
-    video_player.stop_video()
+    for i in range(5):
+        time.sleep(3)
+        video_player.run_video()
+        time.sleep(5)
+        video_player.stop_video()
+    video_player.plot_startup_frame()
+    time.sleep(10)
