@@ -28,7 +28,7 @@ def video(source):
     # play the video
     player.play()
     
-    time.sleep(3)
+    time.sleep(2)
     
     
     # pause video
