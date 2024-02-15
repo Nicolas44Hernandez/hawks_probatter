@@ -87,7 +87,7 @@ class VideoVLC():
             self.player.set_media(self.video_media)   
             self.player.play()
         self.player.set_time(0)
-        time.sleep(0.4)
+        time.sleep(0.5)
         self.player.set_pause(1)  
         
     
