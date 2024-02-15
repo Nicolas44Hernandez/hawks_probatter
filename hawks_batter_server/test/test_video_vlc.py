@@ -34,7 +34,7 @@ class VideoVLC():
             self.player = self.vlc_instance.media_player_new()     
             # creating a media
             self.media = self.vlc_instance.media_new(self.video)
-            #self.media.add_option('start-time=2.0')     
+            self.media.add_option('start-time=0.5')     
             # setting media to the player
             self.player.set_media(self.media)   
             print("Video loaded") 
