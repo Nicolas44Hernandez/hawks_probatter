@@ -27,7 +27,7 @@ def video(source):
     player.play()
      
     # wait time
-    time.sleep(0.5)
+    #time.sleep(0.5)
      
     # getting the duration of the video
     duration = player.get_length()
