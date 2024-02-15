@@ -9,14 +9,13 @@ import os
 import time
 
 WINDOW_NAME = "VIDEO TEST HAWKS BASEBALL"
-VIDEO_TO_PLAY = "/home/pi/workspace/hawks_probatter/app_data/videos/jules_windup.mp4"
+VIDEO_TO_PLAY = "/home/nico/hawks_probatter/app_data/videos/jules_windup.mp4"
 
 
 class VideoCaptureInterface(threading.Thread):
     """Service class for video manager interface management"""
 
     video: str
-    interframe_time: int
     video_frames: Iterable[numpy.ndarray]
 
     def __init__(self, video:str):  
@@ -25,7 +24,6 @@ class VideoCaptureInterface(threading.Thread):
                 
         # Set initial values
         self.video = video
-        self.interframe_time = None 
 
         # Load video frames
         self.video_frames = None
@@ -56,7 +54,6 @@ class VideoCaptureInterface(threading.Thread):
             frame = raw_frame.copy()                                              
             print(f"frame {current_frame_pos}")
             cv2.imshow(WINDOW_NAME, frame)
-            #cv2.waitKey(int(self.interframe_time/2))
             cv2.waitKey(8)
 
     def load_video(self, video: str):
@@ -67,11 +64,9 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        #interframe_time = int(1000/fps)
 
         print(f"Video fps: {fps}")
         print(f"Total frames: {total}")
-        #print(f"Interframe time: {interframe_time}")
 
         video_frames = []
 
@@ -90,7 +85,6 @@ class VideoCaptureInterface(threading.Thread):
         
         cap.release()
         print(f"Total frames in video: {len(video_frames)}")
-        self.interframe_time = interframe_time
         return video_frames                
     
 
