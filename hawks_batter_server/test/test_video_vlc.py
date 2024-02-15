@@ -74,7 +74,7 @@ class VideoVLC():
     def stop_video(self):
         if self.playing_video:
             self.player.set_time(0)
-            time.sleep(0.2)
+            time.sleep(0.4)
             self.player.set_pause(1)  
 
     def plot_startup_frame(self):
