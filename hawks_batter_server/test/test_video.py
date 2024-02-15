@@ -88,9 +88,17 @@ class VideoCaptureInterface(threading.Thread):
         return video_frames                
     
 
+def check_video_file(video: str):
+    """Check if video file exists"""
+    file_exists = os.path.isfile(video)
+    if not file_exists:
+        print(f"ERROR: video file {video} doesnt exists")
+    return file_exists
+ 
 def run_video(video: str):
     video_capture_interface = VideoCaptureInterface(video=video)
     video_capture_interface.run()
 
 if __name__ == '__main__':
-    run_video(video=VIDEO_TO_PLAY)
+    if check_video_file(video=VIDEO_TO_PLAY):
+        run_video(video=VIDEO_TO_PLAY)
