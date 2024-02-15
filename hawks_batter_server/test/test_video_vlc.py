@@ -25,13 +25,15 @@ def video(source):
 
 
     player.set_time(1000) # start at 1 seconds
-    
-    player.pause()
-    time.sleep(3)
-
-     
     # play the video
     player.play()
+    player.pause()
+    time.sleep(3)
+    # play the video
+    player.play()
+
+     
+    
      
     # wait time
     #time.sleep(0.5)
