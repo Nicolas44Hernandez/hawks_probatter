@@ -112,7 +112,7 @@ while True:
         video_player.plot_waiting_for_pitch()
         time.sleep(3)
         video_player.run_video()
-        time.sleep(5)
+        time.sleep(2)
         video_player.plot_waiting_for_pitch()
 
     time.sleep(10)
