@@ -21,10 +21,9 @@ def video(source):
     media = vlc_instance.media_new(source)
      
     # setting media to the player
-    player.set_media(media)
-
-
-    player.set_time(1000) # start at 1 seconds
+    player.set_media(media)   
+    
+    
     # play the video
     player.play()
     
@@ -33,6 +32,11 @@ def video(source):
     
     # pause video
     player.set_pause(1)
+
+
+    player.set_time(0) # start at 1 seconds
+
+    time.sleep(2)
 
      
     # getting the duration of the video
