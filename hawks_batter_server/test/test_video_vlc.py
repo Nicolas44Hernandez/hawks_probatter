@@ -22,7 +22,6 @@ class VideoVLC():
             return 
         
         self.player.play()
-        self.player.set_time(0)
         time.sleep(0.4)
         self.player.set_pause(1)
 
