@@ -22,6 +22,13 @@ def video(source):
      
     # setting media to the player
     player.set_media(media)
+
+
+    player.set_time(1000) # start at 1 seconds
+    
+    player.pause()
+    time.sleep(3)
+
      
     # play the video
     player.play()
