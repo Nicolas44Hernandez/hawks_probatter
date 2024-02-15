@@ -80,17 +80,22 @@ class VideoVLC():
     def plot_startup_frame(self):
         self.load_startup_frame()
         self.playing_video = False
-        self.player.play() 
+        self.player.play()
+
+    def set_video(self, video:str):
+        self.video = video
+        self.load_video()
         
     
 
 video_player = VideoVLC(VIDEO_1,STARTUP_FRAME)
 
 while True: 
-    for i in range(5):
+    for i in range(4):
         time.sleep(3)
         video_player.run_video()
         time.sleep(5)
         video_player.stop_video()
     video_player.plot_startup_frame()
     time.sleep(10)
+    video_player.set_video(VIDEO_2)
