@@ -67,11 +67,11 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        interframe_time = int(1000/fps)
+        #interframe_time = int(1000/fps)
 
         print(f"Video fps: {fps}")
         print(f"Total frames: {total}")
-        print(f"Interframe time: {interframe_time}")
+        #print(f"Interframe time: {interframe_time}")
 
         video_frames = []
 
