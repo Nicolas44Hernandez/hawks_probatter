@@ -21,9 +21,8 @@ class VideoVLC():
         if not self.load_video():
             return 
         
-        # plot first frame
         self.player.play()
-        time.sleep(0.5)
+        self.player.set_time(0)
         self.player.set_pause(1)
 
  
@@ -34,7 +33,8 @@ class VideoVLC():
             # creating a media player
             self.player = self.vlc_instance.media_player_new()     
             # creating a media
-            self.media = self.vlc_instance.media_new(self.video)     
+            self.media = self.vlc_instance.media_new(self.video)
+            self.media.add_option('start-time=2.0')     
             # setting media to the player
             self.player.set_media(self.media)   
             print("Video loaded") 
@@ -45,23 +45,24 @@ class VideoVLC():
     
     def plot_first_frame(self):
         # plot first frame
-        self.player.play()
+        
         time.sleep(0.5)
-        self.player.set_pause(1)
+        
         
     def run_video(self):
+        self.player.set_time(0)
         self.player.set_pause(0)
 
     def stop_video(self):
-        self.player.stop()
-        self.plot_first_frame()
+        self.player.set_time(0)
+        self.player.set_pause(1)     
         
     
 
 video_player = VideoVLC(VIDEO_1)
 
 while True: 
-    time.sleep(5)
+    time.sleep(3)
     video_player.run_video()
     time.sleep(3)
     video_player.stop_video()
