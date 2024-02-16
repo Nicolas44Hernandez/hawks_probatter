@@ -4,7 +4,7 @@ flask-cors==3.0.10
 PyYAML==6.0.1
 RPi.GPIO==0.7.1
 pynput==1.7.6
-vlc==3.0.20123
+pythohn-vlc==3.0.20123
 # Dev requirements
 black ==22.3.0
 pylint ==2.14.3

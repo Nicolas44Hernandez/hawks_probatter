@@ -8,6 +8,7 @@ WorkingDirectory=/home/pi/hawks_probatter
 Environment=XAUTHORITY=/home/pi/.Xauthority
 Environment=DISPLAY=:0.0
 Environment=FLASK_CONFIG=production
+Environment=ENV=prod
 Environment=FLASK_APP="hawks_batter_server/server/app:create_app()"
 ExecStart=flask run --host '0.0.0.0'
 Restart=always
