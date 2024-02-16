@@ -30,6 +30,7 @@ git clone https://github.com/Nicolas44Hernandez/hawks_probatter.git
 You can use the install script:
 ```bash
 cd hawks_probatter/setup/scripts/
+sudo chmod 755 install.sh 
 sudo ./install.sh
 ```
 

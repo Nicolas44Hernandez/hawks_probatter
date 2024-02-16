@@ -3,7 +3,7 @@
 echo "Probatter V1.0"
 echo "Install.........................."
 
-sudo chmod 755 opencv-installation.sh 
+#sudo chmod 755 opencv-installation.sh 
 sudo chmod 755 probatter-install.sh 
 #sudo chmod 755 access-point-setup.sh 
 
