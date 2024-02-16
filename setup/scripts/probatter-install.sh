@@ -12,6 +12,8 @@ cd ../../
 pip install -r hawks_batter_server/requirements.txt --break-system-packages
 echo 'export PATH="\$PATH:/home/pi/.local/bin"' >> ~/.bashrc
 
+pip install python-vlc --break-system-packages
+
 echo "********STAGE 2: CREATE LOG FILES ********"
 mkdir logs
 mkdir logs/manager
@@ -29,7 +31,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 nvm install node
-nvm alias default 19.9.0
+nvm install 18.15.0
+nvm alias default 18.15.0
 sudo apt install build-essential
 
 
