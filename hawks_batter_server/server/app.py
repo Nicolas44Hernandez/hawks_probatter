@@ -4,6 +4,7 @@ import logging
 from logging.config import dictConfig
 from os import path
 import yaml
+import os
 from flask import Flask
 from flask_cors import CORS
 
@@ -30,8 +31,15 @@ def create_app(
     app = Flask("Server Pro Batter Hawks")
     cors = CORS(app)
 
+    
+    if os.environ['ENV'] == 'prod':
+        config = "general-config.yml"
+    else:
+        config = "general-config-dev.yml"
+    print(f"CONFIG FILE: {config}")
+
     # Get configuration files
-    app_config = path.join(config_dir, "general-config.yml")
+    app_config = path.join(config_dir, config)
     logging_config = path.join(config_dir, "logging-config.yml")
 
     # Load logging configuration and configure flask application logger

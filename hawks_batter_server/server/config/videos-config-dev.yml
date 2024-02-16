@@ -1,0 +1,17 @@
+VIDEOS:
+  - name: Jules
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/jules_windup.mp4
+  - name: Jules Slide step
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/jules_slide_step.mp4
+  # - name: Gaspard No pants
+  #   path: /home/nico/workspace/hawks_probatter/app_data/videos/gas_no_pants.mp4
+  - name: Gaspard
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/gas_slide_step.mp4
+  - name: Syl21
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/syl_slide_step.mp4
+  - name: Nico
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/nico_windup.mp4
+  - name: Theo
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/theo_windup.mp4
+  - name: Yanni
+    path: /home/nico/workspace/hawks_probatter/app_data/videos/yanni_slide_step.mp4

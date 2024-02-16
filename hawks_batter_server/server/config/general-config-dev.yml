@@ -1,0 +1,27 @@
+API_TITLE: PROBATTER HAWKS SERVER API
+API_VERSION: v1
+
+# openapi.json version and URL prefix
+OPENAPI_VERSION: 3.0.3
+OPENAPI_URL_PREFIX: /
+
+# Enable swagger UI
+OPENAPI_SWAGGER_UI_PATH: /docs
+OPENAPI_SWAGGER_UI_URL: https://cdn.jsdelivr.net/npm/swagger-ui-dist/
+
+# VIDEOS LIST CONFIGURATION 
+VIDEOS_CONFIGURATION_FILE: /home/nico/workspace/hawks_probatter/hawks_batter_server/server/config/videos-config-dev.yml
+# VIDEO MANAGER CONFIGURATION
+DEFAULT_VIDEO: Jules
+SETUP_FRAME: /home/nico/workspace/hawks_probatter/app_data/setup.jpg
+STARTUP_FRAME: /home/nico/workspace/hawks_probatter/app_data/startup.png
+
+
+# PERIPHERALS CONFIGURATION
+SENSOR_START_PIN: 23
+SENSOR_STOP_PIN: 24
+
+# MACHINE CONFIGURATION
+DEFAULT_NUMBER_OF_PITCHES: 10
+MACHINE_START_PIN: 5
+MACHINE_STOP_PIN: 6 

@@ -21,7 +21,8 @@ class VideoManager:
     reimaning_pitches: int
     total_pitches: int
     video: str
-    running_video: bool
+    on_game: bool
+    
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -35,7 +36,7 @@ class VideoManager:
             self.total_pitches=app.config["DEFAULT_NUMBER_OF_PITCHES"]
             self.reimaning_pitches = self.total_pitches
             self.video = app.config["DEFAULT_VIDEO"]
-            self.running_video = False
+            self.on_game = False
 
             logger.info(f"Default number of pitches: {self.total_pitches}")            
 
@@ -43,6 +44,8 @@ class VideoManager:
                 setup_callback=self.setup_image, 
                 run_callback=self.new_game, 
                 exit_callback=self.exit_game, 
+                start_pitch_callback=self.start_pitch, 
+                end_pitch_callback=self.end_pitch, 
             )
 
             self.video_capture_interface = VideoCaptureInterface(
@@ -51,63 +54,52 @@ class VideoManager:
                 startup_frame=app.config["STARTUP_FRAME"],
             )
 
-            self.video_capture_interface.start()
+            #self.video_capture_interface.start()
         
-
-    def run_video(self):
-        """Launch video"""
-        if not self.running_video:
-            if self.reimaning_pitches == self.total_pitches:
-                self.video_capture_interface.start_game()
-            self.video_capture_interface.run_video(self.reimaning_pitches)       
-            print(f"Waitting for end button press")
-            self.running_video  = True 
-        
-    def stop_video(self):
-        """Stop video"""
-        if self.running_video:
+    def start_pitch(self):
+        logger.info("Start pitch callback")        
+        if not self.video_capture_interface.running:
+            logger.info("START PITCH")
+            if not self.on_game:
+                self.new_game()            
+            self.video_capture_interface.run_video()        
+    
+    def end_pitch(self):
+        logger.info("end pitch callback")        
+        if self.video_capture_interface.running:
+            logger.info("END PITCH")
             # Wait the end and stop video
-            time.sleep(1.5)
-            self.video_capture_interface.stop_video()
-            self.reimaning_pitches = self.reimaning_pitches - 1            
-        
-            # Evaluate if game is over
+            time.sleep(1.5)        
+            self.reimaning_pitches = self.reimaning_pitches - 1 
+            logger.info(f"Remaining pitches: {self.reimaning_pitches}")
             if self.reimaning_pitches <= 0:
-                logger.info("Game is over. Restar from website or manually")
-                machine_manager_service.stop_machine()
-                self.video_capture_interface.end_game(self.total_pitches)
-                self.reimaning_pitches = self.total_pitches
-
-            print(f"Waitting for start button press")
-            self.running_video  = False 
+                    logger.info("Game is over. Restar from website or manually")
+                    machine_manager_service.stop_machine()
+                    self.exit_game()
+            else:
+                self.video_capture_interface.plot_waiting_for_pitch()
                     
     def setup_image(self):
         """Setup image"""
-        if not self.video_capture_interface.setting_up:
-            logger.info("Setting up image")
-            machine_manager_service.stop_machine()
-            self.video_capture_interface.set_up_image(True)
-        else:
-            logger.info("Setting up image done")
-            self.video_capture_interface.set_up_image(False)
-            machine_manager_service.stop_machine()
-            self.reimaning_pitches = self.total_pitches
+        machine_manager_service.stop_machine()
+        self.video_capture_interface.setup()    
+        self.on_game=False    
 
     def new_game(self):
         """New game"""
+        if self.video_capture_interface.setting_up:
+            logger.error("Imposible to run new game, setting up")
+            return 
         self.reimaning_pitches = self.total_pitches
-        if not self.video_capture_interface.running:
-            logger.info("New game")
-            machine_manager_service.start_machine()
-            self.video_capture_interface.start_game()
+        self.video_capture_interface.plot_waiting_for_pitch()
+        machine_manager_service.start_machine()
+        self.on_game=True
 
     def exit_game(self):
-        """Exit game """         
-        if self.video_capture_interface.running:
-            logger.info("Game over")
-            self.video_capture_interface.end_game(self.total_pitches)
-            machine_manager_service.stop_machine()
-            
+        """Exit game """       
+        machine_manager_service.stop_machine()
+        self.video_capture_interface.plot_startup_frame()
+        self.on_game=False          
     
     def set_new_video(self, video: str):
         """Set new video """ 
@@ -117,19 +109,19 @@ class VideoManager:
         if not video_path:
             logger.error("Video not found in config list")
             return False   
-        self.video_capture_interface.set_video_to_play(video_path) 
+        self.video_capture_interface.set_video(video_path) 
         self.video = video
         self.reimaning_pitches = self.total_pitches
         return True
     
     def set_configuration(self, video: str, pitches: int):
         """Set configuration"""
-        self.video_capture_interface.end_game(pitches)
+        logger.info(f"Setting configuration video: {video} pitches: {pitches}")
+        self.exit_game()
         if not self.set_new_video(video):
             logger.error("Error in video setup")
             return None
-        self.total_pitches = pitches
-        
+        self.total_pitches = pitches        
         return self.get_current_configuration()
     
     def get_current_configuration(self):
@@ -139,7 +131,6 @@ class VideoManager:
     def get_current_machine_status(self):
         """Get current machine status"""
         return {"running": self.video_capture_interface.running}
-
 
     def get_list_of_videos(self):
         """Get list of available videos"""
