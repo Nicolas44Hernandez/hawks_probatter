@@ -32,17 +32,17 @@ class SensorsManager:
                 callback_function=self.end_callback,
             )
 
-    def start_callback(self, channel):
+    def start_callback(self):
         """Callback function for button 1 detection"""
         # Sensor debounce
         time.sleep(0.2)
-        video_manager_service.run_video()
+        video_manager_service.start_pitch()
     
-    def end_callback(self, channel):
+    def end_callback(self):
         """Callback function for button 2 detection"""
         # Sensor debounce
         time.sleep(0.2)
-        video_manager_service.stop_video()        
+        video_manager_service.end_pitch()        
 
 
 sensors_manager_service: SensorsManager = SensorsManager()
