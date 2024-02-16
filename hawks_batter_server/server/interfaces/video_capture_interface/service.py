@@ -131,6 +131,7 @@ class VideoCaptureInterface():
         self.player.set_time(0)
         time.sleep(0.5)
         self.player.set_pause(1)  
+        self.running = False
         
     def plot_setup_frame(self):
         self.player.set_media(self.setup_media)  
