@@ -20,6 +20,7 @@
             "env": {
                 "FLASK_APP": "hawks_batter_server/server/app:create_app()",
                 "FLASK_ENV": "production",
+                "ENV": "dev",
             },
             "args": [
                 "run",
