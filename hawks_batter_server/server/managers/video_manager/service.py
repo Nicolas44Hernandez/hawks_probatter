@@ -57,7 +57,7 @@ class VideoManager:
             #self.video_capture_interface.start()
         
     def start_pitch(self):
-        logger.info("Start pitch callback")        
+        #logger.info("Start pitch callback")        
         if not self.video_capture_interface.running:
             logger.info("START PITCH")
             if not self.on_game:
@@ -65,7 +65,7 @@ class VideoManager:
             self.video_capture_interface.run_video()        
     
     def end_pitch(self):
-        logger.info("end pitch callback")        
+        #logger.info("end pitch callback")        
         if self.video_capture_interface.running:
             logger.info("END PITCH")
             # Wait the end and stop video
