@@ -39,10 +39,10 @@ class VideoCaptureInterface():
         self.remaining_pitches = None 
 
         # creating a vlc instance
-        self.vlc_instance = vlc.Instance() 
+        self.vlc_instance = vlc.Instance('--fullscreen') 
         # creating a media player
-        self.player = self.vlc_instance.media_player_new()  
-        self.player.video_set_scale(0.6)      
+        self.player = self.vlc_instance.media_player_new()               
+        self.player.toggle_fullscreen() 
 
         # Load video
         if not self.load_video():
@@ -126,7 +126,7 @@ class VideoCaptureInterface():
     
     def plot_waiting_for_pitch(self):
         if not self.running or not self.player.is_playing():
-            self.player.set_media(self.video_media)   
+            self.player.set_media(self.video_media)
             self.player.play()
         self.player.set_time(0)
         time.sleep(0.5)
