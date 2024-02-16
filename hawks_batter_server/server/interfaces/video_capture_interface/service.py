@@ -125,7 +125,7 @@ class VideoCaptureInterface():
         self.player.play()
     
     def plot_waiting_for_pitch(self):
-        if not self.running:
+        if not self.running or not self.player.is_playing():
             self.player.set_media(self.video_media)   
             self.player.play()
         self.player.set_time(0)
