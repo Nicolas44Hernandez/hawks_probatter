@@ -10,12 +10,12 @@ from flask_cors import CORS
 
 from .managers.videos_list_manager import videos_list_manager_service
 from .managers.video_manager import video_manager_service
-#from .managers.sensors_manager import sensors_manager_service
-#from .managers.machine_manager import machine_manager_service
+from .managers.sensors_manager import sensors_manager_service
+from .managers.machine_manager import machine_manager_service
 from .extension import api
 from .common import HawksProbatterException, handle_server_box_exception
 from .rest_api.configuration_controler import bp as configuration_controler_bp
-#from .rest_api.machine_controler import bp as machine_controler_bp
+from .rest_api.machine_controler import bp as machine_controler_bp
 from .rest_api.shutdown_controler import bp as shutdown_controler
 
 
@@ -88,9 +88,9 @@ def register_extensions(app: Flask):
     # Video manager extension
     video_manager_service.init_app(app=app)    
     # Sensors manager extension
-    #sensors_manager_service.init_app(app=app)
+    sensors_manager_service.init_app(app=app)
     # Machine manager extension
-    #machine_manager_service.init_app(app=app)
+    machine_manager_service.init_app(app=app)
 
 
 def register_blueprints(app: Flask):
@@ -99,5 +99,5 @@ def register_blueprints(app: Flask):
     app.register_error_handler(HawksProbatterException, handle_server_box_exception)
     # Register REST blueprints
     api.register_blueprint(configuration_controler_bp)
-    #api.register_blueprint(machine_controler_bp)
+    api.register_blueprint(machine_controler_bp)
     api.register_blueprint(shutdown_controler)

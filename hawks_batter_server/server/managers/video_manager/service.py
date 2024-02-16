@@ -74,7 +74,7 @@ class VideoManager:
             logger.info(f"Remaining pitches: {self.reimaning_pitches}")
             if self.reimaning_pitches <= 0:
                     logger.info("Game is over. Restar from website or manually")
-                    #machine_manager_service.stop_machine()
+                    machine_manager_service.stop_machine()
                     self.exit_game()
             else:
                 logger.info("Plotting waiting for pitch")
@@ -82,7 +82,7 @@ class VideoManager:
                     
     def setup_image(self):
         """Setup image"""
-        #machine_manager_service.stop_machine()
+        machine_manager_service.stop_machine()
         self.video_capture_interface.setup()    
         self.on_game=False    
 
@@ -93,12 +93,12 @@ class VideoManager:
             return 
         self.reimaning_pitches = self.total_pitches
         self.video_capture_interface.plot_waiting_for_pitch()
-        #machine_manager_service.start_machine()
+        machine_manager_service.start_machine()
         self.on_game=True
 
     def exit_game(self):
         """Exit game """       
-        #machine_manager_service.stop_machine()
+        machine_manager_service.stop_machine()
         self.video_capture_interface.plot_startup_frame()
         self.on_game=False          
     
