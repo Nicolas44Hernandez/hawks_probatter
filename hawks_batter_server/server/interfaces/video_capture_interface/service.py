@@ -157,11 +157,11 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        interframe_time = int(1000/fps)
+        #interframe_time = int(1000/fps)
 
         logger.info(f"Video fps: {fps}")
         logger.info(f"Total frames: {total}")
-        logger.info(f"Interframe time: {interframe_time}")
+        #logger.info(f"Interframe time: {interframe_time}")
 
         video_frames = []
 
@@ -180,7 +180,7 @@ class VideoCaptureInterface(threading.Thread):
         
         cap.release()
         logger.info(f"Total frames in video: {len(video_frames)}")
-        self.interframe_time = interframe_time
+        #self.interframe_time = interframe_time
         return video_frames         
 
     def set_video(self, video: str):
