@@ -21,7 +21,7 @@ def end_callback_function():
 
 
 
-button_start = Button(2) 
+button_start = Button(3) 
 #button_end = Button(24) 
 #button_start.when_pressed = start_callback_function
 #button_end.when_pressed = end_callback_function
