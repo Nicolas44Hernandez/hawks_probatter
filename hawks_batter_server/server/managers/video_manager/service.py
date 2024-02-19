@@ -54,7 +54,7 @@ class VideoManager:
                 startup_frame=app.config["STARTUP_FRAME"],
             )
 
-            #self.video_capture_interface.start()
+            self.video_capture_interface.start()
         
     def start_pitch(self):
         #logger.info("Start pitch callback")        
