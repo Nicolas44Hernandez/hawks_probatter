@@ -9,7 +9,7 @@ from server.common import HawksProbatterException, ErrorCode
 
 logger = logging.getLogger(__name__)
 
-bp = Blueprint("running", __name__, url_prefix="/running")
+bp = Blueprint("running", __name__, url_prefix="/api/running")
 """ The api blueprint. Should be registered in app main api object """
 
 
