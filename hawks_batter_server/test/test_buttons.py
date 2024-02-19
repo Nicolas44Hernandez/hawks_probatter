@@ -30,6 +30,8 @@ running = False
 while True: 
     if button_start.is_pressed:
         print("Button start is pressed")
+    else:
+        print("Waitting")
     # if button_end.is_pressed:
     #     print("Button end is pressed")
     #time.sleep(1)
