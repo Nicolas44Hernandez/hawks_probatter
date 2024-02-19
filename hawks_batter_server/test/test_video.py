@@ -9,7 +9,7 @@ import os
 import time
 
 WINDOW_NAME = "VIDEO TEST HAWKS BASEBALL"
-VIDEO_TO_PLAY = "../../app_data/videos/jules_windup.mp4"
+VIDEO_TO_PLAY = "/home/pi/hawks_probatter/app_data/videos/jules_windup.mp4"
 
 
 class VideoCaptureInterface(threading.Thread):
