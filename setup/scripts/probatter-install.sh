@@ -24,7 +24,6 @@ touch logs/manager/video.log logs/interface/video_capture.log
 sudo chmod -R 777 logs
 
 echo "********STAGE 3: INSTALL WEB SERVER DEPENDENCIES ********"
-sudo apt install -y nginx
 cd ~
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
@@ -51,8 +50,14 @@ sudo systemctl enable probatter
 sudo systemctl restart probatter
 
 echo "********STAGE 6: SET WEBSERVICE AS A SERVICE ********"
+sudo apt install -y nginx
 sudo cp $NGINX_CONFIG_FILE $NGINX_CONFIG_FILE.orig
 echo "Old file backup in: $NGINX_CONFIG_FILE.orig"
 sudo cp $RESOURCES/nginx-config $NGINX_CONFIG_FILE
 echo "File created : $NGINX_CONFIG_FILE"
+sudo chmod +x /home/
+sudo chmod +x /home/pi/
+sudo chmod +x /home/pi/hawks_probatter/
+sudo chmod +x /home/pi/hawks_probatter/web_server/
+sudo chmod +x /home/pi/hawks_probatter/web_server/dist/
 sudo systemctl restart nginx
