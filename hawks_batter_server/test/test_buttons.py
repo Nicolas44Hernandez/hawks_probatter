@@ -5,14 +5,16 @@ global running
 
 def start_callback_function():
     global running
-    if not running:
+    #if not running:
+    if True:
         print(f"Button start pressed")
         print(f"Waitting for end button press")
         running = True
 
 def end_callback_function():
     global running
-    if running:
+    #if running:
+    if True:    
         print(f"Button end pressed")
         print(f"Waitting for start button press")
         running = False
