@@ -1,4 +1,6 @@
+import time
 from gpiozero import Button
+
 global running
 
 def start_callback_function():
@@ -24,4 +26,5 @@ button_end.when_pressed = end_callback_function
 running = False
 
 while True: 
-    a = 4
+    time.sleep(1)
+    print("Waitting...")
