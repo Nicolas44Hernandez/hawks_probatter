@@ -131,7 +131,7 @@ class VideoManager:
     
     def get_current_machine_status(self):
         """Get current machine status"""
-        return {"running": self.video_capture_interface.running}
+        return {"running": self.on_game}
 
     def get_list_of_videos(self):
         """Get list of available videos"""

@@ -19,7 +19,7 @@ export default {
     };
   },
   mounted() {
-    setInterval(this.getRunningStatus, 1000)
+    setInterval(this.getRunningStatus, 2000)
   },
   methods: {
     getRunningStatus(){
