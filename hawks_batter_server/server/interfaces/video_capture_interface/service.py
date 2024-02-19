@@ -98,8 +98,8 @@ class VideoCaptureInterface(threading.Thread):
     def run(self):
         """Run thread"""      
         time.sleep(5)
-        # cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
-        # cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        cv2.namedWindow(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty(WINDOW_NAME, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
         current_frame_pos = 0 
         while True:   
