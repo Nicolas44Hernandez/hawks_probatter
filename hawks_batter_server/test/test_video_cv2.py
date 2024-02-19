@@ -2,10 +2,10 @@
 import cv2 
 import numpy as np 
 
-VIDEO_1 = "../../app_data/videos/jules_windup.mp4"
-VIDEO_2 = "../../app_data/videos/jules_slide_step.mp4"
-STARTUP_FRAME = "../../app_data/startup.png"
-SETUP_FRAME = "../../app_data/setup.jpg"
+VIDEO_1 = "/home/pi/hawks_probatter/app_data/videos/jules_windup.mp4"
+VIDEO_2 = "/home/pi/hawks_probatter/app_data/videos/jules_slide_step.mp4"
+STARTUP_FRAME = "/home/pi/hawks_probatter/app_data/startup.png"
+SETUP_FRAME = "/home/pi/hawks_probatter/app_data/setup.jpg"
 
   
 # Create a VideoCapture object and read from input file 
