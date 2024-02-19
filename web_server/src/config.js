@@ -1,10 +1,10 @@
 const config = {
-    IMAGE_SETUP_URL: 'http://192.168.4.1:5000/configuration/image_setup',
-    VIDEOS_LIST_URL: 'http://192.168.4.1:5000/configuration/videos_list', 
-    CONFIGURATION_URL: 'http://192.168.4.1:5000/configuration',
-    RUNNING_URL: 'http://192.168.4.1:5000/running',
-    SHUTDOWN_URL: 'http://192.168.4.1:5000/shutdown',
-    REBOOT_URL: 'http://192.168.4.1:5000/shutdown/reboot',
+    IMAGE_SETUP_URL: '/api/configuration/image_setup',
+    VIDEOS_LIST_URL: '/api//configuration/videos_list', 
+    CONFIGURATION_URL: '/api//configuration',
+    RUNNING_URL: '/api//running',
+    SHUTDOWN_URL: '/api//shutdown',
+    REBOOT_URL: '/api//shutdown/reboot',
   };
   
   export default config;

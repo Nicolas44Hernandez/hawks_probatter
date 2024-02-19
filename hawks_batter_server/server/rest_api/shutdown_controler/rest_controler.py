@@ -6,7 +6,7 @@ from flask_smorest import Blueprint
 
 logger = logging.getLogger(__name__)
 
-bp = Blueprint("shutdown", __name__, url_prefix="/shutdown")
+bp = Blueprint("shutdown", __name__, url_prefix="/api/shutdown")
 """ The api blueprint. Should be registered in app main api object """
 
 
