@@ -28,5 +28,6 @@ button_start.when_pressed = start_callback_function
 running = False
 
 while True: 
-    time.sleep(1)
-    print("Waitting...")
+    #time.sleep(1)
+    #print("Waitting...")
+    a =2
