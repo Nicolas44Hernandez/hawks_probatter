@@ -92,7 +92,7 @@ class VideoManager:
     def setup_image(self):
         """Setup image"""
         machine_manager_service.stop_machine()
-        self.video_capture_interface.setup()    
+        self.video_capture_interface.plot_setup_frame()    
         self.on_game=False    
 
     def new_game(self):
