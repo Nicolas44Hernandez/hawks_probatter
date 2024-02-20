@@ -114,6 +114,7 @@ class VideoCaptureInterface(threading.Thread):
                     cv2.imshow(WINDOW_NAME, self.startup_frame)  
                     self.waiting_for_start = True
                     current_frame_pos = 0 
+                    start_video_ts = datetime.now()
                     frame_ts = datetime.now()
                 else:
                     if not self.waiting_for_start:   
@@ -124,6 +125,8 @@ class VideoCaptureInterface(threading.Thread):
                         logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
                         if current_frame_pos > len(self.video_frames) - 1 :
                             self.waiting_for_start = True
+                            video_delta = start_video_ts - datetime.now()
+                            logger.info(f"Total video duration{video_delta}")
                             continue
                         raw_frame = self.video_frames[current_frame_pos]  
                         frame = raw_frame.copy()                                              
