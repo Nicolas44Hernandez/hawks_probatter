@@ -57,28 +57,28 @@ class VideoManager:
             self.video_capture_interface.start()
         
     def start_pitch(self):
-        #logger.info("Start pitch callback")   
-        if not self.on_game: 
-            self.new_game()    
-        if self.video_capture_interface.running and self.video_capture_interface.waiting_for_start:
-            logger.info("START PITCH")          
-            self.video_capture_interface.run_video()        
+        logger.info("Start pitch callback")   
+        # if not self.on_game: 
+        #     self.new_game()    
+        # if self.video_capture_interface.running and self.video_capture_interface.waiting_for_start:
+        #     logger.info("START PITCH")          
+        #     self.video_capture_interface.run_video()        
     
     def end_pitch(self):
-        #logger.info("end pitch callback")   
-        if self.on_game:     
-            logger.info("END PITCH")
-            # Wait the end and stop video
-            time.sleep(1.5)        
-            self.reimaning_pitches = self.reimaning_pitches - 1 
-            logger.info(f"Remaining pitches: {self.reimaning_pitches}")
-            if self.reimaning_pitches <= 0:
-                    logger.info("Game is over. Restar from website or manually")
-                    machine_manager_service.stop_machine()
-                    self.exit_game()
-            else:
-                logger.info("Plotting waiting for pitch")
-                self.video_capture_interface.plot_waiting_for_pitch()
+        logger.info("end pitch callback")   
+        # if self.on_game and not self.video_capture_interface.waiting_for_start:     
+        #     logger.info("END PITCH")
+        #     # Wait the end and stop video
+        #     time.sleep(1.5)        
+        #     self.reimaning_pitches = self.reimaning_pitches - 1 
+        #     logger.info(f"Remaining pitches: {self.reimaning_pitches}")
+        #     if self.reimaning_pitches <= 0:
+        #             logger.info("Game is over. Restar from website or manually")
+        #             machine_manager_service.stop_machine()
+        #             self.exit_game()
+        #     else:
+        #         logger.info("Plotting waiting for pitch")
+        #         self.video_capture_interface.plot_waiting_for_pitch()
                     
     def setup_image(self):
         """Setup image"""
