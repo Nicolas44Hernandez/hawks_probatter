@@ -120,6 +120,7 @@ class VideoCaptureInterface(threading.Thread):
                         current_frame_pos = current_frame_pos + 1
                         current_frame_ts= datetime.now()
                         delta = current_frame_ts - frame_ts
+                        frame_ts = current_frame_ts
                         logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
                         if current_frame_pos > len(self.video_frames) - 1 :
                             self.waiting_for_start = True
