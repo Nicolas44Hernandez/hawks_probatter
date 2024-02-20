@@ -117,7 +117,6 @@ class VideoCaptureInterface(threading.Thread):
                         while delta < self.interframe_deltatime:
                             current_frame_ts= datetime.now()
                             delta = current_frame_ts - frame_ts
-                            logger.info(f"Waiting for interframe time delta={delta}")
                         frame_ts = current_frame_ts
                         logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
                         if current_frame_pos > len(self.video_frames) - 1 :
@@ -163,7 +162,7 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        interframe_deltatime = timedelta(milliseconds=int(1000/fps))
+        interframe_deltatime = timedelta(milliseconds=1000/fps)
 
         logger.info(f"Video fps: {fps}")
         logger.info(f"Total frames: {total}")
