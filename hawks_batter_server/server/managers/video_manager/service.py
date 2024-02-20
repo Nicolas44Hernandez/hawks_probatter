@@ -94,6 +94,8 @@ class VideoManager:
         machine_manager_service.stop_machine()
         self.video_capture_interface.plot_setup_frame()    
         self.on_game=False    
+        self.waiting_for_start = True
+        self.waiting_for_end = False
 
     def new_game(self):
         """New game"""
