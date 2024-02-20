@@ -66,7 +66,7 @@ class VideoManager:
             self.new_game()    
         if self.waiting_for_start:
             logger.info("START PITCH")          
-            self.video_capture_interface.run_video()   
+            self.video_capture_interface.run_video(self.remaining_pitches)   
             self.waiting_for_start = False
             self.waiting_for_end = True     
     
@@ -85,7 +85,7 @@ class VideoManager:
                         self.exit_game()
                 else:
                     logger.info("Plotting waiting for pitch")
-                    self.video_capture_interface.plot_waiting_for_pitch()
+                    self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
                     self.waiting_for_start = True
                     self.waiting_for_end = False
                     
@@ -103,7 +103,7 @@ class VideoManager:
         logger.info("Starting new game")
         self.reimaning_pitches = self.total_pitches
         machine_manager_service.stop_machine()
-        self.video_capture_interface.plot_waiting_for_pitch()
+        self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
         machine_manager_service.start_machine()
         self.on_game=True
 
