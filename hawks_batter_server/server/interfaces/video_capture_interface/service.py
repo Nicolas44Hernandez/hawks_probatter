@@ -125,7 +125,7 @@ class VideoCaptureInterface(threading.Thread):
                         logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
                         if current_frame_pos > len(self.video_frames) - 1 :
                             self.waiting_for_start = True
-                            video_delta = start_video_ts - datetime.now()
+                            video_delta = datetime.now() - start_video_ts
                             logger.info(f"Total video duration{video_delta}")
                             continue
                         raw_frame = self.video_frames[current_frame_pos]  
