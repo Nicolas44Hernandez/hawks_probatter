@@ -28,14 +28,6 @@ class VideoCaptureInterface(threading.Thread):
     video_frames: Iterable[numpy.ndarray]
     remaining_pitches: int
 
-    video: str
-    startup_frame: str
-    setup_frame: str
-    waiting_for_start: bool
-    remaining_pitches: int
-    setting_up: bool
-    running: bool
-
     def __init__(self, video:str, setup_frame: str, startup_frame: str):  
         logger.info("Video manager interface started") 
         logger.info(f"Default video: {video}")   
@@ -113,11 +105,11 @@ class VideoCaptureInterface(threading.Thread):
                 if not self.running:
                     cv2.imshow(WINDOW_NAME, self.startup_frame)  
                     self.waiting_for_start = True
-                    current_frame_pos = 0 
-                    start_video_ts = datetime.now()
-                    frame_ts = datetime.now()
+                    current_frame_pos = 0                     
                 else:
                     if not self.waiting_for_start:   
+                        if current_frame_pos == 1:
+                            start_video_ts = datetime.now()
                         current_frame_pos = current_frame_pos + 1
                         current_frame_ts= datetime.now()
                         delta = current_frame_ts - frame_ts
