@@ -18,7 +18,7 @@ class VideoManager:
 
     video_capture_interface: VideoCaptureInterface
     keboard_input_interface: KeyboardInputInterface
-    reimaning_pitches: int
+    remaining_pitches: int
     total_pitches: int
     video: str
     on_game: bool
@@ -36,7 +36,7 @@ class VideoManager:
             logger.info("initializing the VideoManager")
 
             self.total_pitches=app.config["DEFAULT_NUMBER_OF_PITCHES"]
-            self.reimaning_pitches = self.total_pitches
+            self.remaining_pitches = self.total_pitches
             self.video = app.config["DEFAULT_VIDEO"]
             self.on_game = False
 
@@ -77,9 +77,9 @@ class VideoManager:
                 logger.info("END PITCH")
                 # Wait the end and stop video
                 time.sleep(1.5)        
-                self.reimaning_pitches = self.reimaning_pitches - 1 
-                logger.info(f"Remaining pitches: {self.reimaning_pitches}")
-                if self.reimaning_pitches <= 0:
+                self.remaining_pitches = self.remaining_pitches - 1 
+                logger.info(f"Remaining pitches: {self.remaining_pitches}")
+                if self.remaining_pitches <= 0:
                         logger.info("Game is over. Restar from website or manually")
                         machine_manager_service.stop_machine()
                         self.exit_game()
@@ -101,7 +101,7 @@ class VideoManager:
             logger.error("Imposible to run new game, setting up")
             return 
         logger.info("Starting new game")
-        self.reimaning_pitches = self.total_pitches
+        self.remaining_pitches = self.total_pitches
         machine_manager_service.stop_machine()
         self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
         machine_manager_service.start_machine()
@@ -125,7 +125,7 @@ class VideoManager:
             return False   
         self.video_capture_interface.set_video(video_path) 
         self.video = video
-        self.reimaning_pitches = self.total_pitches
+        self.remaining_pitches = self.total_pitches
         return True
     
     def set_configuration(self, video: str, pitches: int):
