@@ -108,7 +108,7 @@ class VideoCaptureInterface(threading.Thread):
                     current_frame_pos = 0                     
                 else:
                     if not self.waiting_for_start:   
-                        if current_frame_pos == 1:
+                        if current_frame_pos == 0:
                             start_video_ts = datetime.now()
                             frame_ts = datetime.now()
                         current_frame_pos = current_frame_pos + 1
