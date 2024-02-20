@@ -18,7 +18,7 @@ class VideoCaptureInterface(threading.Thread):
     """Service class for video manager interface management"""
 
     video: str
-    interframe_time_ms: timedelta
+    interframe_deltatime: timedelta
     running: bool
     setting_up: bool
     waiting_for_start: bool
@@ -59,7 +59,7 @@ class VideoCaptureInterface(threading.Thread):
         self.running = False
         self.setting_up = False
         self.waiting_for_start = True  
-        self.interframe_time_ms = None 
+        self.interframe_deltatime = None 
         self.remaining_pitches = None
 
         # Load video frames
@@ -114,6 +114,10 @@ class VideoCaptureInterface(threading.Thread):
                         current_frame_pos = current_frame_pos + 1
                         current_frame_ts= datetime.now()
                         delta = current_frame_ts - frame_ts
+                        while delta < self.interframe_deltatime:
+                            current_frame_ts= datetime.now()
+                            delta = current_frame_ts - frame_ts
+                            logger.info(f"Waiting for interframe time delta={delta}")
                         frame_ts = current_frame_ts
                         logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
                         if current_frame_pos > len(self.video_frames) - 1 :
@@ -136,7 +140,7 @@ class VideoCaptureInterface(threading.Thread):
                             self.draw_text(frame, text)                                     
                         cv2.imshow(WINDOW_NAME, frame)
                         current_frame_pos = 0 
-            #cv2.waitKey(int(self.interframe_time_ms/2))
+            #cv2.waitKey(int(self.interframe_deltatime/2))
             cv2.waitKey(1)
 
     
@@ -159,11 +163,11 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        interframe_time_ms = timedelta(milliseconds=int(1000/fps))
+        interframe_deltatime = timedelta(milliseconds=int(1000/fps))
 
         logger.info(f"Video fps: {fps}")
         logger.info(f"Total frames: {total}")
-        logger.info(f"Interframe time: {interframe_time_ms}")
+        logger.info(f"Interframe time: {interframe_deltatime}")
 
         video_frames = []
 
@@ -182,7 +186,7 @@ class VideoCaptureInterface(threading.Thread):
         
         cap.release()
         logger.info(f"Total frames in video: {len(video_frames)}")
-        self.interframe_time_ms = interframe_time_ms
+        self.interframe_deltatime = interframe_deltatime
         return video_frames         
 
     def set_video(self, video: str):
