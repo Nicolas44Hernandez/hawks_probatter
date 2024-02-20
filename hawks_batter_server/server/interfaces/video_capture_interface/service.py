@@ -8,6 +8,7 @@ import cv2
 import numpy
 import os
 import time
+from datetime import datetime
 
 WINDOW_NAME = "HAWKS BASEBALL"
 
@@ -116,6 +117,8 @@ class VideoCaptureInterface(threading.Thread):
                 else:
                     if not self.waiting_for_start:   
                         current_frame_pos = current_frame_pos + 1
+                        timestamp= datetime.now()
+                        logger.info(f"frame:{current_frame_pos}  timestamp:{timestamp}")
                         if current_frame_pos > len(self.video_frames) - 1 :
                             self.waiting_for_start = True
                             continue
