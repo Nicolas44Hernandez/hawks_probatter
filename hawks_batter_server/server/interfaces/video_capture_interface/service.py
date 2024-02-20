@@ -18,7 +18,7 @@ class VideoCaptureInterface(threading.Thread):
     """Service class for video manager interface management"""
 
     video: str
-    interframe_time: int
+    interframe_time_ms: int
     running: bool
     setting_up: bool
     waiting_for_start: bool
@@ -59,7 +59,7 @@ class VideoCaptureInterface(threading.Thread):
         self.running = False
         self.setting_up = False
         self.waiting_for_start = True  
-        self.interframe_time = None 
+        self.interframe_time_ms = None 
         self.remaining_pitches = None
 
         # Load video frames
@@ -136,8 +136,8 @@ class VideoCaptureInterface(threading.Thread):
                             self.draw_text(frame, text)                                     
                         cv2.imshow(WINDOW_NAME, frame)
                         current_frame_pos = 0 
-            #cv2.waitKey(int(self.interframe_time/2))
-            cv2.waitKey(8)
+            #cv2.waitKey(int(self.interframe_time_ms/2))
+            cv2.waitKey(1)
 
     
     def load_image(self, path_to_frame: str)-> numpy.ndarray:
@@ -159,11 +159,11 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        interframe_time = int(1000/fps)
+        interframe_time_ms = int(1000/fps)
 
         logger.info(f"Video fps: {fps}")
         logger.info(f"Total frames: {total}")
-        logger.info(f"Interframe time: {interframe_time}")
+        logger.info(f"Interframe time: {interframe_time_ms}")
 
         video_frames = []
 
@@ -182,7 +182,7 @@ class VideoCaptureInterface(threading.Thread):
         
         cap.release()
         logger.info(f"Total frames in video: {len(video_frames)}")
-        #self.interframe_time = interframe_time
+        #self.interframe_time_ms = interframe_time_ms
         return video_frames         
 
     def set_video(self, video: str):
