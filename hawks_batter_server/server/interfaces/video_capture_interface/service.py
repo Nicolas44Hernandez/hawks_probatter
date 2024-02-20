@@ -8,7 +8,7 @@ import cv2
 import numpy
 import os
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 WINDOW_NAME = "HAWKS BASEBALL"
 
@@ -18,7 +18,7 @@ class VideoCaptureInterface(threading.Thread):
     """Service class for video manager interface management"""
 
     video: str
-    interframe_time_ms: int
+    interframe_time_ms: timedelta
     running: bool
     setting_up: bool
     waiting_for_start: bool
@@ -159,7 +159,7 @@ class VideoCaptureInterface(threading.Thread):
         cap = cv2.VideoCapture(video)
         fps = cap.get(cv2.CAP_PROP_FPS) 
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        interframe_time_ms = int(1000/fps)
+        interframe_time_ms = timedelta(milliseconds=int(1000/fps))
 
         logger.info(f"Video fps: {fps}")
         logger.info(f"Total frames: {total}")
@@ -182,7 +182,7 @@ class VideoCaptureInterface(threading.Thread):
         
         cap.release()
         logger.info(f"Total frames in video: {len(video_frames)}")
-        #self.interframe_time_ms = interframe_time_ms
+        self.interframe_time_ms = interframe_time_ms
         return video_frames         
 
     def set_video(self, video: str):
