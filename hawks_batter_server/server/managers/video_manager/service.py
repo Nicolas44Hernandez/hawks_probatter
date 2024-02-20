@@ -100,7 +100,7 @@ class VideoManager:
         if self.video_capture_interface.setting_up:
             logger.error("Imposible to run new game, setting up")
             return 
-        logger.info("Starting new game")
+        logger.info(f"Starting new game, pitches: {self.remaining_pitches}")
         self.remaining_pitches = self.total_pitches
         machine_manager_service.stop_machine()
         self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
