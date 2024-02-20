@@ -114,11 +114,13 @@ class VideoCaptureInterface(threading.Thread):
                     cv2.imshow(WINDOW_NAME, self.startup_frame)  
                     self.waiting_for_start = True
                     current_frame_pos = 0 
+                    frame_ts = datetime.now()
                 else:
                     if not self.waiting_for_start:   
                         current_frame_pos = current_frame_pos + 1
-                        timestamp= datetime.now()
-                        logger.info(f"frame:{current_frame_pos}  timestamp:{timestamp}")
+                        current_frame_ts= datetime.now()
+                        delta = current_frame_ts - frame_ts
+                        logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
                         if current_frame_pos > len(self.video_frames) - 1 :
                             self.waiting_for_start = True
                             continue
