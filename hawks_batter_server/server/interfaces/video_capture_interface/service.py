@@ -205,11 +205,12 @@ class VideoCaptureInterface(threading.Thread):
         self.waiting_for_pitch_frame = self.video_frames[0]
         return True    
     
-    def run_video(self):
+    def run_video(self, remaining_pitches):
         logger.info("Running video")
         self.running = True
         self.setting_up=False
         self.waiting_for_start = False
+        self.remaining_pitches = remaining_pitches
 
     def plot_startup_frame(self):
         """Plot startup frame"""
@@ -217,11 +218,12 @@ class VideoCaptureInterface(threading.Thread):
         self.setting_up = False
         self.waiting_for_start = False
     
-    def plot_waiting_for_pitch(self):
+    def plot_waiting_for_pitch(self, remaining_pitches):
         """Plot waitting for pitch frame"""
         self.setting_up = False
         self.running = True        
         self.waiting_for_start = True
+        self.remaining_pitches = remaining_pitches
     
     def plot_setup_frame(self):
         """Plot setup frame"""
