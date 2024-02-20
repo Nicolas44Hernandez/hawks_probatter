@@ -6,13 +6,10 @@ echo "SETUP FOR PROBATTER APP"
 
 
 echo "********STAGE 1: INSTALL FLASK SERVER DEPENDENCIES ********"
-sudo apt-get install -y  vlc
 sudo apt-get install -y python3-pip
 cd ../../
 pip install -r hawks_batter_server/requirements.txt --break-system-packages
 echo 'export PATH="\$PATH:/home/pi/.local/bin"' >> ~/.bashrc
-
-pip install python-vlc --break-system-packages
 
 echo "********STAGE 2: CREATE LOG FILES ********"
 mkdir logs
