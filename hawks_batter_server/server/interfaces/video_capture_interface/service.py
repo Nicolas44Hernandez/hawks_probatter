@@ -137,7 +137,7 @@ class VideoCaptureInterface(threading.Thread):
                         cv2.imshow(WINDOW_NAME, frame)
                         current_frame_pos = 0 
             #cv2.waitKey(int(self.interframe_time_ms/2))
-            cv2.waitKey(1)
+            #cv2.waitKey(1)
 
     
     def load_image(self, path_to_frame: str)-> numpy.ndarray:
