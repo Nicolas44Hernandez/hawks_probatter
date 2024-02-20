@@ -227,14 +227,13 @@ class VideoCaptureInterface(threading.Thread):
     
     def plot_setup_frame(self):
         """Plot setup frame"""
-        self.setting_up = True 
-        self.running = False
-        self.waiting_for_start = False
-        """Show setup frame"""
         if not self.setting_up:
-            self.plot_setup_frame()
+            self.setting_up = True 
+            self.running = False
+            self.waiting_for_start = False
             logger.info(f"Setting up image")
         else: 
-            self.plot_startup_frame()
             self.setting_up = False 
+            self.running = False
+            self.waiting_for_start = False
             logger.info(f"Settup done") 
