@@ -77,7 +77,7 @@ class VideoCaptureInterface(threading.Thread):
         self.setDaemon(True)
 
 
-    def draw_text(self, frame, text, font=cv2.FONT_HERSHEY_DUPLEX, pos=(20, 100), font_scale=3, font_thickness=5, text_color=(77, 8, 7),text_color_bg=(255, 255, 255)):
+    def draw_text(self, frame, text, font=cv2.FONT_HERSHEY_DUPLEX, pos=(20, 100), font_scale=5, font_thickness=5, text_color=(77, 8, 7),text_color_bg=(255, 255, 255)):
             
         """Draw text in frame"""
         x, y = pos
