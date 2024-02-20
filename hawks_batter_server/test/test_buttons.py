@@ -1,36 +1,23 @@
 from gpiozero import Button
 from signal import pause
+import time
 
-global running
 
 def start_callback_function():
-    global running
-    if not running:
-        print(f"Button start pressed")
-        print(f"Waitting for end button press")
-        running = True
-
-def end_callback_function():
-    global running
-    if running:  
-        print(f"Button end pressed")
-        print(f"Waitting for start button press")
-        running = False
+    time.sleep(0.2)
+    print(f"Button start pressed")
 
 
 
-button_start = Button(23) 
-button_end = Button(24) 
-button_start.when_pressed = start_callback_function
-button_end.when_pressed = end_callback_function
-running = False
+button_start = Button(23, bounce_time=0.5) 
+#button_start.when_pressed = start_callback_function
 
-pause()
-# while True: 
-#     if button_start.is_pressed:
-#         print("Button start is pressed")
-    # if button_end.is_pressed:
-    #     print("Button end is pressed")
-    #time.sleep(1)
-    #print("Waitting...")
-    #a =2
+#pause()
+while True: 
+    print("Waitting...")
+    button_start.wait_for_press()
+    print("Button was pressed")
+
+    button_start.wait_for_release(5)
+
+    print("Button was released")

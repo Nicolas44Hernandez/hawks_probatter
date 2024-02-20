@@ -3,13 +3,14 @@ GPIO interface service
 """
 import logging
 import time
+import threading
 from gpiozero import Button, LED
 
 logger = logging.getLogger(__name__)
 
 
-class GpioButtonInterface:
-    """Service class for RPI Button GPIO"""
+class GpioButtonInterface(threading.Thread):
+    """Service class for for RPI Button GPIO interface management"""
 
     button_pin: int
     button: Button
@@ -24,8 +25,23 @@ class GpioButtonInterface:
         self.button_pin = button_pin
 
         # setup
-        self.button = Button(self.button_pin)
-        self.button.when_pressed = callback_function
+        self.button = Button(self.button_pin, bounce_time=0.5)
+        self.callback_function = callback_function
+
+        # Call Super constructor
+        super(GpioButtonInterface, self).__init__(name="GpioButtonInterfaceThread")
+        self.setDaemon(True)
+    
+    def run(self):
+        """Run thread"""      
+        
+        while True: 
+            logger.info("Waitting for press...")
+            self.button.wait_for_press()
+            print("Button pressed")
+            self.callback_function()
+            self.button.wait_for_release(5)
+            print("Button released")
         
 class GpioMachineOutputInterface:
     """Service class for RPI Output GPIO"""
@@ -47,18 +63,18 @@ class GpioMachineOutputInterface:
         # setup
         self.start_output = LED(self.start_pin)
         self.stop_output = LED(self.stop_pin)
-        self.start_output.on()
-        self.stop_output.on()
+        self.start_output.off()
+        self.stop_output.off()
 
     def start_machine(self):
         """Start ptching machine"""
-        self.start_output.off()
-        time.sleep(0.5)
         self.start_output.on()
+        time.sleep(0.5)
+        self.start_output.off()
     
     def stop_machine(self):
         """Start ptching machine"""
-        self.stop_output.off()
-        time.sleep(0.5)
         self.stop_output.on()
+        time.sleep(0.5)
+        self.stop_output.off()
 

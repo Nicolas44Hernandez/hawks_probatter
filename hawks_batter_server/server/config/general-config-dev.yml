@@ -15,13 +15,13 @@ VIDEOS_CONFIGURATION_FILE: /home/nico/workspace/hawks_probatter/hawks_batter_ser
 DEFAULT_VIDEO: Jules
 SETUP_FRAME: /home/nico/workspace/hawks_probatter/app_data/setup.jpg
 STARTUP_FRAME: /home/nico/workspace/hawks_probatter/app_data/startup.png
+SYNC_FRAME: /home/nico/workspace/hawks_probatter/app_data/sync.png
 
 
 # PERIPHERALS CONFIGURATION
 SENSOR_START_PIN: 23
-SENSOR_STOP_PIN: 24
 
 # MACHINE CONFIGURATION
-DEFAULT_NUMBER_OF_PITCHES: 10
+DEFAULT_NUMBER_OF_PITCHES: 3
 MACHINE_START_PIN: 5
 MACHINE_STOP_PIN: 6 

@@ -22,23 +22,28 @@ class VideoCaptureInterface(threading.Thread):
     running: bool
     setting_up: bool
     waiting_for_start: bool
+    synchronizing: bool
     waiting_for_pitch_frame: numpy.ndarray
     startup_frame: numpy.ndarray
+    sync_frame: numpy.ndarray
     setup_frame: numpy.ndarray    
     video_frames: Iterable[numpy.ndarray]
     remaining_pitches: int
+    total_pitches: int
 
-    def __init__(self, video:str, setup_frame: str, startup_frame: str):  
+    def __init__(self, video:str, setup_frame: str, startup_frame: str, sync_frame: str):  
         logger.info("Video manager interface started") 
         logger.info(f"Default video: {video}")   
 
         # Set initial values
         self.video = video
         self.startup_frame = startup_frame
+        self.sync_frame = sync_frame
         self.setup_frame = setup_frame   
         self.setting_up = False
         self.running = False
         self.remaining_pitches = None 
+        self.total_pitches = None
 
         # Load setup frame
         captured_setup_frame = self.load_image(setup_frame)
@@ -54,13 +59,22 @@ class VideoCaptureInterface(threading.Thread):
             return 
         self.startup_frame = captured_startup_frame  
 
+        # Load synchronization frame
+        captured_sync_frame = self.load_image(sync_frame)
+        if captured_sync_frame is None: 
+            logger.error("Impossible to open sync frame")
+            return 
+        self.sync_frame = captured_sync_frame  
+
         # Set initial values
         self.video = video
         self.running = False
         self.setting_up = False
         self.waiting_for_start = True  
+        self.synchronizing = False
         self.interframe_deltatime = None 
         self.remaining_pitches = None
+        self.total_pitches = None
 
         # Load video frames
         self.video_frames = None
@@ -99,38 +113,44 @@ class VideoCaptureInterface(threading.Thread):
             if self.setting_up:
                 self.running = False
                 self.waiting_for_start = True  
+                self.synchronizing = False
                 cv2.imshow(WINDOW_NAME, self.setup_frame) 
                 current_frame_pos = 0            
             else:   
                 if not self.running:
                     cv2.imshow(WINDOW_NAME, self.startup_frame)  
                     self.waiting_for_start = True
+                    self.synchronizing = False
                     current_frame_pos = 0                     
                 else:
-                    if not self.waiting_for_start:   
-                        if current_frame_pos == 0:
-                            start_video_ts = datetime.now()
-                            frame_ts = datetime.now()
-                        current_frame_pos = current_frame_pos + 1
-                        current_frame_ts= datetime.now()
-                        delta = current_frame_ts - frame_ts
-                        while delta < self.interframe_deltatime:
+                    if not self.waiting_for_start:
+                            if current_frame_pos == 0:
+                                start_video_ts = datetime.now()
+                                frame_ts = datetime.now()
+                            current_frame_pos = current_frame_pos + 1
                             current_frame_ts= datetime.now()
                             delta = current_frame_ts - frame_ts
-                        frame_ts = current_frame_ts
-                        #logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
-                        if current_frame_pos > len(self.video_frames) - 1 :
-                            self.waiting_for_start = True
-                            video_delta = datetime.now() - start_video_ts
-                            logger.info(f"Total video duration{video_delta}")
-                            continue
-                        raw_frame = self.video_frames[current_frame_pos]  
-                        frame = raw_frame.copy()                                              
-                        #logger.info(f"frame {current_frame_pos}")
-                        if self.remaining_pitches is not None:                            
-                            text = f"P:{self.remaining_pitches}"
-                            self.draw_text(frame, text)
-                        cv2.imshow(WINDOW_NAME, frame)
+                            while delta < self.interframe_deltatime:
+                                current_frame_ts= datetime.now()
+                                delta = current_frame_ts - frame_ts
+                            frame_ts = current_frame_ts
+                            #logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
+                            if current_frame_pos > len(self.video_frames) - 1 :
+                                self.waiting_for_start = True
+                                video_delta = datetime.now() - start_video_ts
+                                logger.info(f"Total video duration{video_delta}")
+                                self.remaining_pitches = self.remaining_pitches - 1
+                                continue
+                            raw_frame = self.video_frames[current_frame_pos]  
+                            frame = raw_frame.copy()                                              
+                            #logger.info(f"frame {current_frame_pos}")
+                            if self.remaining_pitches is not None:                            
+                                text = f"P:{self.remaining_pitches}"
+                                self.draw_text(frame, text)
+                            if self.remaining_pitches == self.total_pitches:
+                                cv2.imshow(WINDOW_NAME, self.sync_frame)                            
+                            else:
+                                cv2.imshow(WINDOW_NAME, frame)
                     else:
                         raw_frame = self.waiting_for_pitch_frame 
                         frame = raw_frame.copy() 
@@ -210,6 +230,10 @@ class VideoCaptureInterface(threading.Thread):
         self.waiting_for_pitch_frame = self.video_frames[0]
         return True    
     
+    def set_total_pitches(self, total_pitches: int):
+        """Set total pitches for game"""
+        self.total_pitches = total_pitches
+
     def run_video(self, remaining_pitches):
         logger.info("Running video")
         self.running = True
@@ -228,8 +252,9 @@ class VideoCaptureInterface(threading.Thread):
         self.setting_up = False
         self.running = True        
         self.waiting_for_start = True
+        self.synchronizing = False
         self.remaining_pitches = remaining_pitches
-    
+
     def plot_setup_frame(self):
         """Plot setup frame"""
         if not self.setting_up:

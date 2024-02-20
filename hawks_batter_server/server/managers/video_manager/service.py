@@ -21,10 +21,7 @@ class VideoManager:
     remaining_pitches: int
     total_pitches: int
     video: str
-    on_game: bool
-    waiting_for_start: bool
-    waiting_for_end: bool
-    
+    on_game: bool    
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -47,55 +44,39 @@ class VideoManager:
                 run_callback=self.new_game, 
                 exit_callback=self.exit_game, 
                 start_pitch_callback=self.start_pitch, 
-                end_pitch_callback=self.end_pitch, 
             )
 
             self.video_capture_interface = VideoCaptureInterface(
                 video=videos_list_manager_service.get_video_path(self.video), 
                 setup_frame=app.config["SETUP_FRAME"],
                 startup_frame=app.config["STARTUP_FRAME"],
+                sync_frame=app.config["SYNC_FRAME"]
             )
-            self.waiting_for_start = True
-            self.waiting_for_end = False
 
             self.video_capture_interface.start()
         
     def start_pitch(self):
-        #logger.info("Start pitch callback")   
         if not self.on_game: 
             self.new_game()    
-        if self.waiting_for_start:
-            logger.info("START PITCH")          
-            self.video_capture_interface.run_video(self.remaining_pitches)   
-            self.waiting_for_start = False
-            self.waiting_for_end = True     
+        if self.remaining_pitches > 0:
+            if self.video_capture_interface.waiting_for_start:
+                logger.info("START PITCH")                         
+                self.video_capture_interface.run_video(self.remaining_pitches) 
+                self.remaining_pitches = self.remaining_pitches - 1   
+            else: 
+                logger.info("IGNORE START")
+        else:
+            logger.info("Game is over. Restar from website or manually")
+            machine_manager_service.stop_machine()
+            self.exit_game()        
     
-    def end_pitch(self):
-        #logger.info("end pitch callback")   
-        if self.on_game:
-            if self.waiting_for_end:     
-                logger.info("END PITCH")
-                # Wait the end and stop video
-                time.sleep(1.5)        
-                self.remaining_pitches = self.remaining_pitches - 1 
-                logger.info(f"Remaining pitches: {self.remaining_pitches}")
-                if self.remaining_pitches <= 0:
-                        logger.info("Game is over. Restar from website or manually")
-                        machine_manager_service.stop_machine()
-                        self.exit_game()
-                else:
-                    logger.info("Plotting waiting for pitch")
-                    self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
-                    self.waiting_for_start = True
-                    self.waiting_for_end = False
                     
     def setup_image(self):
         """Setup image"""
         machine_manager_service.stop_machine()
         self.video_capture_interface.plot_setup_frame()    
         self.on_game=False    
-        self.waiting_for_start = True
-        self.waiting_for_end = False
+
 
     def new_game(self):
         """New game"""
@@ -103,9 +84,9 @@ class VideoManager:
             logger.error("Imposible to run new game, setting up")
             return 
         logger.info(f"Starting new game, pitches: {self.remaining_pitches}")
+        self.video_capture_interface.set_total_pitches(self.total_pitches)
         self.remaining_pitches = self.total_pitches
-        machine_manager_service.stop_machine()
-        self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
+        self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)  
         machine_manager_service.start_machine()
         self.on_game=True
 
@@ -114,8 +95,6 @@ class VideoManager:
         machine_manager_service.stop_machine()
         self.video_capture_interface.plot_startup_frame()
         self.on_game=False     
-        self.waiting_for_start = True
-        self.waiting_for_end = False     
     
     def set_new_video(self, video: str):
         """Set new video """ 
