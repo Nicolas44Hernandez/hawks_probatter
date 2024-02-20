@@ -209,7 +209,7 @@ class VideoCaptureInterface(threading.Thread):
         logger.info("Running video")
         self.running = True
         self.setting_up=False
-        self.waiting_for_start = True
+        self.waiting_for_start = False
 
     def plot_startup_frame(self):
         """Plot startup frame"""

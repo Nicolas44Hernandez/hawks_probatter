@@ -57,16 +57,16 @@ class VideoManager:
             self.video_capture_interface.start()
         
     def start_pitch(self):
-        #logger.info("Start pitch callback")        
-        if not self.video_capture_interface.running:
-            logger.info("START PITCH")
-            if not self.on_game:
-                self.new_game()            
+        #logger.info("Start pitch callback")   
+        if not self.on_game: 
+            self.new_game()    
+        if self.video_capture_interface.running and self.video_capture_interface.waiting_for_start:
+            logger.info("START PITCH")          
             self.video_capture_interface.run_video()        
     
     def end_pitch(self):
-        #logger.info("end pitch callback")        
-        if self.video_capture_interface.running:
+        #logger.info("end pitch callback")   
+        if self.on_game:     
             logger.info("END PITCH")
             # Wait the end and stop video
             time.sleep(1.5)        
@@ -91,7 +91,9 @@ class VideoManager:
         if self.video_capture_interface.setting_up:
             logger.error("Imposible to run new game, setting up")
             return 
+        logger.info("Starting new game")
         self.reimaning_pitches = self.total_pitches
+        machine_manager_service.stop_machine()
         self.video_capture_interface.plot_waiting_for_pitch()
         machine_manager_service.start_machine()
         self.on_game=True
