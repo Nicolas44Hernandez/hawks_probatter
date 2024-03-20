@@ -68,6 +68,7 @@ class VideoManager:
         else:
             logger.info("Game is over. Restar from website or manually")
             machine_manager_service.stop_machine()
+            time.sleep(3)
             self.exit_game()        
     
                     
