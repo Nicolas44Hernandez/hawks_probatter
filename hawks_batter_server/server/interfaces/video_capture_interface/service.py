@@ -123,6 +123,7 @@ class VideoCaptureInterface(threading.Thread):
                             self.waiting_for_start = True
                             video_delta = datetime.now() - start_video_ts
                             logger.info(f"Total video duration{video_delta}")
+                            self.remaining_pitches = self.remaining_pitches - 1
                             continue
                         raw_frame = self.video_frames[current_frame_pos]  
                         frame = raw_frame.copy()                                              
