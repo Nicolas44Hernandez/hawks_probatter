@@ -59,9 +59,12 @@ class VideoManager:
         if not self.on_game: 
             self.new_game()    
         if self.remaining_pitches > 0:
-            logger.info("START PITCH")          
-            self.video_capture_interface.run_video(self.remaining_pitches) 
-            self.remaining_pitches = self.remaining_pitches - 1   
+            if self.video_capture_interface.waiting_for_start:
+                logger.info("START PITCH")          
+                self.video_capture_interface.run_video(self.remaining_pitches) 
+                self.remaining_pitches = self.remaining_pitches - 1   
+            else: 
+                logger.info("IGNORE START")
         else:
             logger.info("Game is over. Restar from website or manually")
             machine_manager_service.stop_machine()
