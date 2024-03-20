@@ -11,7 +11,6 @@ class SensorsManager:
     """Manager for Sensors detection peripheral"""
 
     button_1_interface: GpioButtonInterface
-    button_2_interface: GpioButtonInterface
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -27,22 +26,11 @@ class SensorsManager:
                 callback_function=self.start_callback,
             )
 
-            self.button_2_interface = GpioButtonInterface(
-                button_pin=app.config["SENSOR_STOP_PIN"],
-                callback_function=self.end_callback,
-            )
-
     def start_callback(self):
         """Callback function for button 1 detection"""
         # Sensor debounce
         time.sleep(0.2)
-        video_manager_service.start_pitch()
-    
-    def end_callback(self):
-        """Callback function for button 2 detection"""
-        # Sensor debounce
-        time.sleep(0.2)
-        video_manager_service.end_pitch()        
+        video_manager_service.start_pitch()      
 
 
 sensors_manager_service: SensorsManager = SensorsManager()

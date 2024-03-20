@@ -21,10 +21,7 @@ class VideoManager:
     remaining_pitches: int
     total_pitches: int
     video: str
-    on_game: bool
-    waiting_for_start: bool
-    waiting_for_end: bool
-    
+    on_game: bool    
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -47,7 +44,6 @@ class VideoManager:
                 run_callback=self.new_game, 
                 exit_callback=self.exit_game, 
                 start_pitch_callback=self.start_pitch, 
-                end_pitch_callback=self.end_pitch, 
             )
 
             self.video_capture_interface = VideoCaptureInterface(
@@ -55,8 +51,6 @@ class VideoManager:
                 setup_frame=app.config["SETUP_FRAME"],
                 startup_frame=app.config["STARTUP_FRAME"],
             )
-            self.waiting_for_start = True
-            self.waiting_for_end = False
 
             self.video_capture_interface.start()
         
