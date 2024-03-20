@@ -30,7 +30,8 @@ class SensorsManager:
         """Callback function for button 1 detection"""
         # Sensor debounce
         time.sleep(0.2)
-        video_manager_service.start_pitch()      
+        if video_manager_service.video_capture_interface.waiting_for_start:
+            video_manager_service.start_pitch()      
 
 
 sensors_manager_service: SensorsManager = SensorsManager()
