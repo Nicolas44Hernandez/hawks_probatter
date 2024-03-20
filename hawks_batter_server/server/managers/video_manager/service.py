@@ -60,10 +60,10 @@ class VideoManager:
             self.new_game()    
         if self.remaining_pitches > 0:
             if self.video_capture_interface.waiting_for_start:
-                logger.info("START PITCH")         
-                time.sleep(5)
+                logger.info("START PITCH")                         
                 self.video_capture_interface.run_video(self.remaining_pitches) 
                 self.remaining_pitches = self.remaining_pitches - 1   
+                time.sleep(5)
             else: 
                 logger.info("IGNORE START")
         else:
