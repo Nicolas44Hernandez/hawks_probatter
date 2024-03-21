@@ -25,20 +25,15 @@ class SensorsManager:
                 button_pin=app.config["SENSOR_START_PIN"],
                 callback_function=self.start_callback,
             )
-
-            self.enable_button()
             
 
     def start_callback(self):
         """Callback function for button 1 detection"""
         # Sensor debounce
         logger.info("start button callback")
-        self.disable_button()
         time.sleep(0.2)
         if video_manager_service.video_capture_interface.waiting_for_start:
             video_manager_service.start_pitch()      
-            time.sleep(3)
-            self.enable_button()
         
 
 sensors_manager_service: SensorsManager = SensorsManager()
