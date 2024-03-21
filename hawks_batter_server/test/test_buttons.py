@@ -18,6 +18,6 @@ while True:
     button_start.wait_for_press()
     print("Button was pressed")
 
-    button_start.wait_for_release(4)
+    button_start.wait_for_release(5)
 
     print("Button was released")
