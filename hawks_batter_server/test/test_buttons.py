@@ -10,7 +10,7 @@ def start_callback_function():
 
 
 button_start = Button(23) 
-button_start.pull_up = False
+button_start._active_state = False
 #button_start.when_pressed = start_callback_function
 
 #pause()
