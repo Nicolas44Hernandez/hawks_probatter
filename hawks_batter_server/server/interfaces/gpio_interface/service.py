@@ -27,7 +27,6 @@ class GpioButtonInterface(threading.Thread):
         # setup
         self.button = Button(self.button_pin, bounce_time=0.5)
         self.callback_function = callback_function
-        #self.button.when_pressed = callback_function
 
         # Call Super constructor
         super(GpioButtonInterface, self).__init__(name="GpioButtonInterfaceThread")

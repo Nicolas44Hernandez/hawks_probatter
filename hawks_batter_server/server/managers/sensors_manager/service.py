@@ -1,5 +1,4 @@
 import logging
-import time
 from flask import Flask
 from server.interfaces.gpio_interface.service import GpioButtonInterface
 from server.managers.video_manager import video_manager_service
@@ -31,9 +30,7 @@ class SensorsManager:
 
     def start_callback(self):
         """Callback function for button 1 detection"""
-        # Sensor debounce
         logger.info("start button callback")
-        time.sleep(0.2)
         if video_manager_service.video_capture_interface.waiting_for_start:
             video_manager_service.start_pitch()      
         
