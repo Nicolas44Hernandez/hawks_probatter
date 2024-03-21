@@ -12,12 +12,12 @@ def start_callback_function():
 button_start = Button(23) 
 button_start.when_pressed = start_callback_function
 
-pause()
-# while True: 
-#     if button_start.is_pressed:
-#         print("Button start is pressed")
-    # if button_end.is_pressed:
-    #     print("Button end is pressed")
-    #time.sleep(1)
-    #print("Waitting...")
-    #a =2
+#pause()
+while True: 
+    print("Waitting...")
+    button_start.wait_for_press()
+    print("Button was pressed")
+
+    button_start.wait_for_release(4)
+
+    print("Button was released")
