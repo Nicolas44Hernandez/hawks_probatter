@@ -11,7 +11,6 @@ class SensorsManager:
     """Manager for Sensors detection peripheral"""
 
     button_1_interface: GpioButtonInterface
-    start_button_pin: int
 
     def __init__(self, app: Flask = None) -> None:
         if app is not None:
@@ -22,7 +21,10 @@ class SensorsManager:
         if app is not None:
             logger.info("initializing the SensorsManager")
             
-            self.start_button_pin = app.config["SENSOR_START_PIN"]
+            self.button_1_interface = GpioButtonInterface(
+                button_pin=app.config["SENSOR_START_PIN"],
+                callback_function=self.start_callback,
+            )
 
             self.enable_button()
             
@@ -37,19 +39,7 @@ class SensorsManager:
             video_manager_service.start_pitch()      
             time.sleep(3)
             self.enable_button()
-
-
-    def disable_button(self):
-        """Disable button"""
-        self.button_1_interface = None
-
-
-    def enable_button(self):
-        """Enable button"""
-        self.button_1_interface = GpioButtonInterface(
-            button_pin=self.start_button_pin,
-            callback_function=self.start_callback,
-        )
+        
 
 sensors_manager_service: SensorsManager = SensorsManager()
 """ Sensors manager service singleton"""
