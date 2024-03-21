@@ -3,13 +3,14 @@ GPIO interface service
 """
 import logging
 import time
+import threading
 from gpiozero import Button, LED
 
 logger = logging.getLogger(__name__)
 
 
-class GpioButtonInterface:
-    """Service class for RPI Button GPIO"""
+class GpioButtonInterface(threading.Thread):
+    """Service class for for RPI Button GPIO interface management"""
 
     button_pin: int
     button: Button
@@ -25,7 +26,23 @@ class GpioButtonInterface:
 
         # setup
         self.button = Button(self.button_pin)
-        self.button.when_pressed = callback_function
+        self.callback_function = callback_function
+        #self.button.when_pressed = callback_function
+
+        # Call Super constructor
+        super(GpioButtonInterface, self).__init__(name="GpioButtonInterfaceThread")
+        self.setDaemon(True)
+    
+    def run(self):
+        """Run thread"""      
+        
+        while True: 
+            logger.info("Waitting for press...")
+            self.button.wait_for_press()
+            print("Button was pressed")
+            self.callback_function()
+            self.button.wait_for_release(5)
+            print("Button was released")
         
 class GpioMachineOutputInterface:
     """Service class for RPI Output GPIO"""
