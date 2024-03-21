@@ -2,7 +2,6 @@
 Video manager service
 """
 import logging
-import time
 from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
 from server.interfaces.keyboard_input_interface import KeyboardInputInterface
@@ -55,7 +54,6 @@ class VideoManager:
             self.video_capture_interface.start()
         
     def start_pitch(self):
-        #logger.info("Start pitch callback")   
         if not self.on_game: 
             self.new_game()    
         if self.remaining_pitches > 0:
