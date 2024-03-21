@@ -25,7 +25,7 @@ class GpioButtonInterface(threading.Thread):
         self.button_pin = button_pin
 
         # setup
-        self.button = Button(self.button_pin)
+        self.button = Button(self.button_pin, bounce_time=0.5)
         self.callback_function = callback_function
         #self.button.when_pressed = callback_function
 
@@ -39,10 +39,10 @@ class GpioButtonInterface(threading.Thread):
         while True: 
             logger.info("Waitting for press...")
             self.button.wait_for_press()
-            print("Button was pressed")
+            print("Button pressed")
             self.callback_function()
             self.button.wait_for_release(5)
-            print("Button was released")
+            print("Button released")
         
 class GpioMachineOutputInterface:
     """Service class for RPI Output GPIO"""
