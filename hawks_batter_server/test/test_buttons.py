@@ -9,7 +9,7 @@ def start_callback_function():
 
 
 
-button_start = Button(23, bounce_time=2) 
+button_start = Button(23) 
 #button_start.when_pressed = start_callback_function
 
 #pause()
