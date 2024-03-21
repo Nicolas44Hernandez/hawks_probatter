@@ -25,6 +25,8 @@ class SensorsManager:
                 button_pin=app.config["SENSOR_START_PIN"],
                 callback_function=self.start_callback,
             )
+
+            self.button_1_interface.start()
             
 
     def start_callback(self):
