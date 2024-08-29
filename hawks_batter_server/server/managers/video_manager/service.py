@@ -49,6 +49,7 @@ class VideoManager:
                 video=videos_list_manager_service.get_video_path(self.video), 
                 setup_frame=app.config["SETUP_FRAME"],
                 startup_frame=app.config["STARTUP_FRAME"],
+                sync_frame=app.config["SYNC_FRAME"]
             )
 
             self.video_capture_interface.start()

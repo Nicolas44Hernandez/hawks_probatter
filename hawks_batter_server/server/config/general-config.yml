@@ -15,6 +15,7 @@ VIDEOS_CONFIGURATION_FILE: /home/pi/hawks_probatter/hawks_batter_server/server/c
 DEFAULT_VIDEO: Jules
 SETUP_FRAME: /home/pi/hawks_probatter/app_data/setup.jpg
 STARTUP_FRAME: /home/pi/hawks_probatter/app_data/startup.png
+SYNC_FRAME: /home/pi/hawks_probatter/app_data/sync.png
 
 
 # PERIPHERALS CONFIGURATION

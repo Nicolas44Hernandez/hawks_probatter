@@ -22,19 +22,22 @@ class VideoCaptureInterface(threading.Thread):
     running: bool
     setting_up: bool
     waiting_for_start: bool
+    synchronizing: bool
     waiting_for_pitch_frame: numpy.ndarray
     startup_frame: numpy.ndarray
+    sync_frame: numpy.ndarray
     setup_frame: numpy.ndarray    
     video_frames: Iterable[numpy.ndarray]
     remaining_pitches: int
 
-    def __init__(self, video:str, setup_frame: str, startup_frame: str):  
+    def __init__(self, video:str, setup_frame: str, startup_frame: str, sync_frame: str):  
         logger.info("Video manager interface started") 
         logger.info(f"Default video: {video}")   
 
         # Set initial values
         self.video = video
         self.startup_frame = startup_frame
+        self.sync_frame = sync_frame
         self.setup_frame = setup_frame   
         self.setting_up = False
         self.running = False
@@ -54,11 +57,19 @@ class VideoCaptureInterface(threading.Thread):
             return 
         self.startup_frame = captured_startup_frame  
 
+        # Load synchronization frame
+        captured_sync_frame = self.load_image(sync_frame)
+        if captured_sync_frame is None: 
+            logger.error("Impossible to open sync frame")
+            return 
+        self.sync_frame = captured_sync_frame  
+
         # Set initial values
         self.video = video
         self.running = False
         self.setting_up = False
         self.waiting_for_start = True  
+        self.synchronizing = False
         self.interframe_deltatime = None 
         self.remaining_pitches = None
 
@@ -99,12 +110,14 @@ class VideoCaptureInterface(threading.Thread):
             if self.setting_up:
                 self.running = False
                 self.waiting_for_start = True  
+                self.synchronizing = False
                 cv2.imshow(WINDOW_NAME, self.setup_frame) 
                 current_frame_pos = 0            
             else:   
                 if not self.running:
                     cv2.imshow(WINDOW_NAME, self.startup_frame)  
                     self.waiting_for_start = True
+                    self.synchronizing = False
                     current_frame_pos = 0                     
                 else:
                     if not self.waiting_for_start:   
@@ -133,13 +146,18 @@ class VideoCaptureInterface(threading.Thread):
                             self.draw_text(frame, text)
                         cv2.imshow(WINDOW_NAME, frame)
                     else:
-                        raw_frame = self.waiting_for_pitch_frame 
-                        frame = raw_frame.copy() 
-                        if self.remaining_pitches is not None:                              
-                            text = f"P:{self.remaining_pitches}"  
-                            self.draw_text(frame, text)                                     
-                        cv2.imshow(WINDOW_NAME, frame)
-                        current_frame_pos = 0 
+                        if self.synchronizing:
+                            cv2.imshow(WINDOW_NAME, self.sync_frame) 
+                            time.sleep(2)
+                            self.synchronizing = False
+                        else:
+                            raw_frame = self.waiting_for_pitch_frame 
+                            frame = raw_frame.copy() 
+                            if self.remaining_pitches is not None:                              
+                                text = f"P:{self.remaining_pitches}"  
+                                self.draw_text(frame, text)                                     
+                            cv2.imshow(WINDOW_NAME, frame)
+                            current_frame_pos = 0 
             #cv2.waitKey(int(self.interframe_deltatime/2))
             cv2.waitKey(1)
 
@@ -229,6 +247,7 @@ class VideoCaptureInterface(threading.Thread):
         self.setting_up = False
         self.running = True        
         self.waiting_for_start = True
+        self.synchronizing = True
         self.remaining_pitches = remaining_pitches
     
     def plot_setup_frame(self):
