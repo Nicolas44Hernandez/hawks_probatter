@@ -63,18 +63,18 @@ class GpioMachineOutputInterface:
         # setup
         self.start_output = LED(self.start_pin)
         self.stop_output = LED(self.stop_pin)
-        self.start_output.on()
-        self.stop_output.on()
+        self.start_output.off()
+        self.stop_output.off()
 
     def start_machine(self):
         """Start ptching machine"""
-        self.start_output.off()
-        time.sleep(0.5)
         self.start_output.on()
+        time.sleep(0.5)
+        self.start_output.off()
     
     def stop_machine(self):
         """Start ptching machine"""
-        self.stop_output.off()
-        time.sleep(0.5)
         self.stop_output.on()
+        time.sleep(0.5)
+        self.stop_output.off()
 
