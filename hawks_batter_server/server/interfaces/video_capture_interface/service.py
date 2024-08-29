@@ -120,44 +120,42 @@ class VideoCaptureInterface(threading.Thread):
                     self.synchronizing = False
                     current_frame_pos = 0                     
                 else:
-                    if not self.waiting_for_start:   
-                        if current_frame_pos == 0:
-                            start_video_ts = datetime.now()
-                            frame_ts = datetime.now()
-                        current_frame_pos = current_frame_pos + 1
-                        current_frame_ts= datetime.now()
-                        delta = current_frame_ts - frame_ts
-                        while delta < self.interframe_deltatime:
-                            current_frame_ts= datetime.now()
-                            delta = current_frame_ts - frame_ts
-                        frame_ts = current_frame_ts
-                        #logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
-                        if current_frame_pos > len(self.video_frames) - 1 :
-                            self.waiting_for_start = True
-                            video_delta = datetime.now() - start_video_ts
-                            logger.info(f"Total video duration{video_delta}")
-                            self.remaining_pitches = self.remaining_pitches - 1
-                            continue
-                        raw_frame = self.video_frames[current_frame_pos]  
-                        frame = raw_frame.copy()                                              
-                        #logger.info(f"frame {current_frame_pos}")
-                        if self.remaining_pitches is not None:                            
-                            text = f"P:{self.remaining_pitches}"
-                            self.draw_text(frame, text)
-                        cv2.imshow(WINDOW_NAME, frame)
-                    else:
+                    if not self.waiting_for_start:
                         if self.synchronizing:
                             cv2.imshow(WINDOW_NAME, self.sync_frame) 
-                            time.sleep(2)
-                            self.synchronizing = False
                         else:
-                            raw_frame = self.waiting_for_pitch_frame 
-                            frame = raw_frame.copy() 
-                            if self.remaining_pitches is not None:                              
-                                text = f"P:{self.remaining_pitches}"  
-                                self.draw_text(frame, text)                                     
+                            if current_frame_pos == 0:
+                                start_video_ts = datetime.now()
+                                frame_ts = datetime.now()
+                            current_frame_pos = current_frame_pos + 1
+                            current_frame_ts= datetime.now()
+                            delta = current_frame_ts - frame_ts
+                            while delta < self.interframe_deltatime:
+                                current_frame_ts= datetime.now()
+                                delta = current_frame_ts - frame_ts
+                            frame_ts = current_frame_ts
+                            #logger.info(f"frame:{current_frame_pos}  timestamp:{current_frame_ts}  delta:{delta}")
+                            if current_frame_pos > len(self.video_frames) - 1 :
+                                self.waiting_for_start = True
+                                video_delta = datetime.now() - start_video_ts
+                                logger.info(f"Total video duration{video_delta}")
+                                self.remaining_pitches = self.remaining_pitches - 1
+                                continue
+                            raw_frame = self.video_frames[current_frame_pos]  
+                            frame = raw_frame.copy()                                              
+                            #logger.info(f"frame {current_frame_pos}")
+                            if self.remaining_pitches is not None:                            
+                                text = f"P:{self.remaining_pitches}"
+                                self.draw_text(frame, text)
                             cv2.imshow(WINDOW_NAME, frame)
-                            current_frame_pos = 0 
+                    else:
+                        raw_frame = self.waiting_for_pitch_frame 
+                        frame = raw_frame.copy() 
+                        if self.remaining_pitches is not None:                              
+                            text = f"P:{self.remaining_pitches}"  
+                            self.draw_text(frame, text)                                     
+                        cv2.imshow(WINDOW_NAME, frame)
+                        current_frame_pos = 0 
             #cv2.waitKey(int(self.interframe_deltatime/2))
             cv2.waitKey(1)
 
@@ -244,11 +242,20 @@ class VideoCaptureInterface(threading.Thread):
     
     def plot_waiting_for_pitch(self, remaining_pitches):
         """Plot waitting for pitch frame"""
+        logger.info("PLOT WAITTINH FOR PITCH")
+        self.setting_up = False
+        self.running = True        
+        self.waiting_for_start = True
+        self.synchronizing = False
+        self.remaining_pitches = remaining_pitches
+    
+    def plot_sync(self):
+        """Plot sync frame"""
+        logger.info("PLOT SYNC")
         self.setting_up = False
         self.running = True        
         self.waiting_for_start = True
         self.synchronizing = True
-        self.remaining_pitches = remaining_pitches
     
     def plot_setup_frame(self):
         """Plot setup frame"""

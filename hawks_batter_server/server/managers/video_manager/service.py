@@ -2,6 +2,7 @@
 Video manager service
 """
 import logging
+import time
 from flask import Flask
 from server.interfaces.video_capture_interface import VideoCaptureInterface
 from server.interfaces.keyboard_input_interface import KeyboardInputInterface
@@ -84,10 +85,12 @@ class VideoManager:
             return 
         logger.info(f"Starting new game, pitches: {self.remaining_pitches}")
         self.remaining_pitches = self.total_pitches
-        machine_manager_service.stop_machine()
-        self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
+        machine_manager_service.stop_machine()    
+        self.video_capture_interface.plot_sync()    
         machine_manager_service.start_machine()
         self.on_game=True
+        time.sleep(5)
+        self.video_capture_interface.plot_waiting_for_pitch(self.remaining_pitches)
 
     def exit_game(self):
         """Exit game """       
