@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      appName: 'Hawks Probatter',
+      appName: 'Probatter',
       appVersion: '1.0.0',
       developer: 'Nicolas Hernandez',
     }

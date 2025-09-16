@@ -5,10 +5,10 @@ import HawksHeader from './components/HawksHeader.vue'
 
 <template>
   <header>
-    <img alt="Hawks logo" class="logo" src="@/assets/logo.png"/>
+    <img alt="Hawks logo" class="logo" src="@/assets/logo-black-panthers.jpg"/>
 
     <div class="wrapper">
-      <HawksHeader msg="Hawks Baseball Probatter" />
+      <HawksHeader msg="Baseball Probatter" />
 
       <nav>
         <RouterLink to="/game">Game</RouterLink>
